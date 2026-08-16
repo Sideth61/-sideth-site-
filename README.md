@@ -78,7 +78,8 @@
         <div class="links">
             <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" class="btn" target="_blank">Facebook Page</a>
             <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" class="btn" target="_blank">YouTube Channel</a>
-                        <a href="https://www.tiktok.com/@sideth61" class="btn" target="_blank">TikTok Shop</a>
+            <a href="https://www.tiktok.com/@sideth61" class="btn" target="_blank">TikTok Shop</a>
+        </div>
 
         </div>
 class="btn" target="_blank">TikTok Shop</a>
