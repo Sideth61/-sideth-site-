@@ -45,12 +45,12 @@
 <body>
 
     <div class="card">
-        <!-- រូបភាពផ្លាកសញ្ញា DETH DSN ដែលគ្មានពាក្យ CYBER SHIELD IT -->
-        <img src="image_11.png" alt="DETH DSN Logo" class="logo-img">
+        <!-- ដាក់រូបភាពផ្លាកសញ្ញា DETH DSN ដែលត្រូវនឹង image_9.png របស់បង -->
+        <img src="image_9.png" alt="DETH DSN Logo" class="logo-img">
         
         <div class="badge">🌲 Digital Creator & Developer</div>
         <h1>សួស្តី! ខ្ញុំឈ្មោះ San Sideth</h1>
-        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI ដ៏ ក៏ដូចជារីករាយនឹងการចែករំលែកបច្ចេកវិទ្យាថ្មីៗនៅលើទូរសព្ទដៃ 📱🔥</p>
+        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI ដ៏ ក៏ដូចជារីករាយនឹងការចែករំលែកបច្ចេកវិទ្យាថ្មីៗនៅលើទូរសព្ទដៃ 📱🔥</p>
         <div class="links">
             <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" class="btn" target="_blank">Facebook Page</a>
             <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" class="btn" target="_blank">YouTube Channel</a>
