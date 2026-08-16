@@ -15,6 +15,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
         }
         .card {
             background: rgba(30, 41, 59, 0.7);
@@ -24,64 +25,31 @@
             border-radius: 20px;
             max-width: 500px;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
-        h1 {
-            color: #38bdf8;
-            margin-bottom: 10px;
-            font-size: 26px;
-        }
-        p {
-            color: #94a3b8;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-        .badge {
-            display: inline-block;
-            background: #0284c7;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-        .links {
-            margin-top: 25px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn {
-            background: #2563eb;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            font-size: 14px;
-        }
-        .btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
+        h1 { color: #38bdf8; margin-bottom: 10px; font-size: 26px; }
+        p { color: #94a3b8; line-height: 1.6; font-size: 15px; }
+        .badge { display: inline-block; background: #0284c7; color: white; padding: 5px 12px; border-radius: 20px; font-size: 13px; margin-bottom: 15px; }
+        .links { margin-top: 25px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .btn { background: #2563eb; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 14px; }
+        .btn:hover { background: #1d4ed8; transform: translateY(-2px); }
     </style>
 </head>
 <body>
+
+    <h1 style="font-family: 'Koulen', cursive; color: #38bdf8; text-shadow: 0 0 5px #38bdf8; font-size: 2em; letter-spacing: 2px; text-align: center; margin-bottom: 15px;">ដេត ឌីអេសអិន</h1>
+
     <div class="card">
         <div class="badge">🌲 Digital Creator & Developer</div>
         <h1>សួស្តី! ខ្ញុំឈ្មោះ San Sideth</h1>
-        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI នឹងវីដេអូ AI ដោយផ្ទាល់ដៃលើទូរសព្ទដៃ 📱🔥</p>
-
+        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI ដ៏ ក៏ដូចជារីករាយនឹងការចែករំលែកបច្ចេកវិទ្យាថ្មីៗនៅលើទូរសព្ទដៃ 📱🔥</p>
         <div class="links">
             <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" class="btn" target="_blank">Facebook Page</a>
             <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" class="btn" target="_blank">YouTube Channel</a>
             <a href="https://www.tiktok.com/@sideth61" class="btn" target="_blank">TikTok Shop</a>
         </div>
-
-
+    </div>
 
 </body>
 </html>
