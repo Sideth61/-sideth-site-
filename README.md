@@ -76,10 +76,12 @@
         <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI នឹងវីដេអូ AI ដោយផ្ទាល់ដៃលើទូរសព្ទដៃ 📱🔥</p>
 
         
-        <div class="links">
-            <a href="https://facebook.com" class="btn" target="_blank">Facebook Page</a>
+                <div class="links">
+            <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" class="btn" target="_blank">Facebook Page</a>
+            <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" class="btn" target="_blank">YouTube Channel</a>
             <a href="https://tiktok.com" class="btn" target="_blank">TikTok Shop</a>
         </div>
+
     </div>
 </body>
 </html>
