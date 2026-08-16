@@ -28,6 +28,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
+        .logo-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
         h1 { color: #38bdf8; margin-bottom: 10px; font-size: 26px; }
         p { color: #94a3b8; line-height: 1.6; font-size: 15px; }
         .badge { display: inline-block; background: #0284c7; color: white; padding: 5px 12px; border-radius: 20px; font-size: 13px; margin-bottom: 15px; }
@@ -38,12 +44,13 @@
 </head>
 <body>
 
-    <h1 style="font-family: 'Koulen', cursive; color: #38bdf8; text-shadow: 0 0 5px #38bdf8; font-size: 2em; letter-spacing: 2px; text-align: center; margin-bottom: 15px;">ដេត ឌីអេសអិន</h1>
-
     <div class="card">
+        <!-- រូបភាពផ្លាកសញ្ញា DETH DSN ដែលគ្មានពាក្យ CYBER SHIELD IT -->
+        <img src="image_11.png" alt="DETH DSN Logo" class="logo-img">
+        
         <div class="badge">🌲 Digital Creator & Developer</div>
         <h1>សួស្តី! ខ្ញុំឈ្មោះ San Sideth</h1>
-        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI ដ៏ ក៏ដូចជារីករាយនឹងការចែករំលែកបច្ចេកវិទ្យាថ្មីៗនៅលើទូរសព្ទដៃ 📱🔥</p>
+        <p>ស្វាគមន៍មកកាន់វេបសាយផ្លូវការរបស់ខ្ញុំ! ខ្ញុំជាអ្នកបង្កើតខ្លឹមសារវីដេអូ អភិវឌ្ឍន៍ហ្គេម និងជាអ្នកសរសេរ Prompt បង្កើតចម្រៀង AI ដ៏ ក៏ដូចជារីករាយនឹងการចែករំលែកបច្ចេកវិទ្យាថ្មីៗនៅលើទូរសព្ទដៃ 📱🔥</p>
         <div class="links">
             <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" class="btn" target="_blank">Facebook Page</a>
             <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" class="btn" target="_blank">YouTube Channel</a>
