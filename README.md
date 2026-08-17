@@ -45,7 +45,8 @@
 <body>
 
     <div class="card">
-        <!-- ដាក់រូបភាពផ្លាកសញ្ញា DETH DSN ដែលត្រូវនឹង image_9.png របស់បង -->
+        <img src="IMG_2900.png" alt="DETH DSN Logo" class="logo-img">
+
         <img src="image_9.png" alt="DETH DSN Logo" class="logo-img">
         
         <div class="badge">🌲 Digital Creator & Developer</div>
