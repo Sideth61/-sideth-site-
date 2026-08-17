@@ -29,7 +29,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .logo-img { width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-bottom: 15px; }
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: #000; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         h1 { color: #38bdf8; font-size: 22px; margin: 10px 0 5px 0; }
         p { color: #94a3b8; font-size: 13px; margin-bottom: 15px; line-height: 1.5; }
