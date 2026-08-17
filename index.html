@@ -15,28 +15,32 @@
                 radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.1) 0%, transparent 40%);
             color: #fff; 
             text-align: center; 
-            padding: 20px; 
+            padding: 20px 10px; 
             margin: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
+        .container {
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
         .card { 
-            background: rgba(17, 24, 39, 0.8); 
+            background: rgba(17, 24, 39, 0.85); 
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 30px 20px; 
+            padding: 25px 20px; 
             border-radius: 24px; 
-            width: 100%;
-            max-width: 500px;
             border: 1px solid rgba(56, 189, 248, 0.2);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.1);
-            animation: fadeIn 0.8s ease-in-out;
+            text-align: left;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .header-card {
+            text-align: center;
         }
         .avatar-container {
             width: 90px;
@@ -57,53 +61,84 @@
             justify-content: center;
             font-size: 36px;
         }
-        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
-        .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; letter-spacing: 0.5px; }
-        p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; line-height: 1.7; text-align: left; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; }
+        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); text-align: center; }
+        .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; letter-spacing: 0.5px; text-align: center; }
+        p { color: #94a3b8; font-size: 14px; margin: 0 0 15px 0; line-height: 1.7; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; }
         .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); }
-        .skills-box { background: rgba(15, 23, 42, 0.7); padding: 16px; border-radius: 16px; margin-bottom: 15px; text-align: left; border: 1px solid rgba(56, 189, 248, 0.2); }
-        .skills-box h3 { color: #38bdf8; font-size: 15px; margin: 0 0 10px 0; display: flex; align-items: center; gap: 8px; }
-        .skills-box ul { margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 13px; }
-        .skills-box li { margin-bottom: 6px; }
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; margin-bottom: 20px; text-align: center; box-shadow: 0 0 15px rgba(244, 63, 94, 0.1); }
-        .wife-box h4 { color: #fb7185; margin: 0 0 6px 0; font-size: 15px; }
+        
+        .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
+        
+        ul { margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 14px; }
+        li { margin-bottom: 8px; }
+        
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 0 15px rgba(244, 63, 94, 0.1); }
+        .wife-box h4 { color: #fb7185; margin: 0 0 6px 0; font-size: 16px; }
         .wife-box p { color: #f1f5f9; font-size: 13px; text-align: center; margin: 0; background: none; border: none; padding: 0; }
+        
+        .project-item { background: rgba(15, 23, 42, 0.6); padding: 12px 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .project-item h5 { color: #38bdf8; margin: 0 0 4px 0; font-size: 14px; }
+        .project-item span { color: #94a3b8; font-size: 12px; }
+
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-size: 15px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); background: linear-gradient(135deg, #1d4ed8, #1e40af); }
-        .btn-tiktok { background: linear-gradient(135deg, #0f172a, #334155); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .btn-tiktok:hover { background: linear-gradient(135deg, #1e293b, #0f172a); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); }
+        .btn-tiktok { background: linear-gradient(135deg, #0f172a, #334155); border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="avatar-container">
-            <div class="avatar">🛡️</div>
+    <div class="container">
+        <!-- ផ្នែកទី១: ព័ត៌មានផ្ទាល់ខ្លួន -->
+        <div class="card header-card">
+            <div class="avatar-container">
+                <div class="avatar">🛡️</div>
+            </div>
+            <div class="badge">⚔️ Deth DSN(SAN SIDETH)💻</div>
+            <h1>សួស្តី! ខ្ញុំបាទ សាន ស៊ីដេត</h1>
+            <div class="title-sub">មន្ត្រីយោធាជួរមុខ & Digital Creator</div>
+            <p>
+                ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលប្តូរជីវិតពីការរស់នៅធម្មតា មកចាប់យកបច្ចេកវិទ្យា IT ដ៏ទំនើប និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។
+            </p>
         </div>
-        <div class="badge">⚔️ Deth DSN(SAN SIDETH)</div>
-        <h1>សួស្តី! ខ្ញុំបាទ សាន ស៊ីដេត</h1>
-        <div class="title-sub">មន្ត្រីយោធាជួរមុខ & Digital Creator & Hacker</div>
-        
-        <p>
-            ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលប្តូរជីវិតពីការរស់នៅធម្មតា មកចាប់យកបច្ចេកវិទ្យា IT ដ៏ទំនើប និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។
-        </p>
 
-        <div class="skills-box">
-            <h3>💻 ជំនាញ និងបទពិសោធន៍៖</h3>
+        <!-- ផ្នែកទី២: ជំនាញ និងបទពិសោធន៍ -->
+        <div class="card">
+            <div class="section-title">💻 ជំនាញ និងបទពិសោធន៍ការងារ</div>
             <ul>
-                <li><strong>Digital & E-Commerce:</strong> Page Manager, TikTok Shop Seller</li>
-                <li><strong>Tech & Security:</strong> iOS App/Game Developer, Ethical Hacker</li>
-                <li><strong>AI Content:</strong> Prompt វីដេអូ AI Cinematic / Google Veo 3</li>
+                <li><strong>Digital & E-Commerce:</strong> Page Manager, TikTok Shop Seller (លក់ផលិតផលថែរក្សាសម្រស់ និងសម្ភារៈព្រៃភ្នំ)</li>
+                <li><strong>Tech & Security:</strong> iOS App/Game Developer (Unity, Xcode), Ethical Hacker</li>
+                <li><strong>AI Content Creator:</strong> Prompt វីដេអូ AI Cinematic / Google Veo 3</li>
             </ul>
         </div>
 
+        <!-- ផ្នែកទី៣: ស្នាដៃ និងគម្រោងផលិតវីដេអូ -->
+        <div class="card">
+            <div class="section-title">🎬 ស្នាដៃ និងគម្រោងចុងក្រោយ</div>
+            <div class="project-item">
+                <h5>🎵 ទាហានមុំបី ភ្នំ750</h5>
+                <span>Original Song & Video Content Production (2026)</span>
+            </div>
+            <div class="project-item">
+                <h5>🔥 Blaming All Men</h5>
+                <span>Music & Digital Distribution Project</span>
+            </div>
+            <div class="project-item">
+                <h5>🐅 Cinematic Tiger AI Videos</h5>
+                <span>AI Video Generation & Prompt Engineering</span>
+            </div>
+        </div>
+
+        <!-- ផ្នែកទី៤: ម្លប់សុភមង្គលគ្រួសារ -->
         <div class="wife-box">
             <h4>💖 ម្លប់សុភមង្គលពិតប្រាកដ</h4>
             <p>ខ្ញុំមានកិត្តិយស និងមោទនភាពបំផុត ដែលមាន <strong>លាន​ ឧស្សាហ៍​</strong> ជាប្រពន្ធដ៏ល្អ ល្អជាងគេលើលោករបស់ខ្ញុំ!</p>
         </div>
-        
-        <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" target="_blank" class="btn">📘 តាមដាន Facebook Page</a>
-        <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" target="_blank" class="btn">យូធូប YouTube Channel</a>
-        <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn btn-tiktok">🎵 ទស្សនា TikTok Shop</a>
+
+        <!-- ផ្នែកទី៥: តំណភ្ជាប់បណ្តាញសង្គម -->
+        <div class="card">
+            <div class="section-title">🌐 ទំនាក់ទំនង និងតាមដានខ្ញុំ</div>
+            <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" target="_blank" class="btn">📘 តាមដាន Facebook Page</a>
+            <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" target="_blank" class="btn">🎬 យូធូប YouTube Channel</a>
+            <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn btn-tiktok">🎵 ទស្សនា TikTok Shop</a>
+        </div>
     </div>
 </body>
 </html>
