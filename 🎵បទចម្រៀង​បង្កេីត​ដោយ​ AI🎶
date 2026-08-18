@@ -1,1 +1,31 @@
+/* បន្ថែមចំណុចទាំងនេះចូលក្នុង style របស់បងណា៎ប្រុសស្អិត */
+.card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+}
+
+.btn {
+    transition: all 0.3s ease;
+    filter: brightness(1);
+}
+
+.btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.02);
+}
+
+/* បន្ថែមសកម្មភាព Fade-in ពេលចូលវេបសាយ */
+body {
+    animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
