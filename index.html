@@ -7,9 +7,24 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
-        /* ផ្នែក Logo */
-        .logo-container { position: fixed; top: 15px; left: 15px; z-index: 1000; }
-        .logo-container img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #38bdf8; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        /* ផ្នែក Logo ជាមួយនឹង Background ស្អាត */
+        .logo-container {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #38bdf8, #f43f5e);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            border: 2px solid #090d16;
+        }
 
         body { 
             font-family: 'Kantumruy Pro', sans-serif; 
@@ -36,13 +51,17 @@
     </style>
 </head>
 <body>
-    <div class="logo-container"><img src="IMG_3350.jpeg" alt="Logo"></div>
+    <!-- Logo ជាមួយនឹង Background -->
+    <div class="logo-container">
+        <img src="IMG_3350.jpeg" alt="Logo">
+    </div>
+
     <div class="container">
         <div class="card header-card">
             <div class="avatar-container"><div class="avatar">🛡️</div></div>
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
-            <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator</div>
+            <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator💻</div>
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលធ្វើការងារជា Content Creator និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។</p>
         </div>
 
