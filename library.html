@@ -1,71 +1,71 @@
-<!-- ផ្នែកបណ្ណាល័យមេរៀន និងចម្រៀង - ស៊ីវិល័យ និងទាក់ទាញ -->
 <style>
+    /* រចនាប័ទ្មសម្រាប់ Folder Card */
     .library-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 25px;
-        margin-top: 20px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        text-align: left;
+        background: rgba(17, 24, 39, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        border-radius: 25px;
+        padding: 30px;
+        margin: 20px 0;
+        transition: 0.4s;
+    }
+    .library-card:hover {
+        border-color: #38bdf8;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
     }
     .section-title {
-        color: #38bdf8;
-        font-size: 18px;
+        color: #fff;
+        font-size: 20px;
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    .lib-item {
-        background: rgba(15, 23, 42, 0.4);
-        padding: 15px;
-        border-radius: 15px;
+    .folder-item {
+        background: rgba(30, 41, 59, 0.5);
+        padding: 20px;
+        border-radius: 20px;
         margin-bottom: 15px;
-        border-left: 4px solid #38bdf8;
+        border-left: 5px solid #38bdf8;
         transition: 0.3s;
+        text-align: left;
     }
-    .lib-item:hover {
+    .folder-item:hover {
         background: rgba(56, 189, 248, 0.1);
-        transform: scale(1.02);
+        transform: translateX(10px);
     }
-    .lib-item h5 { color: #f8fafc; margin: 0 0 5px 0; font-size: 16px; }
-    .lib-item span { color: #94a3b8; font-size: 13px; }
-    .btn-library {
+    .folder-item h5 { color: #38bdf8; margin: 0 0 8px 0; font-size: 18px; }
+    .folder-item span { color: #94a3b8; font-size: 14px; }
+    .btn-folder {
         display: block;
-        width: 100%;
-        background: linear-gradient(135deg, #0284c7, #38bdf8);
+        margin-top: 20px;
+        background: linear-gradient(135deg, #0ea5e9, #6366f1);
         color: white;
         text-align: center;
         padding: 15px;
         border-radius: 15px;
         text-decoration: none;
         font-weight: 600;
-        margin-top: 10px;
         transition: 0.3s;
     }
-    .btn-library:hover {
-        background: linear-gradient(135deg, #38bdf8, #0284c7);
-        transform: translateY(-2px);
-    }
+    .btn-folder:hover { opacity: 0.9; transform: scale(1.02); }
 </style>
 
 <div class="library-card">
     <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង</div>
     
-    <div class="lib-item">
-        <h5>🎵បទចម្រៀង​បង្កេីត​ដោយ​ AI🎶</h5>
-        <span>ស្ដាប់កម្សាន្តនូវបទចម្រៀងដែលច្នៃប្រឌិតឡើងដោយបញ្ញាសិប្បនិម្មិតដ៏ពិរោះៗ។</span>
+    <!-- Folder ទី ១ -->
+    <div class="folder-item">
+        <h5>🎵បទចម្រៀងបង្កេីតដោយ AI🎶</h5>
+        <span>ស្តាប់កម្សាន្តនូវបទចម្រៀងពិរោះៗដែលច្នៃប្រឌិតឡើងដោយ AI។</span>
     </div>
     
-    <div class="lib-item">
-        <h5>📗អានសៀវភៅ​ បច្ចេកវិទ្យា​📗</h5>
-        <span>សិក្សានិងស្វែងយល់ពីឯកសារមេរៀនបច្ចេកវិទ្យាដ៏មានតម្លៃ។</span>
+    <!-- Folder ទី ២ -->
+    <div class="folder-item">
+        <h5>📗អានសៀវភៅ​ បច្ចេកវិទ្យា📗</h5>
+        <span>សិក្សានិងស្វែងយល់ពីឯកសារមេរៀនបច្ចេកវិទ្យាផ្សេងៗ។</span>
     </div>
     
-    <a href="library.html" class="btn-library">📁 ចុចចូលដើម្បីស្ដាប់ចម្រៀង និងអានសៀវភៅ</a>
+    <a href="library.html" class="btn-folder">📁 ចុចចូលដើម្បីស្ដាប់ចម្រៀង និងអានសៀវភៅ</a>
 </div>
-
