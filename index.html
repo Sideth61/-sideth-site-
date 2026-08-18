@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Sideth - DSN Wesite </title>
+    <title>San Sideth - DSN Wesite Online</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
@@ -39,9 +39,7 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.1);
             text-align: left;
         }
-        .header-card {
-            text-align: center;
-        }
+        .header-card { text-align: center; }
         .avatar-container {
             width: 90px;
             height: 90px;
@@ -61,175 +59,92 @@
             justify-content: center;
             font-size: 36px;
         }
-        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); text-align: center; }
-        .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; letter-spacing: 0.5px; text-align: center; }
+        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-align: center; }
+        .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; text-align: center; }
         p { color: #94a3b8; font-size: 14px; margin: 0 0 15px 0; line-height: 1.7; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; }
-        .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; font-weight: 600; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); }
-        
+        .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; font-weight: 600; }
         .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
-        
         ul { margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 14px; }
         li { margin-bottom: 8px; }
-        
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 0 15px rgba(244, 63, 94, 0.1); }
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; }
         .wife-box h4 { color: #fb7185; margin: 0 0 6px 0; font-size: 16px; }
-        .wife-box p { color: #f1f5f9; font-size: 13px; text-align: center; margin: 0; background: none; border: none; padding: 0; }
-        
+        .wife-box p { color: #f1f5f9; font-size: 13px; margin: 0; }
         .project-item { background: rgba(15, 23, 42, 0.6); padding: 12px 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .project-item h5 { color: #38bdf8; margin: 0 0 4px 0; font-size: 14px; }
         .project-item span { color: #94a3b8; font-size: 12px; }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-top: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-size: 15px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); }
-        .btn-tiktok { background: linear-gradient(135deg, #0f172a, #334155); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-gmail { background: linear-gradient(135deg, #ea4335, #c5221f); box-shadow: 0 4px 15px rgba(234, 67, 53, 0.4); }
-        .btn-gmail:hover { background: linear-gradient(135deg, #c5221f, #a51d18); }
-        .btn-apple { background: linear-gradient(135deg, #4b5563, #1f2937); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); }
-        .btn-apple:hover { background: linear-gradient(135deg, #1f2937, #111827); }
-        .btn-shop { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
-        .btn-shop:hover { background: linear-gradient(135deg, #059669, #047857); }
-        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4); }
-        .btn-telegram:hover { background: linear-gradient(135deg, #006699, #004466); }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-size: 15px; transition: all 0.3s ease; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-tiktok { background: linear-gradient(135deg, #0f172a, #334155); }
+        .btn-gmail { background: linear-gradient(135deg, #ea4335, #c5221f); }
+        .btn-apple { background: linear-gradient(135deg, #4b5563, #1f2937); }
+        .btn-shop { background: linear-gradient(135deg, #10b981, #059669); }
+        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- ផ្នែកទី១: ព័ត៌មានផ្ទាល់ខ្លួន -->
         <div class="card header-card">
-            <div class="avatar-container">
-                <div class="avatar">🛡️👮🛡️</div>
-            </div>
+            <div class="avatar-container"><div class="avatar">🛡️</div></div>
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
-            <div class="title-sub">មន្ត្រីយោធាជួរមុខ & Content Creator</div>
-            <p>
-                ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលធ្វើការងារជា Content Creator និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។
-            </p>
+            <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator</div>
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលធ្វើការងារជា Content Creator និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។</p>
         </div>
 
-        <!-- ផ្នែកទី២: ជំនាញ និងបទពិសោធន៍ -->
+        <!-- ផ្នែកទី២: ជំនាញ -->
         <div class="card">
             <div class="section-title">💻 ជំនាញ និងបទពិសោធន៍ការងារ</div>
             <ul>
-                <li><strong>Digital & E-Commerce:</strong> គ្រប់គ្រងទំព័រហ្វេសប៊ុក និងលក់ផលិតផលតាម TikTok Shop (ផលិតផលថែរក្សាសម្រស់ និងសម្ភារៈព្រៃភ្នំ)</li>
-                <li><strong>Tech & Security:</strong> អភិវឌ្ឍន៍កម្មវិធី និងហ្គេម iOS (Unity, Xcode) ព្រមទាំងជំនាញសន្តិសុខបច្ចេកវិទ្យា</li>
-                <li><strong>AI Content Creator:</strong> បង្កើតកូដបញ្ជា (Prompt) វីដេអូ AI Cinematic / Google Veo 3</li>
+                <li><strong>Digital & E-Commerce:</strong> គ្រប់គ្រងទំព័រហ្វេសប៊ុក និងលក់ផលិតផលតាម TikTok Shop</li>
+                <li><strong>Tech & Security:</strong> អភិវឌ្ឍន៍កម្មវិធី និងហ្គេម iOS (Unity, Xcode)</li>
+                <li><strong>AI Content Creator:</strong> បង្កើតកូដបញ្ជា (Prompt) វីដេអូ AI Cinematic</li>
             </ul>
         </div>
 
-        <!-- ផ្នែកទី៣: សេវាកម្ម និងផលិតផលដាក់លក់ -->
+        <!-- ផ្នែកទី៣: សេវាកម្ម -->
         <div class="card">
             <div class="section-title">🛒 សេវាកម្ម និងផលិតផលឌីជីថល</div>
-            
-            <div class="project-item">
-                <h5>🔥 គណនី Gmail គុណភាពខ្ពស់</h5>
-                <span>មានសុវត្ថិភាពខ្ពស់ ងាយស្រួលយកទៅប្រើប្រាស់សម្រាប់បង្កើតឆានែល YouTube, ហ្គេម និង TikTok Shop។</span>
-            </div>
-            <a href="https://m.me/deth61" target="_blank" class="btn btn-gmail">🛒 ទិញគណនី Gmail តាម Messenger</a>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>🍏 គណនី Apple ID (USA / KH)</h5>
-                <span>គណនី iOS សម្រាប់ទាញយកហ្គេម ដាក់ពាក្យក្នុង App Store និងប្រើប្រាស់លើប្រព័ន្ធ Apple យ៉ាងមានសុវត្ថិភាព។</span>
-            </div>
-            <a href="https://m.me/deth61" target="_blank" class="btn btn-apple">🍏 ទិញគណនី Apple ID តាម Messenger</a>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>🎮 សេវាកម្មអភិវឌ្ឍន៍កម្មវិធី និងហ្គេម iOS</h5>
-                <span>ទទួលសេវាកម្មកុម្ម៉ង់ ឬបង្កើតហ្គេម និងកម្មវិធីនៅលើប្រព័ន្ធ iOS (Unity, Xcode) តាមតម្រូវការ។</span>
-            </div>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>✨ សេវាកម្មកាត់តវីដេអូ និង AI Cinematic</h5>
-                <span>ទទួលកាត់តវីដេអូ និងបង្កើត Prompt AI Video កប់ស៊េរីសម្រាប់យកទៅបង្ហោះលើ YouTube និង Facebook Page។</span>
-            </div>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>🌿 ផលិតផលថែរក្សាសម្រស់ និងសម្ភារៈព្រៃភ្នំ</h5>
-                <span>លក់ផលិតផល Lotions, Creams និងសម្ភារៈព្រៃភ្នំ (កាបូប ពិល កាំបិតខែ្មរ/ព្រៃ) គុណភាពល្អ។</span>
-            </div>
-            <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn btn-shop">🛍️ រកទិញផលិតផលតាម TikTok Shop</a>
+            <div class="project-item"><h5>🔥 គណនី Gmail គុណភាពខ្ពស់</h5><span>មានសុវត្ថិភាពខ្ពស់ ងាយស្រួលប្រើ។</span></div>
+            <a href="https://m.me/deth61" class="btn btn-gmail">🛒 ទិញគណនី Gmail</a>
+            <div class="project-item" style="margin-top: 15px;"><h5>🍏 គណនី Apple ID</h5><span>សម្រាប់ App Store និងប្រព័ន្ធ Apple។</span></div>
+            <a href="https://m.me/deth61" class="btn btn-apple">🍏 ទិញគណនី Apple ID</a>
         </div>
 
-        <!-- ផ្នែកទី៤: បណ្ណាល័យសៀវភៅ និងមេរៀនបច្ចេកវិទ្យា Free -->
+        <!-- ផ្នែកថ្មី: គម្រោងដែលកំពុងដំណើរការ -->
         <div class="card">
-            <div class="section-title">📚 បណ្ណាល័យបច្ចេកវិទ្យា (Free Tech E-Books)</div>
-            
+            <div class="section-title">🚀 គម្រោងកំពុងដំណើរការ (In Progress)</div>
             <div class="project-item">
-                <h5>📖 មេរៀនមូលដ្ឋានគ្រឹះសន្តិសុខបច្ចេកវិទ្យា (Cyber Security Basics)</h5>
-                <span>សៀវភៅ PDF ណែនាំពីរបៀបការពារគណនី និងសុវត្ថិភាពលើអនឡាញ។</span>
+                <h5>📱 អភិវឌ្ឍន៍ហ្គេម iOS ថ្មី</h5>
+                <span>កំពុងសម្រិតសម្រាំងហ្គេមនៅលើ Unity សម្រាប់ដាក់លក់ក្នុង App Store។</span>
             </div>
-            <a href="downloads/cyber-security.pdf" download class="btn btn-shop">📥 ទាញយកសៀវភៅ Free (PDF)</a>
-
             <div class="project-item" style="margin-top: 15px;">
-                <h5>📖 កម្រងគំនិត និងស្គ្រីបស្វ័យប្រវត្តិ (Coding & Scripts)</h5>
-                <span>ឯកសារប្រមូលផ្តុំកូដ និងគន្លឹះខ្លីៗសម្រាប់អ្នកចង់រៀនសរសេរកម្មវិធី។</span>
+                <h5>🎥 មេរៀនវីដេអូ (Tutorial Video)</h5>
+                <span>កំពុងរៀបចំវីដេអូ "របៀបប្រើប្រាស់ Gemini AI" សម្រាប់បងប្អូន។</span>
             </div>
-            <a href="downloads/coding-guide.pdf" download class="btn btn-shop">📥 ទាញយកឯកសារ Free (PDF)</a>
+            <div style="margin-top: 10px; text-align: center; color: #38bdf8; font-size: 13px;">💪 ធ្វើការដោយការតាំងចិត្តខ្ពស់ជារៀងរាល់ថ្ងៃ!</div>
         </div>
 
-        <!-- ផ្នែកទី៥: ស្នាដៃ និងវីដេអូផ្ទាល់ខ្លួន -->
+        <!-- ផ្នែកទី៥: ស្នាដៃ និងវីដេអូ -->
         <div class="card">
-            <div class="section-title">🎬 ស្នាដៃ និងវីដេអូ "ទាហានមុំបី ភ្នំ750"</div>
-            <div class="project-item">
-                <h5>🎵 ទាហានមុំបី ភ្នំ750</h5>
-                <span>បទចម្រៀងដើម និងការផលិតមាតិកាវីដេអូ (ឆ្នាំ២០២៦)</span>
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU" title="ទាហានមុំបី ភ្នំ750" allowfullscreen></iframe>
-            </div>
+            <div class="section-title">🎬 ស្នាដៃ "ទាហានមុំបី ភ្នំ750"</div>
+            <div class="video-container"><iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU" allowfullscreen></iframe></div>
         </div>
 
-        <!-- ផ្នែកទី៦: ម្លប់សុភមង្គលគ្រួសារ -->
+        <!-- ផ្នែកទី៦: ម្លប់សុភមង្គល -->
         <div class="wife-box">
             <h4>💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
-            <p>ខ្ញុំមានកិត្តិយស និងមោទនភាពបំផុត ដែលមាន <strong>លាន ឧស្សាហ៍</strong> ជាប្រពន្ធដ៏ល្អ ល្អជាងគេលើលោករបស់ខ្ញុំ!</p>
+            <p>ខ្ញុំមានកិត្តិយស និងមោទនភាពបំផុត ដែលមាន <strong>លាន ឧស្សាហ៍</strong> ជាប្រពន្ធដ៏ល្អបំផុតរបស់ខ្ញុំ!</p>
         </div>
 
-        <!-- ផ្នែកទី៧: ទំនាក់ទំនង និងបណ្តាញសង្គម -->
+        <!-- ផ្នែកទី៧: ទំនាក់ទំនង -->
         <div class="card">
-            <div class="section-title">📞 ទំនាក់ទំនង និងតាមដានខ្ញុំ</div>
-            
-            <div class="project-item">
-                <h5>📧 អ៊ីម៉ែលផ្ទាល់ខ្លួន</h5>
-                <span>sansidet63@gmail.com</span>
-            </div>
-            <a href="mailto:sansidet63@gmail.com" class="btn btn-gmail">📧 ផ្ញើអ៊ីម៉ែលមកកាន់ខ្ញុំ</a>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>📱 តេឡេក្រាមផ្ទាល់ខ្លួន</h5>
-                <span>@sidet99</span>
-            </div>
-            <a href="https://t.me/sidet99" target="_blank" class="btn btn-telegram">✈️ ទាក់ទងតាម Telegram (@sidet99)</a>
-
-            <div class="project-item" style="margin-top: 15px;">
-                <h5>☎️ លេខទូរសព្ទទំនាក់ទំនង</h5>
-                <span>068 488 730 / 017 488 730</span>
-            </div>
-            <a href="tel:068488730" class="btn">📞 ខលទូរសព្ទមកភ្លាម (068 488 730)</a>
-
-            <div style="margin-top: 15px;"></div>
-            <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" target="_blank" class="btn">📘 តាមដាន Facebook Page</a>
-            <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" target="_blank" class="btn">🎬 ឆានែល YouTube</a>
-            <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn btn-tiktok">🎵 ទស្សនា TikTok Shop</a>
+            <div class="section-title">📞 ទំនាក់ទំនង</div>
+            <a href="https://t.me/sidet99" class="btn btn-telegram">✈️ ទាក់ទងតាម Telegram (@sidet99)</a>
+            <a href="https://www.facebook.com/deth61" class="btn">📘 តាមដាន Facebook Page</a>
+            <a href="https://www.tiktok.com/@sideth61" class="btn btn-tiktok">🎵 ទស្សនា TikTok Shop</a>
         </div>
     </div>
 </body>
