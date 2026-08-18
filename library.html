@@ -1,111 +1,126 @@
-📚 library បណ្ណាល័យមេរៀន និងចម្រៀង🎶
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 បណ្ណាល័យមេរៀន និងចម្រៀង - San Sideth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        
+        /* ផ្នែក Logo ជាមួយនឹង Background ស្អាត */
+        .logo-container {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #38bdf8, #f43f5e);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            border: 2px solid #090d16;
+        }
 
-<!-- ផ្នែកបណ្ណាល័យភ្ជាប់ទៅកាន់ library.html - ឌីសាញថ្មីស្អាតស៊ីវិល័យ -->
-<style>
-    .library-wrapper {
-        background: rgba(30, 41, 59, 0.75);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        border-radius: 24px;
-        padding: 25px;
-        margin: 20px 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        text-align: left;
-        transition: 0.4s;
-    }
-    .library-wrapper:hover {
-        border-color: #38bdf8;
-        box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
-    }
-    .library-title {
-        color: #38bdf8;
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .folder-box {
-        background: rgba(15, 23, 42, 0.6);
-        padding: 18px;
-        border-radius: 16px;
-        margin-bottom: 15px;
-        border-left: 4px solid #38bdf8;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        transition: 0.3s;
-    }
-    .folder-box:hover {
-        background: rgba(56, 189, 248, 0.1);
-        transform: translateX(8px);
-    }
-    .folder-box h5 { 
-        color: #f8fafc; 
-        margin: 0 0 6px 0; 
-        font-size: 16px; 
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .folder-box span { 
-        color: #94a3b8; 
-        font-size: 13px; 
-        line-height: 1.5;
-        display: block;
-    }
-    .btn-library-link {
-        display: block;
-        width: 100%;
-        background: linear-gradient(135deg, #0284c7, #2563eb);
-        color: white;
-        text-align: center;
-        padding: 14px;
-        border-radius: 14px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        margin-top: 15px;
-        transition: 0.3s;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-    }
-    .btn-library-link:hover {
-        background: linear-gradient(135deg, #2563eb, #0284c7);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(56, 189, 248, 0.5);
-    }
-</style>
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background-color: #090d16; 
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 40%), 
+                radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+                linear-gradient(to bottom, #090d16, #020617);
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff; 
+            text-align: center; 
+            padding: 80px 10px 20px 10px; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
+        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        .section-title { color: #38bdf8; font-size: 18px; margin: 0 0 15px 0; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        
+        .item-box { 
+            background: rgba(15, 23, 42, 0.7); 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            padding: 18px; 
+            border-radius: 16px; 
+            margin-bottom: 15px; 
+            transition: 0.3s;
+        }
+        .item-box:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .item-title { color: #38bdf8; font-size: 16px; font-weight: 700; margin: 0 0 8px 0; }
+        .item-desc { color: #94a3b8; font-size: 14px; margin: 0 0 12px 0; line-height: 1.6; }
+        
+        /* ផ្នែក YouTube Video Embed (មិនឱ្យលោតចូល App) */
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-top: 10px; margin-bottom: 10px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-<div class="library-wrapper">
-    <div class="library-title">📚 បណ្ណាល័យ អានសៀវភៅ និងចម្រៀង🎵</div>
-    
-    <div>
-            <a href="musicdsn.html" class="btn-musicdsn-link">🎵ស្ដាប់​ចម្រៀង​</a>
-            <span>ស្តាប់កម្សាន្តនូវបទចម្រៀងពិរោះៗដែលច្នៃប្រឌិតឡើងដោយបញ្ញាសិប្បនិម្មិត (AI)[span_2](start_span)[span_2](end_span)។</span>
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; text-decoration: none; border-radius: 14px; font-weight: 600; font-size: 14px; margin-top: 10px; }
+        .btn-music { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+        .btn-book { background: linear-gradient(135deg, #10b981, #059669); }
+        .back-btn { background: #4b5563; width: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <!-- Logo ជាមួយនឹង Background -->
+    <div class="logo-container">
+        <img src="IMG_3350.jpeg" alt="Logo">
+    </div>
 
-            <a href="bookdsn.html" target="_blank" class="btn-bookdsn-link">📘អានសៀវភៅ​</a>
-​            <span>
-​                 <a សិក្សានិងស្វែងយល់ពីឯកសារមេរៀន និងគន្លឹះបច្ចេកវិទ្យាដ៏មានតម្លៃផ្សេងៗ។ មេរៀន​ប្រវត្តិ​សាស្ត្រ​ របស់​ខ្មែរ​យេីង</a> 
-​            </span>
-
-        <a href="library.html" class="btn-library-link">📁 ចុចចូល​ ប្រេីប្រាស់​AI</a>
-            </div>
-<div class="card">
-            <div class="section-title">🚀 គម្រោងកំពុងដំណើរការ</div>
-            <div class="project-item"><h5>📱 អភិវឌ្ឍន៍ហ្គេម iOS ថ្មី</h5><span>កំពុងធ្វើលើ Unity។</span></div>
-            <div class="project-item"><h5>🎥 មេរៀនវីដេអូ Gemini AI</h5><span>កំពុងរៀបចំជូនបងប្អូន។</span></div>
-        </div>
+    <div class="container">
+        <!-- ផ្នែក Music DSN (Musicdsn.html content + YouTube Embed) -->
         <div class="card">
-            <div class="section-title">📞 ទំនាក់ទំនង</div>
-            <p>📲 068488730 / 017488730</p>
-            <a href="https://t.me/sidet99" target="_blank" class="btn btn-telegram">✈️ Telegram (@sidet99)</a>
-            <a href="https://www.facebook.com/deth61" target="_blank" class="btn">📘 Facebook Page</a>
-            <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn btn-tiktok">🎵 TikTok Shop</a>
+            <div class="section-title">🎵 បទចម្រៀងបង្កើតដោយ AI & YouTube (Music DSN) 🎶</div>
+            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #f43f5e; line-height: 1.7;">
+                ស្ដាប់កម្សាន្តបណ្តុំបទចម្រៀងពិរោះៗ និងស្នាដៃវីដេអូ YouTube របស់ B Sideth❤️️ ដោយផ្ទាល់ក្នុងវេបសាយតែម្ដង មិនបាច់ភ័យខ្លាចលោតចូល App ក្រៅទេ! 😎🔥
+            </p>
+            
+            <!-- បង្កប់វីដេអូ YouTube ក្នុងវេបសាយស្រាប់ (មិនលោតចូល App) -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="item-box">
+                <div class="item-title">🎶 បណ្តុំបទចម្រៀង AI ជំនាន់ថ្មី</div>
+                <div class="item-desc">ស្តាប់កម្សាន្តបទចម្រៀងគ្រប់រសជាតិ ឆ្លុះបញ្ចាំងពីអារម្មណ៍ និងស្នាដៃរបស់ B Sideth❤️️!</div>
+                <a href="https://notebooklm.link.google/snslKxJjtudg" target="_blank" class="btn btn-music">🎧 ស្ដាប់ចម្រៀង AI ទាំងអស់ទីនេះ</a>
+            </div>
+        </div>
+
+        <!-- ផ្នែក Book DSN (Bookdsn.html content) -->
+        <div class="card">
+            <div class="section-title">📗 អានសៀវភៅបច្ចេកវិទ្យា (Book DSN) 📘</div>
+            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #10b981; line-height: 1.7;">
+                ស្វែងយល់ពីឯកសារ មេរៀន និងសៀវភៅបច្ចេកវិទ្យា IT ផ្សេងៗសម្រាប់អភិវឌ្ឍខ្លួន។
+            </p>
+            <div class="item-box" style="border-color: rgba(16, 185, 129, 0.3);">
+                <div class="item-title" style="color: #10b981;">📗 បណ្តុំឯកសារ និងសៀវភៅ IT</div>
+                <div class="item-desc">អាននិងទាញយកឯកសារបច្ចេកវិទ្យា ជំនាញកូដ និងគន្លឹះទាក់ទងនឹង Tech Security ជាដើម។</div>
+                <a href="#" target="_blank" class="btn btn-book">📚 ចូលអានសៀវភៅទីនេះ</a>
+            </div>
+        </div>
+
+        <!-- ប៊ូតុងត្រឡប់ក្រោយ -->
+        <div class="card" style="padding: 15px 20px; text-align: center;">
+            <a href="index.html" class="btn back-btn">⬅️ ត្រឡប់ទៅទំព័រដើមវិញ (Home)</a>
         </div>
     </div>
 </body>
 </html>
-
-</html>
-
-
