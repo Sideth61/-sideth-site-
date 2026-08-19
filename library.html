@@ -48,11 +48,19 @@
             border-radius: 12px; 
         }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; font-family: 'Kantumruy Pro', sans-serif; cursor: pointer; border: none; }
         .btn-youtube { background: #ff0000; }
         .btn-book { background: linear-gradient(135deg, #10b981, #059669); }
         .btn-game { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
         .btn-back { background: #4b5563; }
+        
+        /* MP3 Player Style */
+        .track-info { color: #94a3b8; font-size: 14px; margin-bottom: 15px; }
+        .controls { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn-control { background: #2563eb; flex: 1; padding: 10px; border-radius: 10px; font-size: 14px; }
+        .btn-pause { background: #ef4444; }
+        input[type="range"] { width: 100%; accent-color: #38bdf8; cursor: pointer; }
+
         p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
     </style>
 </head>
@@ -75,6 +83,22 @@
             <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
         </div>
 
+        <!-- ផ្នែក MP3 Player ផ្ទាល់ក្នុង Web -->
+        <div class="card">
+            <div class="title">🎧 DSN MP3 Player (ចាក់បទចម្រៀង)</div>
+            <div class="track-info" id="trackTitle">បទ៖ DSN Original Track</div>
+            
+            <!-- ជំនួស Link ខាងក្រោមជាមួយ Link ឯកសារ MP3 ផ្ទាល់របស់បង -->
+            <audio id="audioPlayer" src="https://www.bensound.com/bensound-music/bensound-ofeliasdream.mp3"></audio>
+
+            <div class="controls">
+                <button class="btn btn-control" onclick="playAudio()">▶️ Play</button>
+                <button class="btn btn-control btn-pause" onclick="pauseAudio()">⏸️ Pause</button>
+            </div>
+
+            <input type="range" id="progressBar" value="0" max="100" onchange="seekAudio()">
+        </div>
+
         <!-- ផ្នែក Book DSN -->
         <div class="card">
             <div class="title">📗 Book DSN (ឯកសារ & សៀវភៅ IT)</div>
@@ -94,6 +118,29 @@
             <a href="index.html" class="btn btn-back">⬅️ ត្រឡប់ទៅទំព័រដើមវិញ (Home)</a>
         </div>
     </div>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const progressBar = document.getElementById('progressBar');
+
+        function playAudio() {
+            audio.play();
+        }
+
+        function pauseAudio() {
+            audio.pause();
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.value = progress;
+        });
+
+        function seekAudio() {
+            const time = (progressBar.value / 100) * audio.duration;
+            audio.currentTime = time;
+        }
+    </script>
 
 </body>
 </html>
