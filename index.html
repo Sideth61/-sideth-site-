@@ -55,9 +55,63 @@
         .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; }
         .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         .project-item { background: rgba(15, 23, 42, 0.6); padding: 12px 15px; border-radius: 12px; margin-bottom: 10px; }
+        
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; } .btn-tiktok { background: #0f172a; }
-        
+
+        /* រចនាប័ទ្មសម្រាប់ App Box ថ្មី */
+        .app-card-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 12px 15px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            gap: 12px;
+            transition: 0.3s;
+        }
+        .app-card-item:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+        }
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .app-title {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .app-desc {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+        .btn-download {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .btn-download:hover {
+            background: linear-gradient(135deg, #0369a1, #0284c7);
+        }
+
         /* ផ្នែក YouTube Video Embed ក្នុង index.html */
         .video-container { 
             position: relative; 
@@ -104,6 +158,47 @@
                 <li><strong>Tech & Security:</strong> អភិវឌ្ឍន៍ហ្គេម iOS</li>
                 <li><strong>AI Content Creator:</strong> បង្កើតវីដេអូ AI Cinematic</li>
             </ul>
+        </div>
+
+        <!-- 💎 ផ្នែក App & Tools ជាមួយ Logo ថ្មី -->
+        <div class="card">
+            <div class="section-title">💻🧰 កម្មវិធី និងហ្គេម (App & Tools)</div>
+            
+            <!-- App 1: 2Fa -->
+            <div class="app-card-item">
+                <div class="app-info">
+                    <img src="https://lh3.googleusercontent.com/d/1YL698rUUU756pPqDTtQcqbJkls_6Ng_6=s220" alt="2Fa App" class="app-icon">
+                    <div>
+                        <div class="app-title">2Fa Security Tool</div>
+                        <div class="app-desc">ប្រព័ន្ធសុវត្ថិភាពការពារគណនី</div>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/file/d/1Y1UoyRNIloh5TccuLA_QpzrtCKbwcAeb/view?usp=drivesdk" target="_blank" class="btn-download">📥 ទាញយក</a>
+            </div>
+
+            <!-- App 2: Raccoon Game -->
+            <div class="app-card-item">
+                <div class="app-info">
+                    <img src="https://lh3.googleusercontent.com/d/1kBD8GWEWArE-sbJTv0kU8JHEeYM4U8aD=s220" alt="Raccoon Game" class="app-icon">
+                    <div>
+                        <div class="app-title">Raccoon Game</div>
+                        <div class="app-desc">ហ្គេមកម្សាន្តសប្បាយៗ</div>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/file/d/1FwoM1KYWrC3dePyD11dBL5Fpn5uTjPZU/view?usp=drivesdk" target="_blank" class="btn-download">📥 ទាញយក</a>
+            </div>
+
+            <!-- App 3: Facebook -->
+            <div class="app-card-item">
+                <div class="app-info">
+                    <img src="https://lh3.googleusercontent.com/d/18e7z80Rou_A8GUHQjBLhW5jgqcQKKATM=s220" alt="Facebook App" class="app-icon">
+                    <div>
+                        <div class="app-title">Facebook DSN</div>
+                        <div class="app-desc">កម្មវិធីទាក់ទង និងសង្គម</div>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/file/d/1HEyr8_rSAIPkDM5Hsr0Zzutj6-0wpHUu/view?usp=drivesdk" target="_blank" class="btn-download">📥 ទាញយក</a>
+            </div>
         </div>
 
         <div class="card">
