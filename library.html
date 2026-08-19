@@ -3,29 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 បណ្ណាល័យមេរៀន និងចម្រៀង - San Sideth</title>
+    <title>📚 បណ្ណាល័យចម្រៀង និងសៀវភៅ - San Sideth</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
-        /* ផ្នែក Logo ជាមួយនឹង Background ស្អាត */
-        .logo-container {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1000;
-            background: linear-gradient(135deg, #38bdf8, #f43f5e);
-            padding: 3px;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-        }
-        .logo-container img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: block;
-            border: 2px solid #090d16;
-        }
-
         body { 
             font-family: 'Kantumruy Pro', sans-serif; 
             background-color: #090d16; 
@@ -36,91 +17,58 @@
             background-attachment: fixed;
             background-size: cover;
             color: #fff; 
-            text-align: center; 
-            padding: 80px 10px 20px 10px; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            min-height: 100vh;
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
-        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
-        .section-title { color: #38bdf8; font-size: 18px; margin: 0 0 15px 0; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 20px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        .title { color: #38bdf8; font-size: 18px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
-        .item-box { 
-            background: rgba(15, 23, 42, 0.7); 
-            border: 1px solid rgba(56, 189, 248, 0.3); 
-            padding: 18px; 
-            border-radius: 16px; 
-            margin-bottom: 15px; 
-            transition: 0.3s;
-        }
-        .item-box:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-        }
-        .item-title { color: #38bdf8; font-size: 16px; font-weight: 700; margin: 0 0 8px 0; }
-        .item-desc { color: #94a3b8; font-size: 14px; margin: 0 0 12px 0; line-height: 1.6; }
-        
-        /* ផ្នែក YouTube Video Embed (មិនឱ្យលោតចូល App) */
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-top: 10px; margin-bottom: 10px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        /* ផ្នែក YouTube Video Embed (មិនឱ្យលោតចេញក្រៅ App) */
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; text-decoration: none; border-radius: 14px; font-weight: 600; font-size: 14px; margin-top: 10px; }
-        .btn-music { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; }
+        .btn-youtube { background: #ff0000; }
         .btn-book { background: linear-gradient(135deg, #10b981, #059669); }
-        .back-btn { background: #4b5563; width: 100%; box-sizing: border-box; }
+        .btn-back { background: #4b5563; }
+        p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
-    <!-- Logo ជាមួយនឹង Background -->
-    <div class="logo-container">
-        <img src="IMG_3350.jpeg" alt="Logo">
-    </div>
 
     <div class="container">
-        <!-- ផ្នែក Music DSN (Musicdsn.html content + YouTube Embed) -->
+        <!-- ផ្នែក Music DSN & YouTube Channel -->
         <div class="card">
-            <div class="section-title">🎵 បទចម្រៀងបង្កើតដោយ AI & YouTube (Music DSN) 🎶</div>
-            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #f43f5e; line-height: 1.7;">
-                ស្ដាប់កម្សាន្តបណ្តុំបទចម្រៀងពិរោះៗ និងស្នាដៃវីដេអូ YouTube របស់ B Sideth❤️️ ដោយផ្ទាល់ក្នុងវេបសាយតែម្ដង មិនបាច់ភ័យខ្លាចលោតចូល App ក្រៅទេ! 😎🔥
-            </p>
+            <div class="title">🎵 Deth DSN - YouTube Channel (@sideth99)</div>
+            <p>ទស្សនាស្នាដៃវីដេអូមើលកម្សាន្ត និងបទចម្រៀង AI របស់ B Sideth❤️️ ផ្ទាល់ក្នុងវេបសាយតែម្ដង!</p>
             
-            <!-- បង្កប់វីដេអូ YouTube ក្នុងវេបសាយស្រាប់ (មិនលោតចូល App) -->
             <div class="video-container">
+                <!-- វីដេអូពីឆាណែល Deth DSN @sideth99 -->
                 <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU" 
                         title="YouTube video player" 
-                        frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
             </div>
 
-            <div class="item-box">
-                <div class="item-title">🎶 បណ្តុំបទចម្រៀង AI ជំនាន់ថ្មី</div>
-                <div class="item-desc">ស្តាប់កម្សាន្តបទចម្រៀងគ្រប់រសជាតិ ឆ្លុះបញ្ចាំងពីអារម្មណ៍ និងស្នាដៃរបស់ B Sideth❤️️!</div>
-                <a href="https://notebooklm.link.google/snslKxJjtudg" target="_blank" class="btn btn-music">🎧 ស្ដាប់ចម្រៀង AI ទាំងអស់ទីនេះ</a>
-            </div>
+            <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ ទៅកាន់ឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
         </div>
 
-        <!-- ផ្នែក Book DSN (Bookdsn.html content) -->
+        <!-- ផ្នែក Book DSN -->
         <div class="card">
-            <div class="section-title">📗 អានសៀវភៅបច្ចេកវិទ្យា (Book DSN) 📘</div>
-            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #10b981; line-height: 1.7;">
-                ស្វែងយល់ពីឯកសារ មេរៀន និងសៀវភៅបច្ចេកវិទ្យា IT ផ្សេងៗសម្រាប់អភិវឌ្ឍខ្លួន។
-            </p>
-            <div class="item-box" style="border-color: rgba(16, 185, 129, 0.3);">
-                <div class="item-title" style="color: #10b981;">📗 បណ្តុំឯកសារ និងសៀវភៅ IT</div>
-                <div class="item-desc">អាននិងទាញយកឯកសារបច្ចេកវិទ្យា ជំនាញកូដ និងគន្លឹះទាក់ទងនឹង Tech Security ជាដើម។</div>
-                <a href="#" target="_blank" class="btn btn-book">📚 ចូលអានសៀវភៅទីនេះ</a>
-            </div>
+            <div class="title">📗 Book DSN (ឯកសារ & សៀវភៅ IT)</div>
+            <p>ប្រមូលផ្តុំឯកសារមេរៀន IT និងបច្ចេកវិទ្យាសម្រាប់សិក្សាអភិវឌ្ឍខ្លួន។</p>
+            <a href="bookdsn.html" class="btn btn-book">📖 ចូលអានសៀវភៅទីនេះ</a>
         </div>
 
         <!-- ប៊ូតុងត្រឡប់ក្រោយ -->
-        <div class="card" style="padding: 15px 20px; text-align: center;">
-            <a href="index.html" class="btn back-btn">⬅️ ត្រឡប់ទៅទំព័រដើមវិញ (Home)</a>
+        <div class="card" style="padding: 15px; text-align: center;">
+            <a href="index.html" class="btn btn-back">⬅️ ត្រឡប់ទៅទំព័រដើមវិញ (Home)</a>
         </div>
     </div>
+
 </body>
 </html>
