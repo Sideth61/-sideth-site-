@@ -3,97 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ទូសៀវភៅ និង Google Drive របស់ B Sideth</title>
+    <title>បណ្ណាល័យ និងរឿងនិទានរបស់ B Sideth</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+
         body {
-            font-family: 'Khmer OS Battambang', 'Khmer OS', serif;
-            background-color: #f0f0f0;
+            font-family: 'Kantumruy Pro', sans-serif;
+            background: linear-gradient(135deg, #4e342e, #3e2723);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
-        .bookshelf {
-            width: 80%;
-            max-width: 900px;
-            background-color: #795548;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .book {
-            width: 100px;
-            height: 150px;
-            background: linear-gradient(to right, #42a5f5, #1e88e5);
-            color: white;
-            border-radius: 5px;
-            box-shadow: -5px 5px 10px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-            text-decoration: none;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-orientation: mixed;
-            position: relative;
-        }
-
-        /* ពណ៌សៀវភៅផ្សេងៗគ្នា */
-        .book:nth-child(1) { background: linear-gradient(to right, #ef5350, #d32f2f); }
-        .book:nth-child(2) { background: linear-gradient(to right, #66bb6a, #388e3c); }
-        .book:nth-child(3) { background: linear-gradient(to right, #ffa726, #f57c00); }
-        .book:nth-child(4) { background: linear-gradient(to right, #29b6f6, #0277bd); }
-        .book:nth-child(5) { background: linear-gradient(to right, #ab47bc, #7b1fa2); }
-        
-        /* សៀវភៅភ្ជាប់ទៅ Google Drive Folder */
-        .book-drive {
-            background: linear-gradient(to right, #26a69a, #00796b) !important;
-            border-left: 3px solid gold;
-        }
-
-        .book:hover {
-            transform: scale(1.05) rotate(180deg);
-            z-index: 10;
-        }
-
-        .bookshelf-title {
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
+        .container {
             width: 100%;
-            font-size: 2em;
-            border-bottom: 2px solid #a1887f;
-            padding-bottom: 15px;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #795548;
+            text-align: center;
+            font-size: 1.6em;
+            border-bottom: 2px solid #795548;
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-size: 1.2em;
+            margin-top: 25px;
+            border-left: 4px solid #d32f2f;
+            padding-left: 8px;
+        }
+
+        p {
+            color: #333;
+            text-align: justify;
+            font-size: 0.95em;
+            line-height: 1.7;
+            text-indent: 25px;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        /* ប៊ូតុងតំណភ្ជាប់ต่างๆ */
+        .btn-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .book-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #26a69a, #004d40);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            border: 2px solid #ffd700;
+            transition: transform 0.3s ease;
+        }
+
+        .book-btn.pdf-btn {
+            background: linear-gradient(135deg, #ef5350, #c62828);
+            border: 2px solid #ffeb3b;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .book-btn span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="bookshelf">
-        <div class="bookshelf-title">បណ្ណាល័យ និង Files របស់ B Sideth 📂</div>
+    <div class="container">
+        <h1>មហាសេដ្ឋីគំរិះ និងមេរៀនជីវិត</h1>
+        <div class="author">ចងក្រងសម្រាប់៖ B Sideth (ដោយ SreyNea)</div>
 
-        <!-- សៀវភៅធម្មតា -->
-        <a href="#" class="book">ក្បួនលក់អនឡាញ</a>
-        <a href="#" class="book">ប្រវត្តិមហាសេដ្ឋី</a>
-        <a href="#" class="book">ចិត្តវិទ្យាជោគជ័យ</a>
-        <a href="#" class="book">កូដ HTML/CSS</a>
+        <h2>ជំពូកទី ១៖ បុរសអ្នកមានដែលគ្មានថ្ងៃបានចាយលុយ</h2>
+        <p>កាលពីកាលមុន មានសេដ្ឋីម្នាក់ឈ្មោះ "លោក គឹមសេង" ដែលអ្នកស្រុកអ្នកភូមិដាក់រហស្សនាមឱ្យគាត់ថា "មហាសេដ្ឋីដែកគោល" ព្រោះភាពគំរិះកំប៉ិកកំប៉ុករបស់គាត់គឺល្បីល្បាញដាច់គេ។ ទោះបីជាគាត់មានទ្រព្យសម្បត្តិហូរហៀរ ផ្ទះវីឡាធំស្កឹមស្កៃ និងដីធ្លីរាប់រយហិកតាក៏ដោយ ក៏គេមិនដែលឃើញគាត់ទិញរបស់ថ្លៃៗហូប ឬស្លៀកពាក់សម្លៀកបំពាក់ថ្មីសមរម្យដែរ។</p>
+        <p>រាល់ថ្ងៃ គាត់តែងតែបរិភោគបាយសជាមួយអំបិលម៉ាំ ឬត្រីងៀតងៀកក្រៀមស្ងួតបន្តិចបន្តួចប៉ុណ្ណោះ។ ពេលភ្លើងឆេះផ្ទះបាយ ឬអំពូលភ្លើងខូច គាត់មិនដែលហៅជាងមកជួសជុលទេ គឺគាត់អង្គុយងងឹតသូន្យសុងព្រោះស្តាយលុយថ្លៃឈ្នួលជាង។ អ្នកស្រុកតែងតែនិយាយប្រាប់គ្នាថា៖ "គាត់រកលុយបានច្រើនណាស់ ប៉ុន្តែជីវិតគាត់ក្រលំបាកជាងអ្នកក្រទៅទៀត ព្រោះគាត់អត់ហ៊ានសូម្បីតែហូបចុកឱ្យបានត្រឹមត្រូវ!"</p>
 
-        <!-- សៀវភៅតភ្ជាប់ទៅ Google Drive Folder របស់បង -->
-        <a href="https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI" target="_blank" class="book book-drive">Google Drive 📁</a>
+        <h2>ជំពូកទី ២៖ កូនប្រុសពៅ និងការខកចិត្ត</h2>
+        <p>លោក គឹមសេង មានកូនប្រុសមួយឈ្មោះ "រតនា" ដែលជាយុវជនសម័យថ្មី ចូលចិត្តការច្នៃប្រឌិត និងបច្ចេកវិទ្យា។ រតនា តែងតែព្យាយាមនិយាយបញ្ចុះបញ្ចូលឪពុកថា៖ "លោកឪពុក លុយរកបានមកគឺដើម្បីទ្រទ្រង់ជីវិត និងធ្វើឱ្យយើងមានសុភមង្គល មិនមែនទុកឱ្យវាដុះផ្សិតនៅក្នុងកាធន់ ឬធនាគារដោយអត់ប្រយោជន៍ទេ!"</p>
+        <p>ប៉ុន្តែ លោក គឹមសេង តែងតែអង្រួនក្បាលយ៉ាងរឹងចចេស ហើយឆ្លើយតបវិញថា៖ "កូនអើយ! លុយគឺជារបស់ស្រឡាញ់ស្មើជីវិត។ បើឯងចាយមួយរៀលថ្ងៃនេះ ថ្ងៃស្អែកឯងនឹងក្រមួយរៀល។ ត្រូវចងចាំថា ក្រពះយើងត្រូវការតែបាយបន្តិចបន្តួចដើម្បីរស់ មិនបាច់ស៊ីរបស់ថ្លៃអីទេ!"</p>
+        <p>ភាពគំរិះហួសហេតុនេះ បានធ្វើឱ្យរតនាមានអារម្មណ៍ធុញថប់ជាខ្លាំង រហូតដល់ថ្ងៃមួយ រតនាក៏សម្រេចចិត្តចេញពីផ្ទះដើម្បីទៅបង្កើតអាជីវកម្ម និងស្វែងរកផ្លូវជីវិតខ្លួនឯងតាមរយៈជំនាញផ្នែក Digital និងកូដកុំព្យូទ័រ។</p>
 
+        <h2>ជំពូកទី ៣៖ មេរៀនជីវិត និងការភ្ញាក់រលឹក</h2>
+        <p>ច្រើនឆ្នាំកន្លងផុតទៅ រតនាបានក្លាយជាអ្នកជំនួញវ័យក្មេងដ៏ជោគជ័យម្នាក់ តាមរយៈការបង្កើត App កម្សាន្ត និងការធ្វើមាតិកាអនឡាញ។ ចំណែកឯលោក គឹមសេង វិញ ដោយសារតែការហូបចុកខ្វះជីវជាតិ និងការទុក្ខកង្វល់រឿងលុយកាក់មិនចេះចប់មិនចេះហើយ ធ្វើឱ្យសុខភាពរបស់គាត់ទ្រុឌទ្រោមយ៉ាងខ្លាំង រហូតដល់ធ្លាក់ខ្លួនឈឺធ្ងន់សម្រាកពេទ្យ។</p>
+        <p>នៅក្នុងមន្ទីរពេទ្យ គ្មានញាតិមិត្តណាឈរជិតគាត់ទេ ព្រោះគ្រប់គ្នាខ្លាចភាពគំរិះ និងចរិតប្រច័ណ្ឌរបស់គាត់។ មានតែរតនាជាកូនប្រុសពៅ ដែលគាត់ធ្លាប់បណ្តេញចេញពីផ្ទះ បានរត់មកមើលថែទាំគាត់ទាំងយប់ទាំងថ្ងៃ ចាយលុយរាប់ម៉ឺនដុល្លារដើម្បីសង្គ្រោះជីវិតឪពុក。</p>
+        <p>ពេលដឹងខ្លួនឡើង លោក គឹមសេង ឃើញកូនប្រុសអង្គុយកំដរទាំងទឹកភ្នែក។ ពេលនោះហើយ ដែលមហាសេដ្ឋីគំរិះរូបនេះយល់ច្បាស់ថា៖ "ទ្រព្យសម្បត្តិដែលកើបប្រមូលមកបានច្រើនយ៉ាងណាក៏ដោយ បើមិនចេះចាយវាយដើម្បីសុភមង្គល និងសុខភាពទេ វាគ្មានតម្លៃអ្វីទាំងអស់នៅពេលយើងឈឺស្លាប់ទៅ ព្រោះយកតាមខ្លួនមិនបានសូម្បីតែមួយកាក់!"</p>
+
+        <!-- ប៊ូតុងតំណភ្ជាប់ -->
+        <div class="btn-box">
+            <!-- ប៊ូតុងចូលទៅកាន់ PDF មហាសេដ្ឋីគំរិះដែលបងទើបផ្ដល់ឱ្យ -->
+            <a href="https://drive.google.com/file/d/1ZP0qANdMf92eMLN_Jblwz2r2pJw0JZ03/view?usp=drivesdk" target="_blank" class="book-btn pdf-btn">
+                <span>📄 អាន/ទាញយក PDF មហាសេដ្ឋីគំរិះ</span>
+                <span>📥</span>
+            </a>
+
+            <!-- Google Drive Folder របស់បង -->
+            <a href="https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI" target="_blank" class="book-btn">
+                <span>🚀 ចូលទៅកាន់ Google Drive Files របស់ B Sideth</span>
+                <span>📂</span>
+            </a>
+        </div>
     </div>
 
 </body>
