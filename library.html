@@ -54,12 +54,26 @@
         .btn-game { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
         .btn-back { background: #4b5563; }
         
-        /* MP3 Player Style */
-        .track-info { color: #94a3b8; font-size: 14px; margin-bottom: 15px; }
-        .controls { display: flex; gap: 10px; margin-bottom: 15px; }
-        .btn-control { background: #2563eb; flex: 1; padding: 10px; border-radius: 10px; font-size: 14px; }
+        /* Playlist MP3 Player Style */
+        .track-info { color: #38bdf8; font-size: 15px; margin-bottom: 10px; font-weight: 600; }
+        .controls { display: flex; gap: 8px; margin-bottom: 15px; }
+        .btn-control { background: #2563eb; flex: 1; padding: 10px; border-radius: 10px; font-size: 13px; }
         .btn-pause { background: #ef4444; }
-        input[type="range"] { width: 100%; accent-color: #38bdf8; cursor: pointer; }
+        input[type="range"] { width: 100%; accent-color: #38bdf8; cursor: pointer; margin-bottom: 15px; }
+        
+        .playlist { display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto; }
+        .playlist-item { 
+            background: rgba(30, 41, 59, 0.7); 
+            padding: 10px 12px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 14px; 
+            color: #94a3b8; 
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        .playlist-item:hover { background: rgba(56, 189, 248, 0.1); color: #fff; }
+        .playlist-item.active { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); font-weight: 600; }
 
         p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
     </style>
@@ -83,20 +97,24 @@
             <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
         </div>
 
-        <!-- ផ្នែក MP3 Player ផ្ទាល់ក្នុង Web -->
+        <!-- ផ្នែក MP3 Playlist Player ផ្ទាល់ក្នុង Web (ចាក់បានច្រើនបទ) -->
         <div class="card">
-            <div class="title">🎧 DSN MP3 Player (ចាក់បទចម្រៀង)</div>
-            <div class="track-info" id="trackTitle">បទ៖ DSN Original Track</div>
+            <div class="title">🎧 DSN Playlist Player (ចាក់បទចម្រៀង)</div>
+            <div class="track-info" id="trackTitle">កំពុងរៀបចំ...</div>
             
-            <!-- ជំនួស Link ខាងក្រោមជាមួយ Link ឯកសារ MP3 ផ្ទាល់របស់បង -->
-            <audio id="audioPlayer" src="https://www.bensound.com/bensound-music/bensound-ofeliasdream.mp3"></audio>
+            <audio id="audioPlayer"></audio>
 
             <div class="controls">
+                <button class="btn btn-control" onclick="prevTrack()">⏮️ មុន</button>
                 <button class="btn btn-control" onclick="playAudio()">▶️ Play</button>
                 <button class="btn btn-control btn-pause" onclick="pauseAudio()">⏸️ Pause</button>
+                <button class="btn btn-control" onclick="nextTrack()">⏭️ ក្រោយ</button>
             </div>
 
             <input type="range" id="progressBar" value="0" max="100" onchange="seekAudio()">
+
+            <!-- បញ្ជីរាយនាមបទចម្រៀង (Playlist) -->
+            <div class="playlist" id="playlist"></div>
         </div>
 
         <!-- ផ្នែក Book DSN -->
@@ -120,26 +138,85 @@
     </div>
 
     <script>
+        // បញ្ជីរាយនាមបទចម្រៀងរបស់បង (អាចបន្ថែមតំណ Link MP3 ផ្ទាល់ខ្លួននៅទីនេះ)
+        const songs = [
+            { title: "🎖️ ទាហ៊ានមុំបី ភ្នំ750", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "💔 Blaming All Men", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { title: "🎵 DSN Original Track", src: "https://www.bensound.com/bensound-music/bensound-ofeliasdream.mp3" }
+        ];
+
+        let currentTrackIndex = 0;
         const audio = document.getElementById('audioPlayer');
         const progressBar = document.getElementById('progressBar');
+        const trackTitle = document.getElementById('trackTitle');
+        const playlistContainer = document.getElementById('playlist');
 
-        function playAudio() {
-            audio.play();
+        function loadPlaylist() {
+            playlistContainer.innerHTML = "";
+            songs.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.classList.add('playlist-item');
+                if (index === currentTrackIndex) item.classList.add('active');
+                item.innerText = song.title;
+                item.onclick = () => {
+                    currentTrackIndex = index;
+                    changeTrack();
+                    playAudio();
+                };
+                playlistContainer.appendChild(item);
+            });
         }
 
-        function pauseAudio() {
-            audio.pause();
+        function loadTrack(index) {
+            trackTitle.innerText = songs[index].title;
+            audio.src = songs[index].src;
+            highlightActiveSong();
         }
+
+        function highlightActiveSong() {
+            const items = document.querySelectorAll('.playlist-item');
+            items.forEach((item, index) => {
+                if (index === currentTrackIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function playAudio() { audio.play(); }
+        function pauseAudio() { audio.pause(); }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % songs.length;
+            changeTrack();
+            playAudio();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + songs.length) % songs.length;
+            changeTrack();
+            playAudio();
+        }
+
+        function changeTrack() { loadTrack(currentTrackIndex); }
 
         audio.addEventListener('timeupdate', () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.value = progress;
+            if(audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressBar.value = progress;
+            }
         });
+
+        audio.addEventListener('ended', () => { nextTrack(); });
 
         function seekAudio() {
             const time = (progressBar.value / 100) * audio.duration;
             audio.currentTime = time;
         }
+
+        loadPlaylist();
+        loadTrack(currentTrackIndex);
     </script>
 
 </body>
