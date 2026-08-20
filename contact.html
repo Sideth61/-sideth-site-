@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Feedback - Deth DSN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            color: #fff; margin: 0; padding: 20px; 
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 20px; }
+        .card { 
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); 
+            padding: 25px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); text-align: left;
+        }
+        .title { color: #38bdf8; font-size: 18px; font-weight: 700; margin-bottom: 15px; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; color: #94a3b8; font-size: 12px; margin-bottom: 5px; }
+        .input-field {
+            width: 100%; padding: 10px 14px; background: #1e293b; border: 1px solid #334155;
+            border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 13px; box-sizing: border-box; outline: none; transition: 0.3s;
+        }
+        .input-field:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        .btn {
+            width: 100%; padding: 12px; background: linear-gradient(135deg, #2563eb, #38bdf8);
+            color: #fff; border: none; border-radius: 12px; font-weight: bold;
+            font-family: 'Kantumruy Pro', sans-serif; cursor: pointer; transition: 0.3s;
+        }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .back-btn { 
+            display: block; text-align: center; background: #1e293b; border: 1px solid #334155;
+            color: #fff; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;
+        }
+        .back-btn:hover { background: #334155; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="title">📬 ទំនាក់ទំនង និងផ្ញើសារមកកាន់ B Sideth</div>
+            <div class="input-group">
+                <label>ឈ្មោះរបស់អ្នក (Your Name):</label>
+                <input type="text" id="senderName" class="input-field" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក...">
+            </div>
+            <div class="input-group">
+                <label>សារ ឬមតិយោបល់ (Your Message):</label>
+                <textarea id="senderMsg" class="input-field" rows="4" placeholder="សរសេរមតិ ឬសំណូមពរទីនេះ..."></textarea>
+            </div>
+            <button class="btn" onclick="sendMessage()">🚀 ផ្ញើសារឥឡូវនេះ (Send)</button>
+        </div>
+        <a href="index.html" class="back-btn">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
+    </div>
 
+    <script>
+        function sendMessage() {
+            const name = document.getElementById('senderName').value;
+            const msg = document.getElementById('senderMsg').value;
+
+            if(!name || !msg) {
+                alert('⚠️ សូមបំពេញព័ត៌មានឱ្យបានគ្រប់គ្រាន់ជាមុនសិន!');
+                return;
+            }
+
+            alert('✅ អរគុណច្រើន ' + name + '! សាររបស់អ្នកត្រូវបានបញ្ជូនទៅកាន់ B Sideth ដោយជោគជ័យហើយ!');
+            document.getElementById('senderName').value = '';
+            document.getElementById('senderMsg').value = '';
+        }
+    </script>
+</body>
+</html>
