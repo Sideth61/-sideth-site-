@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 ហ្គេមកម្សាន្ត - DSN Website</title>
+    <style>
+        body {
+            font-family: 'Siemreap', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 25px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #f43f5e;
+            box-shadow: 0 20px 40px rgba(244, 63, 94, 0.2);
+        }
+        .section-title {
+            color: #f43f5e;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .game-item {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .game-item:hover {
+            background: #f43f5e;
+            color: #fff;
+            transform: scale(1.02);
+        }
+        .game-container {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 12px;
+            background: #000;
+        }
+        .btn-back {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #94a3b8;
+            text-align: center;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .btn-back:hover { color: #f43f5e; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="section-title">🕹️ DSN Mini Games Hub</div>
+        <div id="gameScreenContainer">
+            <iframe id="gameFrame" class="game-container" src="" title="Game Frame"></iframe>
+        </div>
+        <div style="margin-top: 15px; color: #94a3b8; text-align: center; font-size: 14px;">ជ្រើសរើសហ្គេមខាងក្រោមដើម្បីចាប់ផ្តើម៖</div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">🎯 បញ្ជីហ្គេមកម្សាន្ត</div>
+        <div id="gameList"></div>
+    </div>
+
+    <a href="library.html" class="btn-back">⬅️ ត្រឡប់ទៅ Library វិញ</a>
+
+    <script>
+        const games = [
+            { title: "🐍 ហ្គេមពស់ស៊ីចំណី (Classic Snake)", src: "https://pacman.com" }, // ឬអាចដាក់ link ហ្គេម HTML5 ផ្សេងទៀត
+            { title: "🧩 ហ្គេមផ្គុំរូបភាព (Memory Puzzle)", src: "https://www.google.com/logos/2010/pacman10-i.html" }
+        ];
+
+        const gameFrame = document.getElementById('gameFrame');
+        const gameListContainer = document.getElementById('gameList');
+
+        // កំណត់ហ្គេមដំបូងពេលចូលទំព័រ
+        if(games.length > 0) {
+            gameFrame.src = games[0].src;
+        }
+
+        games.forEach(game => {
+            const div = document.createElement('div');
+            div.className = 'game-item';
+            div.innerText = game.title;
+            div.onclick = () => {
+                gameFrame.src = game.src;
+            };
+            gameListContainer.appendChild(div);
+        });
+    </script>
+</body>
+</html>
