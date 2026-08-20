@@ -21,7 +21,7 @@
             background-size: cover;
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 100px; /* เว้นระยะให้ Dock ផ្នែកខាងក្រោម */
+            padding-bottom: 100px; /* ເວ້ນໄລຍະໃຫ້ Dock ພາກສ່ວນខាងລຸ່ມ */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
