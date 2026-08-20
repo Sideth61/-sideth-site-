@@ -44,6 +44,16 @@
             font-family: 'Kantumruy Pro', sans-serif; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
         .connect-btn:hover { filter: brightness(1.1); }
+
+        /* Floating Dock */
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; transition: 0.3s; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body>
@@ -52,7 +62,7 @@
         <!-- ☁️ Cloud Storage Integration Status -->
         <div class="card cloud-connect-card">
             <div class="header-title" style="justify-content: center;">🌐 Cloud & Device Storage</div>
-            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">តភ្ជាប់ជាមួយ Google Drive, iCloud ឬ Local Storage របស់ទូរសព្ទ[span_1](start_span)[span_1](end_span)។</p>
+            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">តភ្ជាប់ជាមួយ Google Drive, iCloud ឬ Local Storage របស់ទូរសព្ទ។</p>
             <button class="connect-btn" onclick="connectStorage()">📁 ជ្រើសរើស Folder (Connect Storage)</button>
         </div>
 
@@ -101,19 +111,8 @@
         <a href="explorer.html" class="dock-item" title="File Explorer">📁</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
         <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
-        <a href="setting.html" class="dock-item" title="การកំណត់">⚙️</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
     </div>
-
-    <style>
-        .dsn-dock {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
-            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
-        }
-        .dock-item { font-size: 20px; text-decoration: none; transition: 0.3s; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
-    </style>
 
     <script>
         async function connectStorage() {
@@ -134,3 +133,4 @@
         }
     </script>
 </body>
+</html>
