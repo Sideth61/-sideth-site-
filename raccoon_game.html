@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccoon Game - DSN Gaming Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background: linear-gradient(135deg, #1e0529, #4a0e5c, #1e0529);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h2 { margin-bottom: 10px; color: #e9d5ff; }
+        p { color: #d8b4fe; font-size: 14px; margin-bottom: 20px; }
+
+        .game-screen {
+            width: 100%;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .raccoon {
+            font-size: 50px;
+            position: absolute;
+            transition: 0.1s linear;
+        }
+
+        .score {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 16px;
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 15px;
+            border: none;
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            font-family: 'Kantumruy Pro', sans-serif;
+            margin-top: 10px;
+        }
+
+        .btn:hover { transform: scale(1.02); filter: brightness(1.2); }
+
+        .back-link {
+            margin-top: 15px;
+            display: block;
+            color: #d8b4fe;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="game-card">
+        <h2>🦝 Raccoon Adventure</h2>
+        <p>ចុចលើកំប្រុក/រ៉ាកូន ដើម្បីប្រមូលពិន្ទុឱ្យបានច្រើន!</p>
+        
+        <div class="game-screen" id="gameScreen">
+            <div class="score">ពិន្ទុ: <span id="scoreVal">0</span></div>
+            <div class="raccoon" id="raccoon" onclick="scorePoint()">🦝</div>
+        </div>
+
+        <button class="btn" onclick="startGame()">ចាប់ផ្តើមលេង (Start)</button>
+        <a href="index.html" class="back-link">← ត្រឡប់ទៅផ្ទះវិញ (Home)</a>
+    </div>
+
+    <script>
+        let score = 0;
+        let gameInterval;
+        const raccoon = document.getElementById('raccoon');
+        const scoreVal = document.getElementById('scoreVal');
+        const gameScreen = document.getElementById('gameScreen');
+
+        function startGame() {
+            score = 0;
+            scoreVal.innerText = score;
+            clearInterval(gameInterval);
+            
+            gameInterval = setInterval(() => {
+                const maxX = gameScreen.clientWidth - 60;
+                const maxY = gameScreen.clientHeight - 60;
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                raccoon.style.left = randomX + 'px';
+                raccoon.style.top = randomY + 'px';
+            }, 800); // លោតប្តូរទីតាំងរៀងរាល់ 0.8វិ
+        }
+
+        function scorePoint() {
+            score += 1;
+            scoreVal.innerText = score;
+            // ឱ្យវាលោតទៅកន្លែងថ្មីភ្លាមពេលចុចត្រូវ
+            const maxX = gameScreen.clientWidth - 60;
+            const maxY = gameScreen.clientHeight - 60;
+            raccoon.style.left = Math.floor(Math.random() * maxX) + 'px';
+            raccoon.style.top = Math.floor(Math.random() * maxY) + 'px';
+        }
+    </script>
+
+</body>
+</html>
