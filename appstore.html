@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSN App Store - Deth DSN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            color: #fff; margin: 0; padding: 20px; padding-bottom: 90px;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 15px; }
+        .card { 
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); 
+            padding: 20px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: space-between;
+        }
+        .app-info h3 { margin: 0 0 5px 0; color: #38bdf8; font-size: 16px; }
+        .app-info p { margin: 0; color: #94a3b8; font-size: 12px; }
+        .install-btn {
+            padding: 8px 16px; background: linear-gradient(135deg, #2563eb, #38bdf8);
+            color: #fff; border: none; border-radius: 10px; font-weight: bold;
+            font-family: 'Kantumruy Pro', sans-serif; cursor: pointer; transition: 0.3s;
+        }
+        .install-btn:hover { filter: brightness(1.1); }
+        .header-title { color: #38bdf8; font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-title">🛒 DSN App Store</div>
+        
+        <!-- App 1 -->
+        <div class="card">
+            <div class="app-info">
+                <h3>🎵 DSN Music Player</h3>
+                <p>កម្មវិធីស្ដាប់ចម្រៀង AI ក្នុង OS</p>
+            </div>
+            <button class="install-btn" onclick="installApp('DSN Music Player')">Install</button>
+        </div>
+
+        <!-- App 2 -->
+        <div class="card">
+            <div class="app-info">
+                <h3>🎮 Lucky Game Hub</h3>
+                <p>កន្លែងកម្សាន្តហ្គេមសប្បាយៗ</p>
+            </div>
+            <button class="install-btn" onclick="installApp('Lucky Game Hub')">Install</button>
+        </div>
+
+        <!-- App 3 -->
+        <div class="card">
+            <div class="app-info">
+                <h3>📁 DSN Cloud Explorer</h3>
+                <p>គ្រប់គ្រងឯកសារលើ iCloud/Drive[span_1](start_span)[span_1](end_span)</p>
+            </div>
+            <button class="install-btn" onclick="installApp('DSN Cloud Explorer')">Install</button>
+        </div>
+    </div>
+
+    <!-- Floating Dock -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
+        <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
+        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+    </div>
+
+    <style>
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; transition: 0.3s; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
+    </style>
+
+    <script>
+        async function installApp(appName) {
+            try {
+                // จำลองการเชื่อมต่อ File System Access API เพื่อเก็บลงใน Cloud/Storage 
+                if ('showDirectoryPicker' in window) {
+                    const dirHandle = await window.showDirectoryPicker();
+                    alert(`✅ បានដំឡើងកម្មវិធី "${appName}" ចូលទៅកាន់ Cloud/Local Storage ជោគជ័យហើយ!`);
+                } else {
+                    localStorage.setItem(`installed_${appName}`, 'true');
+                    alert(`✅ បានដំឡើងកម្មវិធី "${appName}" រួចរាល់ (រក្សាទុកក្នុង VFS Storage)[span_2](start_span)[span_2](end_span)!`);
+                }
+            } catch (err) {
+                alert('⚠️ បានបោះបង់ការដំឡើង ឬ Browser មិនទាន់គាំទ្រការតភ្ជាប់ Drive ដោយផ្ទាល់។');
+            }
+        }
+    </script>
+</body>
