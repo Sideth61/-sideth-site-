@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕹️ PlayStation 2 (PS2) Classic Hub - DSN OS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background-color: #050b14; 
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 40%), 
+                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
+                linear-gradient(to bottom, #050b14, #020617);
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff; 
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+        .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
+        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 20px; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        .title { color: #60a5fa; font-size: 18px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding-bottom: 8px; }
+        
+        .ps2-banner {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #1e3a8a, #312e81);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            margin-bottom: 15px;
+        }
+        .ps2-banner h2 { margin: 0; color: #fff; font-size: 22px; letter-spacing: 2px; }
+        .ps2-banner p { margin: 5px 0 0 0; color: #93c5fd; font-size: 12px; }
+
+        .game-card-item {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 12px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            gap: 12px;
+            transition: 0.3s;
+        }
+        .game-card-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+        .game-icon { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; background: #0f172a; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid #3b82f6; }
+        .game-info { flex: 1; }
+        .game-title { color: #fff; font-size: 15px; font-weight: 600; margin: 0 0 3px 0; }
+        .game-desc { color: #94a3b8; font-size: 12px; margin: 0; }
+        
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s ease; }
+        .btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
+        .btn-play { background: linear-gradient(135deg, #2563eb, #1d4ed8); font-size: 13px; padding: 8px 14px; width: auto; border-radius: 8px; margin-top: 0; }
+        .btn-back { background: #4b5563; }
+        p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0 0 10px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Banner -->
+        <div class="card">
+            <div class="ps2-banner">
+                <h2>PlayStation 2</h2>
+                <p>CLASSIC GAMING VAULT • DSN OS HUB</p>
+            </div>
+            <div class="title">💿 ពិភពហ្គេម PS2 ក្នុងตำนาน</div>
+            <p>ស្វាគមន៍មកកាន់បន្ទប់ប្រមូលផ្ដុំហ្គេម PlayStation 2 ដែលជាមាសប្រាក់នៃយុគសម័យឌីជីថលទសវត្សរ៍ទី 2000! រំលឹកអនុស្សាវរីយ៍ចាស់ៗទាំងអស់គ្នាទីនេះ។</p>
+        </div>
+
+        <!-- Games List Card -->
+        <div class="card">
+            <div class="title">🎮 បញ្ជីរាយនាមហ្គេម PS2 ល្បីៗ</div>
+
+            <!-- Game 1 -->
+            <div class="game-card-item">
+                <div class="game-icon">🚲</div>
+                <div class="game-info">
+                    <div class="game-title">GTA: San Andreas</div>
+                    <div class="game-desc">ហ្គេមបើកបរ និងបេសកកម្មដ៏ល្បីល្បាញបំផុត</div>
+                </div>
+                <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-play">▶️ មើលវីដេអូ</a>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card-item">
+                <div class="game-icon">⚔️</div>
+                <div class="game-info">
+                    <div class="game-title">God of War II</div>
+                    <div class="game-desc">សង្រ្គាមព្រះក្រិកដ៏រំជើបរំជួលចិត្ត</div>
+                </div>
+                <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-play">▶️ មើលវីដេអូ</a>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card-item">
+                <div class="game-icon">⚽</div>
+                <div class="game-info">
+                    <div class="game-title">Winning Eleven / PES</div>
+                    <div class="game-desc">បាល់ទាត់ជំនាន់កាដូ / អាដ្រេអាណូ</div>
+                </div>
+                <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-play">▶️ មើលវីដេអូ</a>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card-item">
+                <div class="game-icon">🏎️</div>
+                <div class="game-info">
+                    <div class="game-title">Need for Speed: Most Wanted</div>
+                    <div class="game-desc">ប្រណាំងឡានគេចប៉ូលិសកម្រិតកំពូល</div>
+                </div>
+                <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-play">▶️ មើលវីដេអូ</a>
+            </div>
+
+            <!-- Game 5 -->
+            <div class="game-card-item">
+                <div class="game-icon">🐉</div>
+                <div class="game-info">
+                    <div class="game-title">Dragon Ball Z: Budokai Tenkaichi 3</div>
+                    <div class="game-desc">ប្រយុទ្ធស៊ុយភើហ្សៃយ៉ែនដ៏ជក់ចិត្ត</div>
+                </div>
+                <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-play">▶️ មើលវីដេអូ</a>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="card" style="padding: 15px; text-align: center;">
+            <a href="library.html" class="btn btn-back">⬅️ ត្រឡប់ទៅកាន់ Library វិញ</a>
+        </div>
+    </div>
+
+</body>
+</html>
