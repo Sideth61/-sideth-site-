@@ -55,7 +55,8 @@
         .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         .project-item { background: rgba(15, 23, 42, 0.6); padding: 12px 15px; border-radius: 12px; margin-bottom: 10px; }
         
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; }
+        .btn-browser { background: linear-gradient(135deg, #4ecca3, #0f3460); color: #fff; font-size: 16px; border: 1px solid #4ecca3; }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; } .btn-tiktok { background: #0f172a; }
 
         .app-card-item {
@@ -68,24 +69,8 @@
             border-radius: 16px;
             margin-bottom: 12px;
             gap: 12px;
-            transition: 0.3s;
         }
-        .app-card-item:hover {
-            border-color: rgba(56, 189, 248, 0.6);
-            background: rgba(15, 23, 42, 0.9);
-        }
-        .app-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .app-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .app-icon { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.1); }
         .app-title { color: #fff; font-size: 15px; font-weight: 600; }
         .app-desc { color: #94a3b8; font-size: 12px; }
         .btn-download {
@@ -97,9 +82,7 @@
             font-size: 13px;
             font-weight: 600;
             white-space: nowrap;
-            transition: 0.3s;
         }
-        .btn-download:hover { background: linear-gradient(135deg, #0369a1, #0284c7); }
 
         .video-container { 
             position: relative; 
@@ -112,13 +95,7 @@
             background: #000;
         }
         .video-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: 0; 
-            border-radius: 12px; 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; 
         }
 
         .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; }
@@ -135,52 +112,50 @@
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
             <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator</div>
-            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីប៉ៃលិន ដែលខិតខំរៀន IT រจนាប្រែក្លាយខ្លួនជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ និងបង្កើតមាតិកាអស្ចារ្យ។</p>
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីប៉ៃលិន បម្រើជាតិជាទាហាននៅព្រះវិហារ និងសិក្សាផ្នែក IT កម្រិតពិភពលោក។</p>
         </div>
 
-        <div class="card">
-            <div class="section-title">💻 ជំនាញ និងបទពិសោធន៍</div>
-            <ul>
-                <li><strong>Digital & E-Commerce:</strong> លក់ផលិតផលតាម TikTok Shop</li>
-                <li><strong>Tech & Security:</strong> អភិវឌ្ឍន៍ហ្គេម iOS</li>
-                <li><strong>AI Content Creator:</strong> បង្កើតវីដេអូ AI Cinematic</li>
-            </ul>
+        <!-- 🚀 ប៊ូតុងចូលទៅកាន់ Mini Browser របស់បង -->
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(78, 204, 163, 0.1), rgba(15, 52, 96, 0.3)); border-color: #4ecca3;">
+            <div class="section-title" style="color: #4ecca3;">🌐 B Sideth Mini Browser Center</div>
+            <p style="text-align: center; border-left: none;">បើកប្រើប្រាស់ប្រព័ន្ធរុករកវិបសាយផ្ទាល់ខ្លួនរបស់ B Sideth យ៉ាងសម្បូរបែប!</p>
+            <a href="browse.html" class="btn btn-browser">🌐 ចូលប្រើប្រាស់ Mini Browser របស់ខ្ញុំ</a>
         </div>
 
         <div class="card">
             <div class="section-title">💻🧰 កម្មវិធី និងហ្គេម (App & Tools)</div>
             
             <div class="app-card-item">
-                <div class="app-info">
+                <div style="display:flex; align-items:center; gap:12px;">
                     <img src="app2.png" alt="Raccoon Game" class="app-icon">
                     <div>
                         <div class="app-title">Raccoon Game</div>
                         <div class="app-desc">ហ្គេមកម្សាន្តអនឡាញ</div>
                     </div>
                 </div>
-                <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download">🌐 បើកមើលក្នុង Web</a>
+                <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download">🌐 បើកមើល</a>
             </div>
 
             <div class="app-card-item">
-                <div class="app-info">
+                <div style="display:flex; align-items:center; gap:12px;">
                     <img src="app3.png" alt="Facebook App" class="app-icon">
                     <div>
                         <div class="app-title">Facebook DSN</div>
                         <div class="app-desc">បណ្តាញសង្គមហ្វេសប៊ុក</div>
                     </div>
                 </div>
-                <a href="https://m.facebook.com/?ref=homescreenpwa" target="_blank" class="btn-download">🌐 បើកមើលក្នុង Web</a>
+                <a href="https://m.facebook.com/?ref=homescreenpwa" target="_blank" class="btn-download">🌐 បើកមើល</a>
             </div>
 
             <div class="app-card-item">
-                <div class="app-info">
+                <div style="display:flex; align-items:center; gap:12px;">
                     <img src="app1.png" alt="2Fa Tool" class="app-icon">
                     <div>
                         <div class="app-title">2Fa Security Tool</div>
                         <div class="app-desc">ប្រព័ន្ធសុវត្ថិភាព 2Fa</div>
                     </div>
                 </div>
-                <a href="https://2fa.cn/" target="_blank" class="btn-download">🌐 បើកមើលក្នុង Web</a>
+                <a href="https://2fa.cn/" target="_blank" class="btn-download">🌐 បើកមើល</a>
             </div>
         </div>
 
@@ -191,58 +166,28 @@
         </div>
 
         <div class="card">
-            <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង (Library DSN)</div>
-            <div class="project-item">
-                <h5>🎵 បទចម្រៀងបង្កើតដោយ AI 🎶</h5>
-                <span>ស្តាប់កម្សាន្តនូវបទចម្រៀងពិរោះៗ និងស្នាដៃវីដេអូ YouTube របស់ Sideth❤️️។</span>
-            </div>
-            <div class="project-item">
-                <h5>📗 អានសៀវភៅ និងឯកសារបច្ចេកវិទ្យា 📘</h5>
-                <span>សិក្សានិងស្វែងយល់ពីឯកសារមេរៀន IT ថ្មីៗសម្រាប់អភិវឌ្ឍខ្លួន។</span>
-            </div>
-            <a href="library.html" class="btn btn-shop">📁 ចុចចូលទីនេះដើម្បីទៅកាន់ Library ពេញលេញ</a>
-        </div>
-
-        <div class="card">
-            <div class="section-title">🚀 គម្រោងកំពុងដំណើរការ</div>
-            <div class="project-item"><h5>📱 អភិវឌ្ឍន៍ហ្គេម iOS ថ្មី</h5><span>កំពុងធ្វើលើ Unity។</span></div>
-            <div class="project-item"><h5>🎥 មេរៀនវីដេអូ Gemini AI</h5><span>កំពុងរៀបចំជូនបងប្អូន។</span></div>
+            <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង</div>
+            <a href="library.html" class="btn btn-shop">📁 ចូលទៅកាន់ Library DSN ពេញលេញ</a>
         </div>
 
         <div class="card">
             <div class="section-title">🎬 ស្នាដៃ YouTube (@sideth99)</div>
-            <p>ទស្សនាស្នាដៃវីដេអូមើលកម្សាន្ត និងបទចម្រៀង AI របស់ B Sideth❤️️ ផ្ទាល់ក្នុងវេបសាយដោយមិនបាច់លោតចេញក្រៅឡើយ!</p>
-            
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU?modestbranding=1&rel=0&playsinline=1" 
-                        title="YouTube video player" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU?modestbranding=1&rel=0&playsinline=1" allowfullscreen></iframe>
             </div>
-
-            <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
+            <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube (@sideth99)</a>
         </div>
 
         <div class="wife-box">
             <h4>💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
-            <p>ទោះអតីតកាលមានសង្សារច្រើនយ៉ាងណាក៏ដោយ ក៏បងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាប្រពន្ធដ៏ល្អបំផុតលេខ១លើលោករបស់បង!</p>
+            <p>ខំប្រឹងរកលុយដើម្បីកូន <strong>វឌ្ឍនា</strong> និងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាប្រពន្ធដ៏ល្អបំផុតលេខ១!</p>
         </div>
 
         <div class="card">
             <div class="section-title">📞 ទំនាក់ទំនង</div>
-            <p>📲 068488730 / 017488730</p>
             <a href="https://t.me/sidet99" target="_blank" class="btn btn-telegram">✈️ Telegram (@sidet99)</a>
             <a href="https://www.facebook.com/deth61" target="_blank" class="btn">📘 Facebook Page</a>
-            <a href="https://www.tiktok.com/@sideth61" target="_blank" class="btn-tiktok">🎵 TikTok Shop</a>
         </div>
     </div>
-
-    <script>
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
-        };
-    </script>
 </body>
 </html>
