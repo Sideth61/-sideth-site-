@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Sideth - DSN Website Online & OS Hub</title>
@@ -49,7 +50,6 @@
             position: relative;
         }
 
-        /* Canvas សម្រាប់បែបផែន Background Effects */
         #effectCanvas {
             position: fixed;
             top: 0;
@@ -78,11 +78,10 @@
 
         .app-card-item {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
             background: rgba(15, 23, 42, 0.7);
             border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 12px 15px;
+            padding: 15px;
             border-radius: 16px;
             margin-bottom: 12px;
             gap: 12px;
@@ -90,34 +89,14 @@
         .app-icon { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.1); }
         .app-title { color: #fff; font-size: 15px; font-weight: 600; }
         .app-desc { color: #94a3b8; font-size: 12px; }
-        .btn-download {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            color: white;
-            padding: 8px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
 
         .video-container { 
-            position: relative; 
-            width: 100%; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            margin-bottom: 15px; 
-            background: #000;
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-bottom: 15px; background: #000;
         }
-        .video-container iframe { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; 
-        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
         .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
 
-        /* Game Section Styling */
         .input-field {
             width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
             border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif;
@@ -125,48 +104,22 @@
         }
         .result { margin-top: 15px; font-size: 14px; font-weight: 600; color: #38bdf8; text-align: center; }
 
-        /* Setting Button & Modal */
         .setting-btn {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(17, 24, 39, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: 0.3s;
+            position: fixed; top: 15px; right: 20px; z-index: 1000;
+            background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
 
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 9999;
+            justify-content: center; align-items: center;
         }
         .modal-card {
-            background: #111827;
-            border: 2px solid #38bdf8;
-            padding: 25px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 350px;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            color: #fff;
+            background: #111827; border: 2px solid #38bdf8; padding: 25px;
+            border-radius: 20px; width: 90%; max-width: 350px; text-align: left; color: #fff;
         }
         .modal-card h3 { color: #38bdf8; margin-top: 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
         .close-modal { background: none; border: none; color: #f43f5e; font-size: 20px; cursor: pointer; }
@@ -174,60 +127,31 @@
         .setting-group label { display: block; color: #94a3b8; font-size: 13px; margin-bottom: 8px; }
         .options-row { display: flex; gap: 10px; }
         .theme-box { flex: 1; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; }
-        .theme-box:hover { border-color: #38bdf8; background: #2563eb; }
-        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
-        .setting-action-btn:hover { filter: brightness(1.1); }
+        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; }
 
-        /* Global Floating Dock */
         .dsn-dock {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 10px 20px;
-            border-radius: 30px;
-            display: flex;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            z-index: 999;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px;
+            border-radius: 30px; display: flex; gap: 15px; z-index: 999;
         }
-        .dock-item {
-            font-size: 20px;
-            text-decoration: none;
-            transition: 0.3s;
-            padding: 8px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .dock-item:hover {
-            background: rgba(56, 189, 248, 0.2);
-            transform: translateY(-5px);
-        }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body class="theme-dark">
 
-    <!-- Canvas Background Effects -->
     <canvas id="effectCanvas"></canvas>
 
-    <!-- Logo ផ្នែកខាងលើ -->
     <div class="logo-container">
         <img src="IMG_3350.jpeg" alt="Logo">
     </div>
 
-    <!-- ប៊ូតុង Setting ផ្នែកខាងលើ -->
     <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
 
-    <!-- ផ្ទាំង Modal Quick Setting -->
     <div class="modal-overlay" id="settingModal">
         <div class="modal-card">
             <h3><span>⚙️ Quick Settings</span> <button class="close-modal" onclick="toggleSetting(false)">✕</button></h3>
-            
             <div class="setting-group">
                 <label>🎨 រចនាបទពណ៌ (Theme):</label>
                 <div class="options-row">
@@ -236,7 +160,6 @@
                     <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
                 </div>
             </div>
-
             <div class="setting-group">
                 <label>🎵 សំឡេងផ្ទៃខាងក្រោយ (BGM):</label>
                 <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
@@ -260,7 +183,6 @@
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីប៉ៃលិន បម្រើជាតិជាទាហាននៅព្រះវិហារ និងសិក្សាផ្នែក IT កម្រិតពិភពលោក។</p>
         </div>
 
-        <!-- 🚀 ហ្គេមទាយលេខសំណាងដែលបានបញ្ចូលមកជាមួយ -->
         <div class="card">
             <div class="section-title">🎮 ហ្គេមទាយលេខសំណាង (1 - 10)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 15px;">សូមព្យាយាមទាយលេខរវាង ១ ដល់ ១០ ដើម្បីឈ្នះរង្វាន់ពិសេសពី B Sideth!</p>
@@ -269,7 +191,6 @@
             <div class="result" id="gameResult"></div>
         </div>
 
-        <!-- 🚀 ប៊ូតុងចូលទៅកាន់ Mini Browser របស់បង -->
         <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(78, 204, 163, 0.1), rgba(15, 52, 96, 0.3)); border-color: #4ecca3;">
             <div class="section-title" style="color: #4ecca3;">🌐 B Sideth Mini Browser Center</div>
             <p style="text-align: center; border-left: none;">បើកប្រើប្រាស់ប្រព័ន្ធរុករកវិបសាយផ្ទាល់ខ្លួនរបស់ B Sideth យ៉ាងសម្បូរបែប!</p>
@@ -287,7 +208,7 @@
                         <div class="app-desc">ហ្គេមកម្សាន្តអនឡាញ</div>
                     </div>
                 </div>
-                <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download">🌐 បើកមើល</a>
+                <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download" style="align-self: flex-end;">🌐 បើកមើល</a>
             </div>
 
             <div class="app-card-item">
@@ -298,18 +219,30 @@
                         <div class="app-desc">បណ្តាញសង្គមហ្វេសប៊ុក</div>
                     </div>
                 </div>
-                <a href="https://m.facebook.com/?ref=homescreenpwa" target="_blank" class="btn-download">🌐 បើកមើល</a>
+                <a href="https://m.facebook.com/?ref=homescreenpwa" target="_blank" class="btn-download" style="align-self: flex-end;">🌐 បើកមើល</a>
             </div>
 
+            <!-- 2FA Tool ផ្នែកដែលបានកែសម្រួលរួច -->
             <div class="app-card-item">
-                <div style="display:flex; align-items:center; gap:12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
                     <img src="app1.png" alt="2Fa Tool" class="app-icon">
                     <div>
                         <div class="app-title">2Fa Security Tool</div>
                         <div class="app-desc">ប្រព័ន្ធសុវត្ថិភាព 2Fa</div>
                     </div>
                 </div>
-                <a href="https://2fa.cn/" target="_blank" class="btn-download">🌐 បើកមើល</a>
+
+                <div style="margin-top: 10px;">
+                    <div style="font-size: 13px; margin-bottom: 5px; color: #94a3b8;">* 2FA Secret</div>
+                    <textarea id="secretInput" placeholder="បញ្ចូល Secret Key នៅទីនេះ..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box; resize: vertical;"></textarea>
+                    
+                    <button id="submitBtn" style="width: 100%; margin-top: 8px; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Submit</button>
+
+                    <div style="font-size: 13px; margin-top: 10px; margin-bottom: 5px; color: #94a3b8;">* 2FA Code</div>
+                    <input type="text" id="codeOutput" readonly placeholder="លេខកូដនឹងចេញទីនេះ" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box;">
+                    
+                    <button id="copyBtn" style="width: 100%; margin-top: 8px; padding: 10px; background: #10b981; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Copy</button>
+                </div>
             </div>
         </div>
 
@@ -339,7 +272,6 @@
         </div>
     </div>
 
-    <!-- Global Floating Dock ផ្នែកខាងក្រោម -->
     <div class="dsn-dock">
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
@@ -350,6 +282,34 @@
     </div>
 
     <script>
+        // 2FA Generator Logic
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            let secret = document.getElementById('secretInput').value.trim().replace(/\s+/g, '');
+            try {
+                let totp = new OTPAuth.TOTP({
+                    issuer: "DSN Website",
+                    label: "User",
+                    algorithm: "SHA1",
+                    digits: 6,
+                    period: 30,
+                    secret: secret
+                });
+                document.getElementById('codeOutput').value = totp.generate();
+            } catch (error) {
+                alert('Secret Key មិនត្រឹមត្រូវទេ!');
+            }
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            let codeOutput = document.getElementById('codeOutput');
+            if(codeOutput.value) {
+                navigator.clipboard.writeText(codeOutput.value);
+                alert('បាន Copy លេខកូដរួចរាល់!');
+            } else {
+                alert('មិនទាន់មានលេខកូដទេ។');
+            }
+        });
+
         // Game Logic
         const secretNumber = Math.floor(Math.random() * 10) + 1;
         function checkGuess() {
