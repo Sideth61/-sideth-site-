@@ -13,6 +13,7 @@
             color: #fff; 
             margin: 0; 
             padding: 20px; 
+            padding-bottom: 90px; /* เว้นระยะให้ Dock ด้านล่างไม่บังเนื้อหา */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -91,6 +92,37 @@
             transition: 0.3s;
         }
         .back-btn:hover { background: #334155; }
+
+        /* 📌 Floating Navigation Dock ផ្នែកខាងក្រោម (បន្ថែមថ្មី) */
+        .dsn-dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+        .dock-item {
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dock-item:hover {
+            background: rgba(56, 189, 248, 0.2);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -100,7 +132,7 @@
             <h1>DSN OS: System Architecture & Integration Guide</h1>
             
             <h2>1. System Overview</h2>
-            <p>DSN OS is designed as a Progressive Web Application (PWA) to provide a desktop-like environment within the browser. It integrates with native device storage and cloud services (Google Drive/iCloud) via the File System Access API and Storage API[span_0](start_span)[span_0](end_span).</p>
+            <p>DSN OS is designed as a Progressive Web Application (PWA) to provide a desktop-like environment within the browser. It integrates with native device storage and cloud services (Google Drive/iCloud) via the File System Access API and Storage API.</p>
 
             <h2>2. System Components</h2>
             <table>
@@ -110,19 +142,19 @@
                 </tr>
                 <tr>
                     <td><strong>Kernel (Core)</strong></td>
-                    <td>Handles resource management, state persistence, and inter-app communication[span_1](start_span)[span_1](end_span).</td>
+                    <td>Handles resource management, state persistence, and inter-app communication.</td>
                 </tr>
                 <tr>
                     <td><strong>Filesystem (VFS)</strong></td>
-                    <td>Virtual File System that maps to localStorage (for web) and FileSystemHandle (for local/cloud integration)[span_2](start_span)[span_2](end_span).</td>
+                    <td>Virtual File System that maps to localStorage (for web) and FileSystemHandle (for local/cloud integration).</td>
                 </tr>
                 <tr>
                     <td><strong>Display Engine</strong></td>
-                    <td>Manages theme states (Brightness/Contrast/Dark Mode) via CSS Custom Properties[span_3](start_span)[span_3](end_span).</td>
+                    <td>Manages theme states (Brightness/Contrast/Dark Mode) via CSS Custom Properties.</td>
                 </tr>
                 <tr>
                     <td><strong>App Store</strong></td>
-                    <td>Manages installation of web-based micro-apps into the VFS[span_4](start_span)[span_4](end_span).</td>
+                    <td>Manages installation of web-based micro-apps into the VFS.</td>
                 </tr>
             </table>
 
@@ -137,14 +169,25 @@ async function installAppToDrive(appManifest) {
 }</pre>
 
             <h3>Display & Brightness Control</h3>
-            <p>Implemented by manipulating the root CSS filter property of the web container[span_5](start_span)[span_5](end_span):</p>
+            <p>Implemented by manipulating the root CSS filter property of the web container:</p>
             <pre>document.documentElement.style.filter = `brightness(${value}%)`;</pre>
 
             <h3>Start Page Customization</h3>
-            <p>Uses a JSON-based manifest stored in localStorage to render pinned apps and widget layouts on the home screen[span_6](start_span)[span_6](end_span).</p>
+            <p>Uses a JSON-based manifest stored in localStorage to render pinned apps and widget layouts on the home screen.</p>
         </div>
 
         <a href="index.html" class="back-btn">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
     </div>
 
+    <!-- 📌 Floating Navigation Dock ផ្នែកខាងក្រោម (បន្ថែមថ្មី) -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
+        <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
+        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+        <a href="dsn-os.html" class="dock-item" title="ប្រព័ន្ធ OS">💻</a>
+    </div>
+
 </body>
+</html>
