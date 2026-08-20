@@ -13,6 +13,7 @@
             color: #fff; 
             margin: 0; 
             padding: 20px; 
+            padding-bottom: 90px; /* ເວ້ນໄລຍະໃຫ້ Dock ພາກສ່ວນខាងລຸ່ມ */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -129,6 +130,37 @@
             transition: 0.3s;
         }
         .back-btn:hover { background: #334155; }
+
+        /* Floating Dock ផ្នែកខាងក្រោម */
+        .dsn-dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+        .dock-item {
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dock-item:hover {
+            background: rgba(56, 189, 248, 0.2);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -185,6 +217,15 @@
         <a href="index.html" class="back-btn" style="background: #1e293b; border: 1px solid #334155;">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
     </div>
 
+    <!-- Floating Dock ផ្នែកខាងក្រោម -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
+        <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
+        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+    </div>
+
     <script>
         function updateProfile() {
             const newName = document.getElementById('nameInput').value;
@@ -226,4 +267,3 @@
         });
     </script>
 </body>
-</html>
