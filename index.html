@@ -7,7 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
-        /* ផ្នែក Logo ជាមួយនឹង Background ស្អាត */
         .logo-container {
             position: fixed;
             top: 15px;
@@ -59,7 +58,6 @@
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; } .btn-tiktok { background: #0f172a; }
 
-        /* រចនាប័ទ្ម App Box ថ្មី */
         .app-card-item {
             display: flex;
             align-items: center;
@@ -88,15 +86,8 @@
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .app-title {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        .app-desc {
-            color: #94a3b8;
-            font-size: 12px;
-        }
+        .app-title { color: #fff; font-size: 15px; font-weight: 600; }
+        .app-desc { color: #94a3b8; font-size: 12px; }
         .btn-download {
             background: linear-gradient(135deg, #0284c7, #0369a1);
             color: white;
@@ -108,11 +99,8 @@
             white-space: nowrap;
             transition: 0.3s;
         }
-        .btn-download:hover {
-            background: linear-gradient(135deg, #0369a1, #0284c7);
-        }
+        .btn-download:hover { background: linear-gradient(135deg, #0369a1, #0284c7); }
 
-        /* ផ្នែក YouTube Video Embed ក្នុង index.html */
         .video-container { 
             position: relative; 
             width: 100%; 
@@ -137,7 +125,6 @@
     </style>
 </head>
 <body>
-    <!-- Logo -->
     <div class="logo-container">
         <img src="IMG_3350.jpeg" alt="Logo">
     </div>
@@ -148,7 +135,7 @@
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
             <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator</div>
-            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនម្នាក់ដែលធ្វើការងារជា Content Creator និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ។</p>
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីប៉ៃលិន ដែលខិតខំរៀន IT រจนាប្រែក្លាយខ្លួនជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ និងបង្កើតមាតិកាអស្ចារ្យ។</p>
         </div>
 
         <div class="card">
@@ -160,11 +147,9 @@
             </ul>
         </div>
 
-        <!-- 💎 ផ្នែក App & Tools ថ្មី -->
         <div class="card">
             <div class="section-title">💻🧰 កម្មវិធី និងហ្គេម (App & Tools)</div>
             
-            <!-- App 1: Raccoon Game (app2.png) -->
             <div class="app-card-item">
                 <div class="app-info">
                     <img src="app2.png" alt="Raccoon Game" class="app-icon">
@@ -176,7 +161,6 @@
                 <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download">🌐 បើកមើលក្នុង Web</a>
             </div>
 
-            <!-- App 2: Facebook (app3.png) -->
             <div class="app-card-item">
                 <div class="app-info">
                     <img src="app3.png" alt="Facebook App" class="app-icon">
@@ -188,7 +172,6 @@
                 <a href="https://m.facebook.com/?ref=homescreenpwa" target="_blank" class="btn-download">🌐 បើកមើលក្នុង Web</a>
             </div>
 
-            <!-- App 3: 2Fa (app1.png) -->
             <div class="app-card-item">
                 <div class="app-info">
                     <img src="app1.png" alt="2Fa Tool" class="app-icon">
@@ -207,7 +190,6 @@
             <a href="https://m.me/deth61" target="_blank" class="btn btn-apple">🍏 ទិញគណនី Apple ID</a>
         </div>
 
-        <!-- ផ្នែកបណ្ណាល័យ -->
         <div class="card">
             <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង (Library DSN)</div>
             <div class="project-item">
@@ -227,7 +209,6 @@
             <div class="project-item"><h5>🎥 មេរៀនវីដេអូ Gemini AI</h5><span>កំពុងរៀបចំជូនបងប្អូន។</span></div>
         </div>
 
-        <!-- 🎬 ផ្នែក ស្នាដៃ YouTube -->
         <div class="card">
             <div class="section-title">🎬 ស្នាដៃ YouTube (@sideth99)</div>
             <p>ទស្សនាស្នាដៃវីដេអូមើលកម្សាន្ត និងបទចម្រៀង AI របស់ B Sideth❤️️ ផ្ទាល់ក្នុងវេបសាយដោយមិនបាច់លោតចេញក្រៅឡើយ!</p>
@@ -245,7 +226,7 @@
 
         <div class="wife-box">
             <h4>💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
-            <p>ខ្ញុំមានកិត្តិយស និងមោទនភាពបំផុត ដែលមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាប្រពន្ធដ៏ល្អបំផុតលេខ១លើលោករបស់ខ្ញុំ!</p>
+            <p>ទោះអតីតកាលមានសង្សារច្រើនយ៉ាងណាក៏ដោយ ក៏បងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាប្រពន្ធដ៏ល្អបំផុតលេខ១លើលោករបស់បង!</p>
         </div>
 
         <div class="card">
@@ -258,7 +239,6 @@
     </div>
 
     <script>
-        // កូដ Block មិនឱ្យចុច ថយក្រោយ (Back) និង ទៅមុខ (Forward)
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
             history.go(1);
