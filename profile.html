@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile & Dashboard - Deth DSN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            color: #fff; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container { 
+            width: 100%; 
+            max-width: 450px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+
+        .card { 
+            background: rgba(17, 24, 39, 0.85); 
+            backdrop-filter: blur(16px); 
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
+            text-align: center;
+        }
+
+        /* Profile Header */
+        .avatar-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px auto;
+        }
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+        .badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #2563eb;
+            color: white;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            border: 2px solid #090d16;
+            font-weight: bold;
+        }
+
+        .profile-name { font-size: 20px; font-weight: 700; color: #38bdf8; margin-bottom: 5px; }
+        .profile-role { font-size: 13px; color: #94a3b8; margin-bottom: 15px; }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(30, 41, 59, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid #334155;
+        }
+        .stat-box { text-align: center; }
+        .stat-box h4 { margin: 0; color: #38bdf8; font-size: 16px; }
+        .stat-box span { font-size: 11px; color: #94a3b8; }
+
+        /* Form Controls */
+        .section-title { color: #38bdf8; font-size: 16px; margin-bottom: 12px; text-align: left; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .input-group { margin-bottom: 12px; text-align: left; }
+        .input-group label { display: block; color: #94a3b8; font-size: 12px; margin-bottom: 5px; }
+        .input-field {
+            width: 100%;
+            padding: 10px 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 13px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-field:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #2563eb, #38bdf8);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-family: 'Kantumruy Pro', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        .back-btn { 
+            display: block; 
+            text-align: center; 
+            background: #475569; 
+            color: #fff; 
+            padding: 12px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: #334155; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="card">
+            <div class="avatar-container">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Avatar" class="avatar" id="userAvatar">
+                <span class="badge">PRO VIP</span>
+            </div>
+            <div class="profile-name" id="displayName">B Sideth (Deth DSN)</div>
+            <div class="profile-role">🛡️ ស្ថាបនិកវេបសាយ & មហាក្សត្រ IT ដៃឆ្នើម</div>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <h4>26+</h4>
+                    <span>Projects</span>
+                </div>
+                <div class="stat-box">
+                    <h4>100%</h4>
+                    <span>Active</span>
+                </div>
+                <div class="stat-box">
+                    <h4>VIP</h4>
+                    <span>Status</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">✏️ កែប្រែព័ត៌មានផ្ទាល់ខ្លួន</div>
+            <div class="input-group">
+                <label>ឈ្មោះបង្ហាញ (Display Name):</label>
+                <input type="text" id="nameInput" class="input-field" value="B Sideth (Deth DSN)">
+            </div>
+            <div class="input-group">
+                <label>តំណររូបភាព Avatar (Image URL):</label>
+                <input type="text" id="avatarInput" class="input-field" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+            </div>
+            <button class="btn" onclick="updateProfile()">💾 រក្សាទុកការផ្លាស់ប្តូរ (Save)</button>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📓 កំណត់ត្រាការងារ IT របស់បង</div>
+            <div class="input-group">
+                <textarea id="noteInput" class="input-field" rows="3" placeholder="សរសេរគំនិត ឬកិច្ចការត្រូវធ្វើទីនេះ..."></textarea>
+            </div>
+            <button class="btn" onclick="saveNote()">📌 កត់ត្រាទុក (Add Note)</button>
+            <p id="savedNoteDisplay" style="font-size: 12px; color: #38bdf8; margin-top: 10px; text-align: left;"></p>
+        </div>
+
+        <a href="setting.html" class="back-btn">⚙️ ទៅកាន់ទំព័រការកំណត់ (Settings)</a>
+        <a href="index.html" class="back-btn" style="background: #1e293b; border: 1px solid #334155;">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
+    </div>
+
+    <script>
+        function updateProfile() {
+            const newName = document.getElementById('nameInput').value;
+            const newAvatar = document.getElementById('avatarInput').value;
+
+            document.getElementById('displayName').innerText = newName;
+            document.getElementById('userAvatar').src = newAvatar;
+
+            localStorage.setItem('dsn_username', newName);
+            localStorage.setItem('dsn_avatar', newAvatar);
+
+            alert('✅ រក្សាទុកប្រវត្តិរូបបានជោគជ័យហើយប្រុសស្អិត!');
+        }
+
+        function saveNote() {
+            const noteText = document.getElementById('noteInput').value;
+            localStorage.setItem('dsn_note', noteText);
+            document.getElementById('savedNoteDisplay').innerText = "📌 កំណត់ត្រាចុងក្រោយ: " + noteText;
+            alert('✅ បានកត់ត្រាទុកក្នុងប្រព័ន្ធរួចរាល់!');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('dsn_username');
+            const savedAvatar = localStorage.getItem('dsn_avatar');
+            const savedNote = localStorage.getItem('dsn_note');
+
+            if(savedName) {
+                document.getElementById('displayName').innerText = savedName;
+                document.getElementById('nameInput').value = savedName;
+            }
+            if(savedAvatar) {
+                document.getElementById('userAvatar').src = savedAvatar;
+                document.getElementById('avatarInput').value = savedAvatar;
+            }
+            if(savedNote) {
+                document.getElementById('savedNoteDisplay').innerText = "📌 កំណត់ត្រាចុងក្រោយ: " + savedNote;
+                document.getElementById('noteInput').value = savedNote;
+            }
+        });
+    </script>
+</body>
+</html>
