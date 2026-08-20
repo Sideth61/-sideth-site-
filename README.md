@@ -1,75 +1,429 @@
+
 <!DOCTYPE html>
 <html lang="km">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <meta charset="UTF-8">
-    <title>San Sideth - Cyber Shield & Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Sideth - DSN Website Online & OS Hub</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        
+        body.theme-dark { background-color: #090d16; color: #fff; }
+        body.theme-cyber { background-color: #12001c; color: #ff77ff; }
+        body.theme-ocean { background-color: #001e2b; color: #76ff03; }
+
+        .logo-container {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #38bdf8, #f43f5e);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            border: 2px solid #090d16;
+        }
+
         body { 
-            font-family: sans-serif; 
-            background-color: #0f172a; 
-            background-image: radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px);
-            background-size: 24px 24px;
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background-color: #090d16; 
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 40%), 
+                radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+                linear-gradient(to bottom, #090d16, #020617);
+            background-attachment: fixed;
+            background-size: cover;
             color: #fff; 
             text-align: center; 
-            padding: 20px; 
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 80px 10px 100px 10px; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             min-height: 100vh;
+            position: relative;
         }
-        .card { 
-            background: rgba(30, 41, 59, 0.85); 
-            backdrop-filter: blur(10px);
-            padding: 25px; 
-            border-radius: 20px; 
-            max-width: 450px; 
+
+        #effectCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        h1 { color: #38bdf8; font-size: 22px; margin: 10px 0 5px 0; }
-        .title-sub { color: #f43f5e; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
-        p { color: #94a3b8; font-size: 13px; margin-bottom: 15px; line-height: 1.6; text-align: left; }
-        .badge { display: inline-block; background: #0284c7; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
-        .skills-box { background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; margin-bottom: 15px; text-align: left; border: 1px solid rgba(56, 189, 248, 0.2); }
-        .skills-box h3 { color: #38bdf8; font-size: 14px; margin: 0 0 8px 0; }
-        .skills-box ul { margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 12px; }
-        .skills-box li { margin-bottom: 4px; }
-        .wife-box { background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); padding: 12px; border-radius: 10px; margin-bottom: 15px; text-align: center; }
-        .wife-box h4 { color: #fb7185; margin: 0 0 5px 0; font-size: 14px; }
-        .wife-box p { color: #f1f5f9; font-size: 12px; text-align: center; margin: 0; }
-        a { display: block; background: #2563eb; color: #fff; padding: 10px; margin: 8px 0; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; font-size: 14px; }
-        a:hover { background: #1d4ed8; }
+
+        .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
+        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        .header-card { text-align: center; }
+        .avatar-container { width: 90px; height: 90px; margin: 0 auto 15px auto; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #f43f5e); padding: 3px; }
+        .avatar { width: 100%; height: 100%; border-radius: 50%; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; }
+        .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; }
+        p { color: #94a3b8; font-size: 14px; line-height: 1.7; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; margin: 0 0 10px 0; }
+        .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; }
+        .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
+        
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
+        .btn:hover { filter: brightness(1.1); }
+        .btn-browser { background: linear-gradient(135deg, #4ecca3, #0f3460); color: #fff; font-size: 16px; border: 1px solid #4ecca3; }
+        .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; } .btn-tiktok { background: #0f172a; }
+
+        .app-card-item {
+            display: flex;
+            flex-direction: column;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+        .app-icon { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .app-title { color: #fff; font-size: 15px; font-weight: 600; }
+        .app-desc { color: #94a3b8; font-size: 12px; }
+        .btn-download {
+            background: linear-gradient(135deg, #7b2cbf, #c77dff);
+            color: white; padding: 8px 14px; border-radius: 10px;
+            text-decoration: none; font-size: 13px; font-weight: 600; text-align: center;
+        }
+
+        .video-container { 
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-bottom: 15px; background: #000;
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
+
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
+
+        .input-field {
+            width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
+            border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 16px; text-align: center; box-sizing: border-box; outline: none; margin-bottom: 15px;
+        }
+        .result { margin-top: 15px; font-size: 14px; font-weight: 600; color: #38bdf8; text-align: center; }
+
+        .setting-btn {
+            position: fixed; top: 15px; right: 20px; z-index: 1000;
+            background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
+
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .modal-card {
+            background: #111827; border: 2px solid #38bdf8; padding: 25px;
+            border-radius: 20px; width: 90%; max-width: 350px; text-align: left; color: #fff;
+        }
+        .modal-card h3 { color: #38bdf8; margin-top: 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+        .close-modal { background: none; border: none; color: #f43f5e; font-size: 20px; cursor: pointer; }
+        .setting-group { margin: 15px 0; }
+        .setting-group label { display: block; color: #94a3b8; font-size: 13px; margin-bottom: 8px; }
+        .options-row { display: flex; gap: 10px; }
+        .theme-box { flex: 1; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; }
+        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; }
+
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px;
+            border-radius: 30px; display: flex; gap: 15px; z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
-<body>
-    <div class="card">
-        <div class="badge">🛡️Page San SIdet</div>
-        <h1>សួស្តី! ខ្ញុំ សាន់ ស៊ីដេត (San Sideth)</h1>
-        <div class="title-sub">មន្ត្រីយោធាជួរមុខ & Digital Creator & Hacker</div>
-        
-        <p>
-            ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! អតីតកាលជាក្មេងទំនើងនៅប៉ៃលិន[span_3](start_span)[span_3](end_span) មុននឹងប្តូរជីវិតមកចាប់យកបច្ចេកវិទ្យា IT[span_4](start_span)[span_4](end_span) និងបម្រើជាតិជាទាហានក្លាហាននៅសមរភូមិព្រះវិហារ[span_5](start_span)[span_5](end_span)។
-        </p>
+<body class="theme-dark">
 
-        <div class="skills-box">
-            <h3>💻 ជំនាញ និងបទពិសោធន៍៖</h3>
-            <ul>
-                <li><strong>Digital & E-Commerce:</strong> Page Manager, TikTok Shop Seller[span_6](start_span)[span_6](end_span)</li>
-                <li><strong>Tech & Security:</strong> iOS App/Game Developer, Ethical Hacker[span_7](start_span)[span_7](end_span)</li>
-                <li><strong>AI Content:</strong> Prompt វីដេអូ AI Cinematic / Google Veo 3[span_8](start_span)[span_8](end_span)</li>
-            </ul>
-        </div>
+    <canvas id="effectCanvas"></canvas>
 
-        <div class="wife-box">
-            <h4>💖 ម្លប់សុភមង្គលពិតប្រាកដ</h4>
-            <p>ទោះអតីតកាលឆ្លងកាត់​ឧបសគ្គ​ជា​ច្រើនយ៉ាងណាក៏ដោយ[span_9](start_span)[span_9](end_span) ក៏ចុងក្រោយមានតែ <strong>OunSa</strong> ទេ ដែលជាប្រពន្ធដ៏ល្អ ល្អជាងគេលើលោករបស់ខ្ញុំ[span_10](start_span)[span_10](end_span)! 🌸✨</p>
-        </div>
-        
-        <a href="https://www.facebook.com/deth61?mibextid=wwXIfr" target="_blank">Facebook Page</a>
-        <a href="https://youtube.com/@sideth99?si=qNfKbRFcIL1r8uly" target="_blank">YouTube Channel</a>
-        <a href="https://www.tiktok.com/@sideth61" target="_blank">TikTok Shop</a>
+    <div class="logo-container">
+        <img src="IMG_3350.jpeg" alt="Logo">
     </div>
+
+    <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
+
+    <div class="modal-overlay" id="settingModal">
+        <div class="modal-card">
+            <h3><span>⚙️ Quick Settings</span> <button class="close-modal" onclick="toggleSetting(false)">✕</button></h3>
+            <div class="setting-group">
+                <label>🎨 រចនាបទពណ៌ (Theme):</label>
+                <div class="options-row">
+                    <div class="theme-box" style="color: #38bdf8;" onclick="setTheme('theme-dark')">Dark</div>
+                    <div class="theme-box" style="color: #ff77ff;" onclick="setTheme('theme-cyber')">Cyber</div>
+                    <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>🎵 សំឡេងផ្ទៃខាងក្រោយ (BGM):</label>
+                <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                <button class="setting-action-btn" onclick="toggleBgm()" id="bgmBtn">▶️ ចុចបើកតន្ត្រី</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card header-card">
+            <div class="avatar-container"><div class="avatar">🛡️</div></div>
+            <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
+            <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
+            <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator</div>
+            
+            <div class="wife-box">
+                <h4 style="margin: 0 0 8px 0; color: #f43f5e;">💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
+                <p style="margin: 0; border: none; background: none; padding: 0;">ខំប្រឹងរកលុយដើម្បីកូន <strong>វឌ្ឍនា</strong> និងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាប្រពន្ធដ៏ល្អបំផុតលេីពិភពលោក​!</p>
+            </div>
+            
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីប៉ៃលិន បម្រើជាតិជាទាហាននៅព្រះវិហារ និងសិក្សាផ្នែក IT កម្រិតពិភពលោក។</p>
+        </div>
+
+        <div class="card">
+            <div class="section-title">🎮 ហ្គេមទាយលេខសំណាង (1 - 10)</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 15px;">សូមព្យាយាមទាយលេខរវាង ១ ដល់ ១០ ដើម្បីឈ្នះរង្វាន់ពិសេសពី B Sideth!</p>
+            <input type="number" id="guessInput" class="input-field" min="1" max="10" placeholder="បញ្ចូលលេខទីនេះ">
+            <button class="btn" onclick="checkGuess()" style="width: 100%; border: none; cursor: pointer;">🎯 សាកល្បងទាយ (Guess)</button>
+            <div class="result" id="gameResult"></div>
+        </div>
+
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(78, 204, 163, 0.1), rgba(15, 52, 96, 0.3)); border-color: #4ecca3;">
+            <div class="section-title" style="color: #4ecca3;">🌐 B Sideth Mini Browser Center</div>
+            <p style="text-align: center; border-left: none;">បើកប្រើប្រាស់ប្រព័ន្ធរុករកវិបសាយផ្ទាល់ខ្លួនរបស់ B Sideth យ៉ាងសម្បូរបែប!</p>
+            <a href="browse.html" class="btn btn-browser">🌐 ចូលប្រើប្រាស់ Mini Browser របស់ខ្ញុំ</a>
+        </div>
+
+        <div class="card">
+            <div class="section-title">💻🧰 កម្មវិធី និងហ្គេម (App & Tools)</div>
+            
+            <div class="app-card-item">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="app2.png" alt="Raccoon Game" class="app-icon">
+                    <div>
+                        <div class="app-title">Raccoon Game</div>
+                        <div class="app-desc">ហ្គេមកម្សាន្តអនឡាញ</div>
+                    </div>
+                </div>
+                <a href="https://www.raccoongame.com/wap/dist/#/platform/cloudgame/gamedetail?gid=209" target="_blank" class="btn-download" style="align-self: flex-end;">🌐 បើកមើល</a>
+            </div>
+
+            <!-- ផ្នែកដែលបានកែសម្រួលតំណភ្ជាប់ឱ្យរត់ទៅកាន់ facebook.html -->
+            <div class="app-card-item">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="app3.png" alt="Facebook App" class="app-icon">
+                    <div>
+                        <div class="app-title">Facebook DSN Center</div>
+                        <div class="app-desc">ប្រព័ន្ធហ្វេសប៊ុកស្វាយថ្លារលោង</div>
+                    </div>
+                </div>
+                <a href="facebook.html" class="btn-download" style="align-self: flex-end;">💜 ចូលមើល</a>
+            </div>
+
+            <!-- 2FA Tool -->
+            <div class="app-card-item">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="app1.png" alt="2Fa Tool" class="app-icon">
+                    <div>
+                        <div class="app-title">2Fa Security Tool</div>
+                        <div class="app-desc">ប្រព័ន្ធសុវត្ថិភាព 2Fa</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <div style="font-size: 13px; margin-bottom: 5px; color: #94a3b8;">* 2FA Secret</div>
+                    <textarea id="secretInput" placeholder="បញ្ចូល Secret Key នៅទីនេះ..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box; resize: vertical;"></textarea>
+                    
+                    <button id="submitBtn" style="width: 100%; margin-top: 8px; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Submit</button>
+
+                    <div style="font-size: 13px; margin-top: 10px; margin-bottom: 5px; color: #94a3b8;">* 2FA Code</div>
+                    <input type="text" id="codeOutput" readonly placeholder="លេខកូដនឹងចេញទីនេះ" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box;">
+                    
+                    <button id="copyBtn" style="width: 100%; margin-top: 8px; padding: 10px; background: #10b981; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">🛒 សេវាកម្ម</div>
+            <a href="https://m.me/deth61" target="_blank" class="btn btn-gmail">🛒 ទិញគណនី Gmail</a>
+            <a href="https://m.me/deth61" target="_blank" class="btn btn-apple">🍏 ទិញគណនី Apple ID</a>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង</div>
+            <a href="library.html" class="btn btn-shop">📁 ចូលទៅកាន់ Library DSN ពេញលេញ</a>
+        </div>
+
+        <div class="card">
+            <div class="section-title">🎬 ស្នាដៃ YouTube (@sideth99)</div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU?modestbranding=1&rel=0&playsinline=1" allowfullscreen></iframe>
+            </div>
+            <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube (@sideth99)</a>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📞 ទំនាក់ទំនង</div>
+            <a href="https://t.me/sidet99" target="_blank" class="btn btn-telegram">✈️ Telegram (@sidet99)</a>
+            <a href="https://www.facebook.com/deth61" target="_blank" class="btn" style="background: #1877f2;">📘 Facebook Page</a>
+        </div>
+    </div>
+
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
+        <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
+        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+        <a href="dsn-os.html" class="dock-item" title="ប្រព័ន្ធ OS">💻</a>
+    </div>
+
+    <script>
+        // 2FA Generator Logic
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            let secret = document.getElementById('secretInput').value.trim().replace(/\s+/g, '');
+            try {
+                let totp = new OTPAuth.TOTP({
+                    issuer: "DSN Website",
+                    label: "User",
+                    algorithm: "SHA1",
+                    digits: 6,
+                    period: 30,
+                    secret: secret
+                });
+                document.getElementById('codeOutput').value = totp.generate();
+            } catch (error) {
+                alert('Secret Key មិនត្រឹមត្រូវទេ!');
+            }
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            let codeOutput = document.getElementById('codeOutput');
+            if(codeOutput.value) {
+                navigator.clipboard.writeText(codeOutput.value);
+                alert('បាន Copy លេខកូដរួចរាល់!');
+            } else {
+                alert('មិនទាន់មានលេខកូដទេ។');
+            }
+        });
+
+        // Game Logic
+        const secretNumber = Math.floor(Math.random() * 10) + 1;
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guessInput').value);
+            const resultEl = document.getElementById('gameResult');
+            
+            if (!userGuess) {
+                resultEl.innerText = "⚠️ សូមបញ្ចូលលេខជាមុនសិន!";
+                resultEl.style.color = "#f87171";
+                return;
+            }
+
+            if (userGuess === secretNumber) {
+                resultEl.innerText = "🎉 អស្ចារ្យណាស់! អ្នកទាយត្រូវចំលេខសំណាងហើយ! 🏆";
+                resultEl.style.color = "#4ade80";
+            } else if (userGuess > secretNumber) {
+                resultEl.innerText = "📉 ខុសហើយ! លេខសំណាងតូចជាងហ្នឹងបន្តិច!";
+                resultEl.style.color = "#f87171";
+            } else {
+                resultEl.innerText = "📈 ខុសហើយ! លេខសំណាងធំជាងហ្នឹងបន្តិច!";
+                resultEl.style.color = "#f87171";
+            }
+        }
+
+        // Theme and Modal Logic
+        function setTheme(themeName) {
+            document.body.className = themeName;
+            localStorage.setItem('dsn_theme', themeName);
+        }
+
+        function toggleSetting(show) {
+            document.getElementById('settingModal').style.display = show ? 'flex' : 'none';
+        }
+
+        const bgm = document.getElementById('bgm');
+        const bgmBtn = document.getElementById('bgmBtn');
+        function toggleBgm() {
+            if (bgm.paused) {
+                bgm.play();
+                bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+            } else {
+                bgm.pause();
+                bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
+            }
+        }
+
+        // Background Canvas Effects
+        const canvas = document.getElementById('effectCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let currentEffect = localStorage.getItem('dsn_effect') || 'none';
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function initParticles() {
+            particles = [];
+            if (currentEffect === 'none') return;
+            let count = currentEffect === 'rain' ? 80 : 50;
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    speed: currentEffect === 'rain' ? Math.random() * 5 + 4 : Math.random() * 0.5 + 0.2,
+                    length: currentEffect === 'rain' ? Math.random() * 20 + 10 : Math.random() * 3 + 1,
+                    radius: currentEffect === 'stars' ? Math.random() * 2 + 1 : 0,
+                    opacity: Math.random() * 0.7 + 0.3
+                });
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (currentEffect !== 'none') {
+                ctx.lineWidth = 1.5;
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    if (currentEffect === 'rain') {
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity})`;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p.x - 1, p.y + p.length);
+                        ctx.stroke();
+                        p.y += p.speed;
+                        p.x -= 0.5;
+                        if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+                    } else if (currentEffect === 'stars') {
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                        p.y += p.speed;
+                        if (p.y > canvas.height) { p.y = 0; p.x = Math.random() * canvas.width; }
+                    }
+                });
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
+            document.body.className = savedTheme;
+        });
+    </script>
 </body>
 </html>
