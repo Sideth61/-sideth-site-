@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Facebook - DSN Security</title>
+    <title>Facebook Center - DSN OS Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600&display=swap');
         
@@ -31,55 +31,61 @@
             color: white;
         }
 
-        h2 { margin-bottom: 25px; color: #e9d5ff; }
+        h2 { margin-bottom: 15px; color: #e9d5ff; }
+        p { color: #d8b4fe; font-size: 14px; margin-bottom: 25px; line-height: 1.6; }
 
-        input {
+        .btn {
             width: 100%;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-radius: 15px;
             border: none;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            box-sizing: border-box;
-            outline: none;
-            font-size: 16px;
-        }
-
-        input::placeholder { color: #d8b4fe; }
-
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            border-radius: 15px;
-            border: none;
-            background: linear-gradient(135deg, #8b5cf6, #c084fc);
-            color: white;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            font-family: 'Kantumruy Pro', sans-serif;
         }
 
-        .login-btn:hover { transform: scale(1.02); filter: brightness(1.2); }
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: #e9d5ff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover { transform: scale(1.02); filter: brightness(1.2); }
 
         .back-link {
-            margin-top: 20px;
+            margin-top: 15px;
             display: block;
             color: #d8b4fe;
             text-decoration: none;
             font-size: 14px;
         }
+        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <div class="login-card">
-        <h2>📘 Facebook Login</h2>
-        <input type="text" placeholder="លេខទូរស័ព្ទ ឬអ៊ីមែល">
-        <input type="password" placeholder="ពាក្យសម្ងាត់">
-        <button class="login-btn" onclick="alert('ប្រព័ន្ធកំពុងដំណើរការ!')">ចូល (Log In)</button>
-        <a href="index.html" class="back-link">← ត្រឡប់ទៅផ្ទះវិញ</a>
+        <h2>📘 DSN Facebook Portal</h2>
+        <p>សូមជ្រើសរើសជម្រើសខាងក្រោមដើម្បីចូលទៅកាន់ប្រព័ន្ធ ឬទំព័រ Meta Developers ផ្លូវការ៖</p>
+        
+        <!-- ប៊ូតុងទី១: ចូលទៅកាន់ Meta Developers ដូចក្នុងរូបដែលបងបានបង្ហាញ -->
+        <a href="https://developers.facebook.com" target="_blank" class="btn btn-primary">🌐 ចូលកាន់ Meta Developers</a>
+        
+        <!-- ប៊ូតុងទី២: ចូលទៅកាន់ Facebook ផ្ទាល់ -->
+        <a href="https://www.facebook.com" target="_blank" class="btn btn-secondary">🚀 បើក Facebook ធម្មតា</a>
+
+        <a href="index.html" class="back-link">← ត្រឡប់ទៅផ្ទះវិញ (Home)</a>
     </div>
 
 </body>
