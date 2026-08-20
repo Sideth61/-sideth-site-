@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B Sideth Mini Browser 🌐</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
 
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            color: #fff;
+        }
+
+        /* ផ្នែកខាងលើ Browser Toolbar */
+        .browser-toolbar {
+            background-color: #0f3460;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border-bottom: 2px solid #e94560;
+        }
+
+        .nav-btn {
+            background: #e94560;
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn:hover {
+            background: #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        /* ប្រអប់វាយ Link (URL Bar) */
+        .url-bar-container {
+            flex-grow: 1;
+            display: flex;
+            background: #1a1a2e;
+            border-radius: 25px;
+            padding: 5px 15px;
+            border: 2px solid #4ecca3;
+            align-items: center;
+        }
+
+        .url-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 0.95em;
+            outline: none;
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
+
+        .go-btn {
+            background: #4ecca3;
+            color: #1a1a2e;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .go-btn:hover {
+            background: #45b393;
+        }
+
+        /* ផ្ទាំងបង្ហាញទំព័រ (Browser View Area) */
+        .browser-viewport {
+            flex-grow: 1;
+            position: relative;
+            background: #ffffff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ទំព័រដើមពេលបើកដំបូង (Homepage) */
+        .welcome-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .welcome-page h1 {
+            color: #4ecca3;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .welcome-page p {
+            color: #ccc;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid #4ecca3;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Kantumruy Pro', sans-serif;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .quick-btn:hover {
+            background: #4ecca3;
+            color: #1a1a2e;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- របារគ្រប់គ្រង Browser -->
+    <div class="browser-toolbar">
+        <button class="nav-btn" onclick="goBack()" title="ថយក្រោយ">◀</button>
+        <button class="nav-btn" onclick="goForward()" title="ទៅមុខ">▶</button>
+        <button class="nav-btn" onclick="reloadPage()" title="ផ្ទុកទិន្នន័យឡើងវិញ">🔄</button>
+        
+        <div class="url-bar-container">
+            <input type="text" id="urlInput" class="url-input" placeholder="បញ្ចូល Link ទីតាំង ਵੈបសាយ (https://...) រួចចុច Go..." onkeypress="checkEnter(event)">
+            <button class="go-btn" onclick="loadUrl()">Go</button>
+        </div>
+    </div>
+
+    <!-- ផ្ទាំងបង្ហាញខ្លឹមសារ Website -->
+    <div class="browser-viewport" id="viewport">
+        <!-- Homepage ពេលចាប់ផ្ដើម -->
+        <div class="welcome-page" id="homePage">
+            <h1>🌐 B Sideth Mini Browser</h1>
+            <p>សូមស្វាគមន៍មកកាន់កម្មវិធីរុករកវិបសាយផ្ទាល់ខ្លួនរបស់បង!</p>
+            <div class="quick-links">
+                <a class="quick-btn" onclick="openPreset('https://sideth61.github.io/bookdsn.html')">📚 បណ្ណាល័យ bookdsn.html</a>
+                <a class="quick-btn" onclick="openPreset('https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI')">📂 Google Drive Folder</a>
+                <a class="quick-btn" onclick="openPreset('https://www.google.com')">🔍 Google Search</a>
+            </div>
+        </div>
+        <iframe id="browserFrame" src="" style="display:none;"></iframe>
+    </div>
+
+    <script>
+        const urlInput = document.getElementById('urlInput');
+        const browserFrame = document.getElementById('browserFrame');
+        const homePage = document.getElementById('homePage');
+
+        function loadUrl() {
+            let url = urlInput.value.trim();
+            if (url) {
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                    urlInput.value = url;
+                }
+                homePage.style.display = 'none';
+                browserFrame.style.display = 'block';
+                browserFrame.src = url;
+            }
+        }
+
+        function openPreset(url) {
+            urlInput.value = url;
+            loadUrl();
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                loadUrl();
+            }
+        }
+
+        function reloadPage() {
+            if (browserFrame.style.display === 'block') {
+                browserFrame.src = browserFrame.src;
+            } else {
+                homePage.style.display = 'flex';
+                browserFrame.style.display = 'none';
+            }
+        }
+
+        function goBack() {
+            homePage.style.display = 'flex';
+            browserFrame.style.display = 'none';
+            urlInput.value = '';
+        }
+
+        function goForward() {
+            // Placeholder for forward action
+        }
+    </script>
+
+</body>
+</html>
