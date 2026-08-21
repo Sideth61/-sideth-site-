@@ -4,6 +4,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Fullscreen & Theme Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#090d16">
+    <link rel="manifest" href="manifest.json">
     <title>San Sideth - DSN Website Online & OS Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
@@ -171,6 +176,39 @@
         }
         .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
+
+        /* PWA Install Banner Style */
+        #installBanner {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 600;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #60a5fa;
+            width: 90%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        #installBanner button {
+            background: #fff;
+            color: #1d4ed8;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
     </style>
 </head>
 <body class="theme-dark">
@@ -182,6 +220,12 @@
     </div>
 
     <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
+
+    <!-- PWA Install Popup Banner -->
+    <div id="installBanner">
+        <span>📱 ដំឡើង DSN OS ទុកក្នុងទូរសព្ទ ដើម្បីបើកលឿន និងពេញអេក្រង់!</span>
+        <button id="installBtn">ដំឡើង (Install)</button>
+    </div>
 
     <div class="modal-overlay" id="settingModal">
         <div class="modal-card">
@@ -217,7 +261,7 @@
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក។</p>
         </div>
 
-        <!-- 🚀 DSN OS Quick App Launcher Grid (តភ្ជាប់ File ទាំងអស់នៅទីនេះ) -->
+        <!-- 🚀 DSN OS Quick App Launcher Grid -->
         <div class="card">
             <div class="section-title">📂 DSN OS App Launcher Center</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កម្មវិធី និងឯកសារទាំងអស់ត្រូវបានតភ្ជាប់រួចរាល់៖</p>
@@ -351,6 +395,29 @@
     </div>
 
     <script>
+        // PWA Install Prompt Logic
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+                installBanner.style.display = 'none';
+            }
+        });
+
         // 2FA Generator Logic
         document.getElementById('submitBtn').addEventListener('click', function() {
             let secret = document.getElementById('secretInput').value.trim().replace(/\s+/g, '');
