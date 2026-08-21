@@ -81,6 +81,7 @@
         .btn-raccoon { background: linear-gradient(135deg, #8b5cf6, #ec4899); border: 1px solid #f43f5e; color: #fff; }
         .btn-social { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; border: 1px solid #38bdf8; }
         .btn-money { background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: 1px solid #34d399; font-weight: bold; }
+        .btn-gemini { background: linear-gradient(135deg, #2563eb, #9333ea); color: #fff; border: 1px solid #c084fc; font-weight: bold; }
 
         .app-grid {
             display: grid;
@@ -219,11 +220,18 @@
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
         </div>
 
-        <!-- 💰 DSN VIP Money-Making & Digital Shop Tool (Added New) -->
+        <!-- 💰 DSN VIP Money-Making & Digital Shop Tool -->
         <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(16, 185, 129, 0.4);">
             <div class="section-title" style="color: #10b981;">💰 DSN VIP Money-Making & Digital Shop</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រព័ន្ធស្វ័យប្រវត្តិសម្រាប់រកចំណូលពីការលក់គណនី និងសេវាកម្មអនឡាញរបស់ B Sideth៖</p>
             <a href="https://m.me/deth61" target="_blank" class="btn btn-money">🛒 កុម្ម៉ង់ទិញ ឬលក់សេវាកម្ម (Auto Connect)</a>
+        </div>
+
+        <!-- ✨ Gemini AI Tool Integration Card -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
+            <div class="section-title" style="color: #38bdf8;">✨ DSN Gemini AI Assistant Hub</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ចូលទៅកាន់ជំនួយការ AI ផ្ទាល់ខ្លួនរបស់ B Sideth សម្រាប់ជំនួយការសរសេរកូដ៖</p>
+            <a href="gemini_tool.html" class="btn btn-gemini">🚀 បើកប្រើប្រាស់ Gemini AI Tool</a>
         </div>
 
         <!-- 🚀 DSN OS Quick App Launcher Center -->
@@ -243,6 +251,7 @@
                 <a href="bookdsn.html" class="app-icon-box"><span>📚</span> Digital Library</a>
                 <a href="profile.html" class="app-icon-box"><span>👤</span> Profile VIP</a>
                 <a href="setting.html" class="app-icon-box"><span>⚙️</span> Settings</a>
+                <a href="gemini_tool.html" class="app-icon-box" style="border-color: #38bdf8; background: rgba(56,189,248,0.15);"><span>✨</span> AI Tool</a>
                 <a href="password_tool.html" class="app-icon-box"><span>🔐</span> Pass Analyzer</a>
                 <a href="tiktok_tool.html" class="app-icon-box"><span>🇺🇸</span> TikTok US Tool</a>
                 <a href="meta_verified_tool.html" class="app-icon-box"><span>☑️</span> Meta Verified</a>
@@ -366,8 +375,8 @@
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
+        <a href="gemini_tool.html" class="dock-item" title="AI Tool" style="color: #38bdf8;">✨</a>
         <a href="raccoon_game.html" class="dock-item" title="ហ្គេម">🎮</a>
-        <a href="social_tools.html" class="dock-item" title="Social Tools">🚀</a>
         <a href="setting.html" class="dock-item" title="ການកំណត់">⚙️</a>
     </div>
 
@@ -501,7 +510,7 @@
             }
             requestAnimationFrame(animateParticles);
         }
-        animatePlatforms(); // keep loop running
+        animateParticles();
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
