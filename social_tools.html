@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSN Social Tools & Growth Center - San Sideth</title>
+    <title>DSN Ultimate Social & Booster Hub - San Sideth</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
@@ -112,11 +112,18 @@
             transition: 0.3s;
         }
 
+        .btn-youtube {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+        }
+
+        .btn-tiktok {
+            background: linear-gradient(135deg, #0f172a, #38bdf8);
+        }
+
         .btn:hover {
             filter: brightness(1.1);
         }
 
-        /* Progress Bar Styles */
         .progress-container {
             width: 100%;
             background: #1e293b;
@@ -181,50 +188,108 @@
 
     <div class="container">
         <div class="header-card">
-            <h2>🚀 DSN Social Tools & Growth Center</h2>
-            <p>ប្រព័ន្ធគ្រប់គ្រង និងពិសោធន៍កូដផ្នែក Social Media របស់ San Sideth</p>
+            <h2>🚀 DSN Ultimate Social & Booster Hub</h2>
+            <p>ប្រព័ន្ធគ្រប់គ្រង និងពិសោធន៍កូដ Social Media គ្រប់បណ្តាញ (Facebook, YouTube, TikTok)</p>
         </div>
 
-        <!-- 🛠️ Simulation Tool Card -->
+        <!-- 🛠️ Facebook & General Booster Tool Card -->
         <div class="card">
-            <div class="section-title">📊 Facebook / YouTube Booster Tool (Sim)</div>
+            <div class="section-title">📊 Facebook / General Analytics Tool</div>
             
             <div class="form-group">
-                <label>🔗 បញ្ចូលតំណភ្ជាប់ (Post / Video URL):</label>
-                <input type="text" id="targetUrl" class="input-field" placeholder="https://www.facebook.com/deth61">
+                <label>🔗 តំណភ្ជាប់ (Post / Profile URL):</label>
+                <input type="text" id="fbUrl" class="input-field" placeholder="https://www.facebook.com/deth61">
             </div>
 
             <div class="form-group">
-                <label>⚙️ ជ្រើសរើសប្រភេទសេវាកម្ម:</label>
-                <select id="serviceType" class="input-field">
-                    <option value="Likes">👍 Facebook Page / Post Likes</option>
-                    <option value="Followers">👤 Facebook Followers</option>
-                    <option value="Views">👁️ YouTube Video Views</option>
+                <label>⚙️ រើសសេវាកម្ម:</label>
+                <select id="fbService" class="input-field">
+                    <option value="Facebook Likes">👍 Facebook Post / Page Likes</option>
+                    <option value="Facebook Followers">👤 Facebook Followers</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>🔢 ចំនួនចង់បាន (Quantity):</label>
-                <input type="number" id="quantity" class="input-field" value="1000" min="100" max="10000">
+                <label>🔢 ចំនួនចង់បាន:</label>
+                <input type="number" id="fbQty" class="input-field" value="1000" min="100" max="10000">
             </div>
 
-            <button class="btn" onclick="runTool()">🚀 ចាប់ផ្តើមដំណើរការ Tool (Run)</button>
+            <button class="btn" onclick="runTool('Facebook')">🚀 ដំណើរការ Facebook Tool</button>
 
-            <!-- Loading Progress Bar -->
-            <div class="progress-container" id="progressContainer">
-                <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-container" id="fbProgressContainer">
+                <div class="progress-bar" id="fbProgressBar"></div>
             </div>
-
-            <div id="resultBox" class="result-box"></div>
+            <div id="fbResultBox" class="result-box"></div>
         </div>
 
-        <!-- 💡 Security & Experience Knowledge -->
+        <!-- 🎬 YouTube Booster Tool Card -->
         <div class="card">
-            <div class="section-title">🛡️ មេរៀន និងបទពិសោធន៍សុវត្ថិភាព (Security Notice)</div>
+            <div class="section-title" style="color: #ff0000;">▶️ YouTube Subscriptions & Views Tool</div>
+            
+            <div class="form-group">
+                <label>🔗 YouTube Video / Channel URL:</label>
+                <input type="text" id="ytUrl" class="input-field" placeholder="https://www.youtube.com/@sideth99">
+            </div>
+
+            <div class="form-group">
+                <label>⚙️ រើសសេវាកម្ម:</label>
+                <select id="ytService" class="input-field">
+                    <option value="YouTube Views">👁️ YouTube Video Views</option>
+                    <option value="YouTube Subscribers">🔔 YouTube Subscribers</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🔢 ចំនួនចង់បាន:</label>
+                <input type="number" id="ytQty" class="input-field" value="1000" min="100" max="5000">
+            </div>
+
+            <button class="btn btn-youtube" onclick="runTool('YouTube')">▶️ ដំណើរការ YouTube Tool</button>
+
+            <div class="progress-container" id="ytProgressContainer">
+                <div class="progress-bar" id="ytProgressBar"></div>
+            </div>
+            <div id="ytResultBox" class="result-box"></div>
+        </div>
+
+        <!-- 🎵 TikTok Booster Tool Card -->
+        <div class="card">
+            <div class="section-title" style="color: #38bdf8;">🎵 TikTok Followers & Views Tool</div>
+            
+            <div class="form-group">
+                <label>🔗 TikTok Profile / Video URL:</label>
+                <input type="text" id="tkUrl" class="input-field" placeholder="https://www.tiktok.com/@yourprofile">
+            </div>
+
+            <div class="form-group">
+                <label>⚙️ រើសសេវាកម្ម:</label>
+                <select id="tkService" class="input-field">
+                    <option value="TikTok Followers">👤 TikTok Followers</option>
+                    <option value="TikTok Views">👁️ TikTok Video Views</option>
+                    <option value="TikTok Likes">❤️ TikTok Video Likes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🔢 ចំនួនចង់បាន:</label>
+                <input type="number" id="tkQty" class="input-field" value="1000" min="100" max="5000">
+            </div>
+
+            <button class="btn btn-tiktok" onclick="runTool('TikTok')">🎵 ដំណើរការ TikTok Tool</button>
+
+            <div class="progress-container" id="tkProgressContainer">
+                <div class="progress-bar" id="tkProgressBar"></div>
+            </div>
+            <div id="tkResultBox" class="result-box"></div>
+        </div>
+
+        <!-- 💡 Security Notice -->
+        <div class="card">
+            <div class="section-title">🛡️ សេចក្តីជូនដំណឹងពីសុវត្ថិភាព (Security Notice)</div>
             <div class="warning-box">
-                <strong>ចំណាំសំខាន់សម្រាប់ Developer:</strong> 
-                <br>• ប្រព័ន្ធ Facebook និង YouTube មានប្រព័ន្ធទប់ស្កាត់ Bot យ៉ាងតឹងរឹងបំផុត។ ការប្រើប្រាស់កូដស្វ័យប្រវត្តិដើម្បីទិញ Like/Follow ខាងក្រៅ អាចបណ្តាលឱ្យ Facebook ផ្អាកគណនី (Ban) ជាបណ្តោះអាសន្ន ឬអចិន្ត្រៃយ៍។
-                <br>• វិធីសាស្ត្រល្អបំផុតគឺការកសាងមាតិកា (Content Quality) និងការប្រើប្រាស់ Cross-Promotion ក្នុង DSN OS ដើម្បីទាក់ទាញអ្នកគាំទ្រពិតប្រាកដ (Organic Growth)។
+                <strong>ចំណាំសំខាន់:</strong> 
+                <br>• កូដនេះគឺផ្អែកលើប្រព័ន្ធจำลอง (Simulation Hub) ដើម្បីឱ្យ DSN OS របស់បងមានមុខងារបង្ហាញទម្រង់បែប Professional ។
+                <br>• ការដំឡើង Follower ឬ Views ពិតប្រាកដតម្រូវឱ្យភ្ជាប់ជាមួយ API ផ្លូវការ ឬ SMM External Providers។
             </div>
         </div>
 
@@ -232,20 +297,20 @@
     </div>
 
     <script>
-        function runTool() {
-            const url = document.getElementById('targetUrl').value;
-            const service = document.getElementById('serviceType').value;
-            const qty = document.getElementById('quantity').value;
-            const resultBox = document.getElementById('resultBox');
-            const progressContainer = document.getElementById('progressContainer');
-            const progressBar = document.getElementById('progressBar');
+        function runTool(type) {
+            let prefix = type === 'Facebook' ? 'fb' : (type === 'YouTube' ? 'yt' : 'tk');
+            const url = document.getElementById(prefix + 'Url').value;
+            const qty = document.getElementById(prefix + 'Qty').value;
+            const service = document.getElementById(prefix + 'Service').value;
+            const progressContainer = document.getElementById(prefix + 'ProgressContainer');
+            const progressBar = document.getElementById(prefix + 'ProgressBar');
+            const resultBox = document.getElementById(prefix + 'ResultBox');
 
             if (!url) {
                 alert('សូមបញ្ចូល Link ជាមុនសិនបង!');
                 return;
             }
 
-            // Reset UI
             resultBox.style.display = 'none';
             progressContainer.style.display = 'block';
             progressBar.style.width = '0%';
@@ -256,9 +321,9 @@
                     clearInterval(interval);
                     progressContainer.style.display = 'none';
                     resultBox.style.display = 'block';
-                    resultBox.innerHTML = `✅ <b>ជោគជ័យ (Simulation Mode)!</b><br>🔗 តំណភ្ជាប់: <b>${url}</b><br>📈 បានបញ្ជូនសំណើចំនួន <b>${qty} ${service}</b> ចូលទៅកាន់ប្រព័ន្ធ API រួចរាល់!`;
+                    resultBox.innerHTML = `✅ <b>ជោគជ័យ (${type} Simulation)!</b><br>🔗 Link: <b>${url}</b><br>🎯 ប្រភេទ: <b>${service} (${qty})</b><br>🚀 បានបញ្ជូនសំណើចូលប្រព័ន្ធដោយជោគជ័យ!`;
                 } else {
-                    width += 20;
+                    width += 25;
                     progressBar.style.width = width + '%';
                 }
             }, 300);
