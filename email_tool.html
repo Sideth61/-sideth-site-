@@ -3,228 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSN Bulk Email Generator Hub - San Sideth</title>
+    <title>DSN Email Generator</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
-        
-        body {
-            font-family: 'Kantumruy Pro', sans-serif;
-            background-color: #090d16;
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .header-card {
-            background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(16px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            text-align: center;
-        }
-
-        .header-card h2 {
-            color: #38bdf8;
-            margin: 0 0 5px 0;
-            font-size: 22px;
-        }
-
-        .header-card p {
-            color: #94a3b8;
-            font-size: 13px;
-            margin: 0;
-        }
-
-        .card {
-            background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(16px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .section-title {
-            color: #38bdf8;
-            font-size: 16px;
-            margin: 0 0 15px 0;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 5px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px;
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 15px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .input-field:focus {
-            border-color: #38bdf8;
-        }
-
-        .email-output {
-            width: 100%;
-            height: 150px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 12px;
-            color: #34d399;
-            font-family: monospace;
-            font-size: 13px;
-            resize: vertical;
-            box-sizing: border-box;
-            outline: none;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            width: 100%;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 15px;
-            cursor: pointer;
-            margin-top: 5px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            filter: brightness(1.1);
-        }
-
-        .btn-copy {
-            background: linear-gradient(135deg, #10b981, #059669);
-            margin-top: 0;
-        }
-
-        .back-btn {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            background: #475569;
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
+        body { font-family: 'Kantumruy Pro', sans-serif; background-color: #090d16; color: #fff; padding: 20px; }
+        .card { background: rgba(17, 24, 39, 0.85); padding: 20px; border-radius: 20px; border: 1px solid #334155; }
+        .input-field { width: 100%; padding: 12px; margin-top: 10px; background: #1e293b; border: 1px solid #334155; color: #fff; border-radius: 10px; box-sizing: border-box; }
+        .btn-gen { width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 10px; margin-top: 15px; cursor: pointer; font-weight: bold; }
+        .output-box { margin-top: 20px; padding: 15px; background: #0f172a; border-radius: 10px; border: 1px solid #334155; white-space: pre-wrap; font-family: monospace; color: #10b981; }
+        .btn-copy { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header-card">
-            <h2>📧 DSN Bulk Email Generator</h2>
-            <p>ប្រព័ន្ធបង្កើតអ៊ីម៉ែលបណ្តោះអាសន្ន ឬអ៊ីម៉ែលចម្រុះច្រើនក្នុងពេលតែមួយ</p>
-        </div>
+<div class="card">
+    <h3>⚙️ កំណត់រចនាសម្ព័ន្ធ (Configuration)</h3>
+    <label>ពាក្យគន្លឹះដំបូង (Prefix):</label>
+    <input type="text" id="prefix" class="input-field" placeholder="ឧ. sanad.et">
+    
+    <label style="display:block; margin-top:10px;">ចំនួនដែលចង់បង្កើត (Quantity):</label>
+    <input type="number" id="qty" class="input-field" value="10">
 
-        <div class="card">
-            <div class="section-title">⚙️ កំណត់រចនាសម្ព័ន្ធ (Configuration)</div>
+    <button class="btn-gen" onclick="generateEmails()">⚡ ចុចបង្កើត (Generate)</button>
+</div>
+
+<div class="card" style="margin-top:20px;">
+    <h3>📩 លទ្ធផល (Email & Password)</h3>
+    <div id="output" class="output-box">រង់ចាំលទ្ធផល...</div>
+    <button class="btn-copy" onclick="copyOutput()">📋 Copy ទាំងអស់</button>
+</div>
+
+<script>
+    function generateEmails() {
+        const prefix = document.getElementById('prefix').value || "user";
+        const qty = parseInt(document.getElementById('qty').value);
+        let resultText = "";
+
+        for (let i = 0; i < qty; i++) {
+            const randomNum = Math.floor(Math.random() * 90000) + 10000;
+            const email = `${prefix}${randomNum}@gmail.com`;
+            // បង្កើត Password បែប Random (អក្សរ + លេខ)
+            const password = Math.random().toString(36).slice(-8) + "Aa@";
             
-            <div class="input-group">
-                <label>ពាក្យគន្លឹះដំបូង (Prefix / Username):</label>
-                <input type="text" id="prefixInput" class="input-field" value="sideth.dsn" placeholder="ឧ. sideth">
-            </div>
-
-            <div class="input-group">
-                <label>Domain អ៊ីម៉ែល:</label>
-                <select id="domainInput" class="input-field">
-                    <option value="@gmail.com">@gmail.com (Gmail Style)</option>
-                    <option value="@yahoo.com">@yahoo.com (Yahoo Style)</option>
-                    <option value="@outlook.com">@outlook.com (Outlook Style)</option>
-                    <option value="@dsn-os.tech">@dsn-os.tech (DSN Custom Domain)</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>ចំនួនដែលចង់បង្កើត (Quantity):</label>
-                <input type="number" id="countInput" class="input-field" value="10" min="1" max="100">
-            </div>
-
-            <button class="btn" onclick="generateEmails()">⚡ ចុចបង្កើតអ៊ីម៉ែល (Generate)</button>
-        </div>
-
-        <div class="card">
-            <div class="section-title">📥 លទ្ធផលអ៊ីម៉ែលដែលទទួលបាន (Output)</div>
-            <textarea id="resultOutput" class="email-output" readonly placeholder="លទ្ធផលនឹងបង្ហាញទីនេះ..."></textarea>
-            <button class="btn btn-copy" onclick="copyEmails()">📋 Copy អ៊ីម៉ែលទាំងអស់</button>
-        </div>
-
-        <a href="index.html" class="back-btn">🏠 ត្រឡប់ទៅទំព័រដើម DSN OS</a>
-    </div>
-
-    <script>
-        function generateEmails() {
-            let prefix = document.getElementById('prefixInput').value.trim() || 'user';
-            let domain = document.getElementById('domainInput').value;
-            let count = parseInt(document.getElementById('countInput').value) || 5;
-            let outputBox = document.getElementById('resultOutput');
-            
-            let emails = [];
-            for (let i = 1; i <= count; i++) {
-                // បង្កើត Random លេខ ឬកូដតូចៗដើម្បីកុំឱ្យជាន់គ្នា
-                let randomSuffix = Math.floor(Math.random() * 9000) + 1000;
-                let email = `${prefix}${i}${randomSuffix}${domain}`;
-                emails.push(email);
-            }
-
-            outputBox.value = emails.join('\n');
+            resultText += `Email: ${email}\nPass:  ${password}\n-------------------------\n`;
         }
+        document.getElementById('output').innerText = resultText;
+    }
 
-        function copyEmails() {
-            let outputBox = document.getElementById('resultOutput');
-            if (outputBox.value) {
-                navigator.clipboard.writeText(outputBox.value);
-                alert('បាន Copy អ៊ីម៉ែលទាំងអស់រួចរាល់!');
-            } else {
-                alert('មិនទាន់មានអ៊ីម៉ែលសម្រាប់ Copy ទេ។');
-            }
-        }
+    function copyOutput() {
+        const text = document.getElementById('output').innerText;
+        navigator.clipboard.writeText(text);
+        alert('បាន Copy រួចរាល់!');
+    }
+</script>
 
-        // Run once on load
-        generateEmails();
-    </script>
 </body>
 </html>
