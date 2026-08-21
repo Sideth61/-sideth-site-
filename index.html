@@ -74,7 +74,7 @@
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
         .btn:hover { filter: brightness(1.1); }
         .btn-browser { background: linear-gradient(135deg, #4ecca3, #0f3460); color: #fff; font-size: 16px; border: 1px solid #4ecca3; }
-        .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; } .btn-tiktok { background: #0f172a; }
+        .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; }
         .btn-gta { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-cod { background: linear-gradient(135deg, #10b981, #059669); }
         .btn-ps2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: 1px solid #60a5fa; }
@@ -218,6 +218,14 @@
             </div>
             
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
+        </div>
+
+        <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note - NEW!) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
+            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែច្នៃភ្លាមៗនៅទីនេះ៖</p>
+            <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីนี้..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
+            <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
         </div>
 
         <!-- 💰 DSN VIP Money-Making & Digital Shop Tool -->
@@ -391,6 +399,22 @@
     </div>
 
     <script>
+        // Quick Note Storage Logic
+        function saveQuickNote() {
+            const noteText = document.getElementById('quickNoteInput').value;
+            localStorage.setItem('dsn_quick_note', noteText);
+            alert('💾 បានរក្សាទុកកត់ត្រារបស់បងរួចរាល់!');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedNote = localStorage.getItem('dsn_quick_note');
+            if (savedNote) {
+                document.getElementById('quickNoteInput').value = savedNote;
+            }
+            const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
+            document.body.className = savedTheme;
+        });
+
         // 2FA Generator Logic
         document.getElementById('submitBtn').addEventListener('click', function() {
             let secret = document.getElementById('secretInput').value.trim().replace(/\s+/g, '');
@@ -521,11 +545,6 @@
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
-
-     window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
-            document.body.className = savedTheme;
-        });
     </script>
 </body>
 </html>
