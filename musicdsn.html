@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="km">
 <head>
@@ -13,7 +14,7 @@
             color: #fff; 
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 90px; /* ເວ້ນໄລຍະໃຫ້ Dock ພາກສ່ວນខាងລຸ່ມ */
+            padding-bottom: 90px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -33,12 +34,12 @@
             backdrop-filter: blur(16px);
             padding: 20px; 
             border-radius: 20px; 
-            border: 1px solid rgba(56, 189, 248, 0.3); 
+            border: 1px solid rgba(236, 72, 153, 0.4); 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
         }
 
         .player-title { 
-            color: #38bdf8; 
+            color: #ec4899; 
             font-weight: bold; 
             font-size: 16px; 
             margin-bottom: 15px; 
@@ -57,10 +58,13 @@
             font-size: 14px;
             font-weight: 600;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .song-item:hover { 
-            border-color: #38bdf8; 
-            background: rgba(56, 189, 248, 0.1); 
+            border-color: #ec4899; 
+            background: rgba(236, 72, 153, 0.1); 
         }
 
         .browser-link { 
@@ -91,7 +95,6 @@
         }
         .btn-back:hover { color: #fff; }
 
-        /* Floating Dock ផ្នែកខាងក្រោម */
         .dsn-dock {
             position: fixed;
             bottom: 20px;
@@ -127,9 +130,13 @@
 
     <div class="container">
         <div class="card">
-            <div class="player-title">🎧 DSN MP3 Player</div>
-            <audio id="audioPlayer" controls style="width: 100%; border-radius: 8px;"></audio>
-            <div id="playlist" style="margin-top: 15px;"></div>
+            <div class="player-title">🎧 DSN Music & Audio Visualizer Hub</div>
+            <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px; text-align: center;">ស្ដាប់កម្សាន្តបញ្ជីបទចម្រៀងរបស់បង៖</p>
+            
+            <audio id="audioPlayer" controls style="width: 100%; border-radius: 8px; margin-bottom: 15px;"></audio>
+            
+            <!-- Playlist នឹងត្រូវបង្កើតស្វ័យប្រវត្តិតាម JavaScript ខាងក្រោម -->
+            <div id="playlist"></div>
         </div>
 
         <a href="browse.html" class="browser-link">🌐 បើកប្រើប្រាស់ Mini Browser</a>
@@ -146,17 +153,37 @@
     </div>
 
     <script>
+        // 🎶 បងអាចបន្ថែមបទចម្រៀងជាច្រើនបទនៅទីនេះបានស្រួលៗ!
         const songs = [
-            { title: "🎖️ ទាហ៊ានមុំបី ភ្នំ750", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { title: "💔 Blaming All Men", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
+            { title: "បទ៖ ទាហានមុំបី ភ្នំ750", src: "https://drive.google.com/file/d/1K41ZSpc26GlRm3Vm-m3UPceRomH1KcGS/view?usp=drivesdk" },
+            { title: "បទ៖ Blame You Too", src: "https://drive.google.com/file/d/10-PzHDJcyerQsqaRrAGLcuerUPOPIcfl/view?usp=drivesdk" } 
+​             { title: "Blaming All Men English", src: "https://drive.google.com/file/d/1lVFI6bFLkBzUXTDdwRe0jvcA0j3aaCd-/view?usp=drivesdk" }
+             { title: "បទ៖​ ប៉ៃលិន​ ខ្ញុំមិនដែល​ភ្លេចអ្នកទេ", src: "https://drive.google.com/file/d/1OP42EERj_uyEUAlJ7t7MEVgoBAMLA3EY/view?usp=drivesdk" }
+
+            // ប្រសិនបើចង់ថែមបទទី ៣ គ្រាន់តែកុម្មង់សរសេរបន្ថែម៖
+            // { title: "បទ៖ ឈ្មោះបទទី៣", src: "Link_បទទី៣.mp3" }
         ];
+
         const audio = document.getElementById('audioPlayer');
-        songs.forEach(song => {
+        const playlist = document.getElementById('playlist');
+
+        songs.forEach((song, index) => {
             const div = document.createElement('div');
             div.className = 'song-item';
-            div.innerText = song.title;
-            div.onclick = () => { audio.src = song.src; audio.play(); };
-            document.getElementById('playlist').appendChild(div);
+            div.innerHTML = `🎵 <span>${index + 1}. ${song.title}</span>`;
+            div.onclick = () => { 
+                // ដូរពណ៌ active
+                document.querySelectorAll('.song-item').forEach(item => {
+                    item.style.borderColor = '#334155';
+                    item.style.background = 'rgba(30, 41, 59, 0.6)';
+                });
+                div.style.borderColor = '#ec4899';
+                div.style.background = 'rgba(236, 72, 153, 0.15)';
+
+                audio.src = song.src; 
+                audio.play(); 
+            };
+            playlist.appendChild(div);
         });
     </script>
 </body>
