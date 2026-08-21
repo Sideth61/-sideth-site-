@@ -80,6 +80,7 @@
         .btn-ps2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: 1px solid #60a5fa; }
         .btn-raccoon { background: linear-gradient(135deg, #8b5cf6, #ec4899); border: 1px solid #f43f5e; color: #fff; }
         .btn-social { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; border: 1px solid #38bdf8; }
+        .btn-money { background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: 1px solid #34d399; font-weight: bold; }
 
         .app-grid {
             display: grid;
@@ -215,7 +216,14 @@
                 <p style="margin: 0; border: none; background: none; padding: 0;">ខំប្រឹងរកលុយដើម្បីកូន <strong>វឌ្ឍនា</strong> និងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាមនុស្ស​ស្រី​ដែលល្អជាងគេលេីពិភពលោក!</p>
             </div>
             
-            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក។</p>
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
+        </div>
+
+        <!-- 💰 DSN VIP Money-Making & Digital Shop Tool (Added New) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(16, 185, 129, 0.4);">
+            <div class="section-title" style="color: #10b981;">💰 DSN VIP Money-Making & Digital Shop</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រព័ន្ធស្វ័យប្រវត្តិសម្រាប់រកចំណូលពីការលក់គណនី និងសេវាកម្មអនឡាញរបស់ B Sideth៖</p>
+            <a href="https://m.me/deth61" target="_blank" class="btn btn-money">🛒 កុម្ម៉ង់ទិញ ឬលក់សេវាកម្ម (Auto Connect)</a>
         </div>
 
         <!-- 🚀 DSN OS Quick App Launcher Center -->
@@ -237,7 +245,6 @@
                 <a href="setting.html" class="app-icon-box"><span>⚙️</span> Settings</a>
                 <a href="password_tool.html" class="app-icon-box"><span>🔐</span> Pass Analyzer</a>
                 <a href="tiktok_tool.html" class="app-icon-box"><span>🇺🇸</span> TikTok US Tool</a>
-                <!-- ✨ Meta Verified Tool ដែលបានតភ្ជាប់ថ្មី -->
                 <a href="meta_verified_tool.html" class="app-icon-box"><span>☑️</span> Meta Verified</a>
             </div>
         </div>
@@ -494,7 +501,7 @@
             }
             requestAnimationFrame(animateParticles);
         }
-        animateParticles();
+        animatePlatforms(); // keep loop running
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
