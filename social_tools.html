@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSN Social Tools & Growth Hub - San Sideth</title>
+    <title>DSN Social Tools & Growth Center - San Sideth</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
@@ -116,6 +116,25 @@
             filter: brightness(1.1);
         }
 
+        /* Progress Bar Styles */
+        .progress-container {
+            width: 100%;
+            background: #1e293b;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+            border: 1px solid #334155;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 12px;
+            background: linear-gradient(90deg, #38bdf8, #10b981);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
         .result-box {
             margin-top: 15px;
             padding: 12px;
@@ -126,6 +145,7 @@
             color: #34d399;
             display: none;
             text-align: left;
+            line-height: 1.5;
         }
 
         .warning-box {
@@ -190,6 +210,11 @@
 
             <button class="btn" onclick="runTool()">🚀 ចាប់ផ្តើមដំណើរការ Tool (Run)</button>
 
+            <!-- Loading Progress Bar -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
             <div id="resultBox" class="result-box"></div>
         </div>
 
@@ -212,14 +237,31 @@
             const service = document.getElementById('serviceType').value;
             const qty = document.getElementById('quantity').value;
             const resultBox = document.getElementById('resultBox');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
 
             if (!url) {
                 alert('សូមបញ្ចូល Link ជាមុនសិនបង!');
                 return;
             }
 
-            resultBox.style.display = 'block';
-            resultBox.innerHTML = `⏳ កំពុងដំណើរការភ្ជាប់ទៅកាន់ប្រព័ន្ធ API...<br>✅ បានបញ្ជូនសំណើចំនួន <b>${qty} ${service}</b> ទៅកាន់ URL គោលដៅដោយជោគជ័យ! (Simulation Mode)`;
+            // Reset UI
+            resultBox.style.display = 'none';
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            let width = 0;
+            let interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    progressContainer.style.display = 'none';
+                    resultBox.style.display = 'block';
+                    resultBox.innerHTML = `✅ <b>ជោគជ័យ (Simulation Mode)!</b><br>🔗 តំណភ្ជាប់: <b>${url}</b><br>📈 បានបញ្ជូនសំណើចំនួន <b>${qty} ${service}</b> ចូលទៅកាន់ប្រព័ន្ធ API រួចរាល់!`;
+                } else {
+                    width += 20;
+                    progressBar.style.width = width + '%';
+                }
+            }, 300);
         }
     </script>
 </body>
