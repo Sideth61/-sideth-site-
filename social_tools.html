@@ -3,330 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSN Ultimate Social & Booster Hub - San Sideth</title>
+    <title>DSN Ultimate Social & Booster Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
-        body {
-            font-family: 'Kantumruy Pro', sans-serif;
-            background-color: #090d16;
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background-color: #090d16; 
+            color: #fff; 
+            text-align: center; 
+            padding: 30px 10px 100px 10px; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             min-height: 100vh;
         }
 
-        .container {
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
+        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        
+        h1 { color: #38bdf8; font-size: 22px; margin: 10px 0 5px 0; font-weight: 700; text-align: center; }
+        .title-sub { color: #94a3b8; font-size: 13px; font-weight: 600; margin-bottom: 20px; text-align: center; }
+        
+        .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
+        
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; color: #94a3b8; font-size: 13px; margin-bottom: 6px; }
+        
+        .input-field, select.input-field {
+            width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
+            border-radius: 12px; color: #fff; font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 14px; box-sizing: border-box; outline: none; transition: 0.3s;
         }
+        .input-field:focus { border-color: #38bdf8; }
 
-        .header-card {
-            background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(16px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            text-align: center;
-        }
-
-        .header-card h2 {
-            color: #38bdf8;
-            margin: 0 0 5px 0;
-            font-size: 22px;
-        }
-
-        .header-card p {
-            color: #94a3b8;
-            font-size: 13px;
-            margin: 0;
-        }
-
-        .card {
-            background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(16px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .section-title {
-            color: #38bdf8;
-            font-size: 16px;
-            margin: 0 0 15px 0;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            color: #94a3b8;
-            font-size: 13px;
-            margin-bottom: 6px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px;
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 14px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .input-field:focus {
-            border-color: #38bdf8;
-        }
-
-        .btn {
-            width: 100%;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-youtube {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-        }
-
-        .btn-tiktok {
-            background: linear-gradient(135deg, #0f172a, #38bdf8);
-        }
-
-        .btn:hover {
-            filter: brightness(1.1);
-        }
-
-        .progress-container {
-            width: 100%;
-            background: #1e293b;
-            border-radius: 10px;
-            margin-top: 15px;
-            overflow: hidden;
-            display: none;
-            border: 1px solid #334155;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 12px;
-            background: linear-gradient(90deg, #38bdf8, #10b981);
-            border-radius: 10px;
-            transition: width 0.4s ease;
-        }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 14px; margin: 15px 0 5px 0; width: 100%; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; border: none; cursor: pointer; transition: 0.3s; box-sizing: border-box; }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
         .result-box {
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 10px;
-            border-left: 3px solid #10b981;
-            font-size: 13px;
-            color: #34d399;
-            display: none;
-            text-align: left;
-            line-height: 1.5;
+            margin-top: 15px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 15px; border-radius: 14px; font-size: 13px; line-height: 1.6; color: #38bdf8; display: none;
         }
 
-        .warning-box {
-            background: rgba(244, 63, 94, 0.1);
-            border: 1px solid rgba(244, 63, 94, 0.3);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 13px;
-            color: #fca5a5;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .warning-box strong {
-            color: #f43f5e;
-        }
-
-        .back-btn {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            background: #475569;
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
+        .back-btn { display: inline-block; margin-top: 20px; color: #94a3b8; text-decoration: none; font-size: 14px; }
+        .back-btn:hover { color: #38bdf8; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="header-card">
-            <h2>🚀 DSN Ultimate Social & Booster Hub</h2>
-            <p>ប្រព័ន្ធគ្រប់គ្រង និងពិសោធន៍កូដ Social Media គ្រប់បណ្តាញ (Facebook, YouTube, TikTok)</p>
-        </div>
-
-        <!-- 🛠️ Facebook & General Booster Tool Card -->
         <div class="card">
+            <h1>🚀 DSN Ultimate Social & Booster Hub</h1>
+            <div class="title-sub">ប្រព័ន្ធគ្រប់គ្រង និងពិសោធន៍កូដ Social Media គ្រប់បណ្តាញ (Facebook, YouTube, TikTok)</div>
+
             <div class="section-title">📊 Facebook / General Analytics Tool</div>
             
-            <div class="form-group">
+            <div class="input-group">
                 <label>🔗 តំណភ្ជាប់ (Post / Profile URL):</label>
-                <input type="text" id="fbUrl" class="input-field" placeholder="https://www.facebook.com/deth61">
+                <input type="text" id="fbUrl" class="input-field" placeholder="https://www.facebook.com/...">
             </div>
 
-            <div class="form-group">
-                <label>⚙️ រើសសេវាកម្ម:</label>
+            <div class="input-group">
+                <label>⚙️ ើសសេវាកម្ម (Select Service):</label>
                 <select id="fbService" class="input-field">
-                    <option value="Facebook Likes">👍 Facebook Post / Page Likes</option>
-                    <option value="Facebook Followers">👤 Facebook Followers</option>
+                    <option value="Facebook Post / Page Likes">👍 Facebook Post / Page Likes</option>
+                    <option value="Facebook Followers" selected>👤 Facebook Followers</option>
+                    <option value="Facebook Page Views">👁️ Facebook Page Views</option>
+                    <option value="Facebook Followers Views">📈 Facebook Followers Views</option>
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
                 <label>🔢 ចំនួនចង់បាន:</label>
-                <input type="number" id="fbQty" class="input-field" value="1000" min="100" max="10000">
+                <input type="number" id="fbAmount" class="input-field" value="100000" min="100" max="1000000">
             </div>
 
-            <button class="btn" onclick="runTool('Facebook')">🚀 ដំណើរការ Facebook Tool</button>
+            <button class="btn" onclick="runFacebookTool()">🚀 ដំណើរការ Facebook Tool</button>
 
-            <div class="progress-container" id="fbProgressContainer">
-                <div class="progress-bar" id="fbProgressBar"></div>
-            </div>
-            <div id="fbResultBox" class="result-box"></div>
-        </div>
-
-        <!-- 🎬 YouTube Booster Tool Card -->
-        <div class="card">
-            <div class="section-title" style="color: #ff0000;">▶️ YouTube Subscriptions & Views Tool</div>
-            
-            <div class="form-group">
-                <label>🔗 YouTube Video / Channel URL:</label>
-                <input type="text" id="ytUrl" class="input-field" placeholder="https://www.youtube.com/@sideth99">
-            </div>
-
-            <div class="form-group">
-                <label>⚙️ រើសសេវាកម្ម:</label>
-                <select id="ytService" class="input-field">
-                    <option value="YouTube Views">👁️ YouTube Video Views</option>
-                    <option value="YouTube Subscribers">🔔 YouTube Subscribers</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>🔢 ចំនួនចង់បាន:</label>
-                <input type="number" id="ytQty" class="input-field" value="1000" min="100" max="5000">
-            </div>
-
-            <button class="btn btn-youtube" onclick="runTool('YouTube')">▶️ ដំណើរការ YouTube Tool</button>
-
-            <div class="progress-container" id="ytProgressContainer">
-                <div class="progress-bar" id="ytProgressBar"></div>
-            </div>
-            <div id="ytResultBox" class="result-box"></div>
-        </div>
-
-        <!-- 🎵 TikTok Booster Tool Card -->
-        <div class="card">
-            <div class="section-title" style="color: #38bdf8;">🎵 TikTok Followers & Views Tool</div>
-            
-            <div class="form-group">
-                <label>🔗 TikTok Profile / Video URL:</label>
-                <input type="text" id="tkUrl" class="input-field" placeholder="https://www.tiktok.com/@yourprofile">
-            </div>
-
-            <div class="form-group">
-                <label>⚙️ រើសសេវាកម្ម:</label>
-                <select id="tkService" class="input-field">
-                    <option value="TikTok Followers">👤 TikTok Followers</option>
-                    <option value="TikTok Views">👁️ TikTok Video Views</option>
-                    <option value="TikTok Likes">❤️ TikTok Video Likes</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>🔢 ចំនួនចង់បាន:</label>
-                <input type="number" id="tkQty" class="input-field" value="1000" min="100" max="5000">
-            </div>
-
-            <button class="btn btn-tiktok" onclick="runTool('TikTok')">🎵 ដំណើរការ TikTok Tool</button>
-
-            <div class="progress-container" id="tkProgressContainer">
-                <div class="progress-bar" id="tkProgressBar"></div>
-            </div>
-            <div id="tkResultBox" class="result-box"></div>
-        </div>
-
-        <!-- 💡 Security Notice -->
-        <div class="card">
-            <div class="section-title">🛡️ សេចក្តីជូនដំណឹងពីសុវត្ថិភាព (Security Notice)</div>
-            <div class="warning-box">
-                <strong>ចំណាំសំខាន់:</strong> 
-                <br>• កូដនេះគឺផ្អែកលើប្រព័ន្ធจำลอง (Simulation Hub) ដើម្បីឱ្យ DSN OS របស់បងមានមុខងារបង្ហាញទម្រង់បែប Professional ។
-                <br>• ការដំឡើង Follower ឬ Views ពិតប្រាកដតម្រូវឱ្យភ្ជាប់ជាមួយ API ផ្លូវការ ឬ SMM External Providers។
+            <div id="fbResultBox" class="result-box">
+                ✅ <b>ជោគជ័យ (Facebook Simulation)!</b><br>
+                🔗 <b>Link:</b> <span id="resLink">-</span><br>
+                🎯 <b>ប្រភេទ:</b> <span id="resService">-</span> (<span id="resAmount">-</span>)<br>
+                🚀 បានបញ្ជូនសំណើចូលប្រព័ន្ធដោយជោគជ័យ!
             </div>
         </div>
 
-        <a href="index.html" class="back-btn">🏠 ត្រឡប់ទៅទំព័រដើម DSN OS</a>
+        <a href="index.html" class="back-btn">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
     </div>
 
     <script>
-        function runTool(type) {
-            let prefix = type === 'Facebook' ? 'fb' : (type === 'YouTube' ? 'yt' : 'tk');
-            const url = document.getElementById(prefix + 'Url').value;
-            const qty = document.getElementById(prefix + 'Qty').value;
-            const service = document.getElementById(prefix + 'Service').value;
-            const progressContainer = document.getElementById(prefix + 'ProgressContainer');
-            const progressBar = document.getElementById(prefix + 'ProgressBar');
-            const resultBox = document.getElementById(prefix + 'ResultBox');
+        function runFacebookTool() {
+            const url = document.getElementById('fbUrl').value.trim();
+            const service = document.getElementById('fbService').value;
+            const amount = document.getElementById('fbAmount').value;
+            const resultBox = document.getElementById('fbResultBox');
 
             if (!url) {
-                alert('សូមបញ្ចូល Link ជាមុនសិនបង!');
+                alert('សូមបញ្ចូលតំណភ្ជាប់ (URL) ជាមុនសិន!');
                 return;
             }
 
-            resultBox.style.display = 'none';
-            progressContainer.style.display = 'block';
-            progressBar.style.width = '0%';
+            document.getElementById('resLink').innerText = url;
+            document.getElementById('resService').innerText = service;
+            document.getElementById('resAmount').innerText = Number(amount).toLocaleString();
 
-            let width = 0;
-            let interval = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    progressContainer.style.display = 'none';
-                    resultBox.style.display = 'block';
-                    resultBox.innerHTML = `✅ <b>ជោគជ័យ (${type} Simulation)!</b><br>🔗 Link: <b>${url}</b><br>🎯 ប្រភេទ: <b>${service} (${qty})</b><br>🚀 បានបញ្ជូនសំណើចូលប្រព័ន្ធដោយជោគជ័យ!`;
-                } else {
-                    width += 25;
-                    progressBar.style.width = width + '%';
-                }
-            }, 300);
+            resultBox.style.display = 'block';
         }
     </script>
 </body>
