@@ -206,6 +206,12 @@
     </div>
 
     <div class="container">
+        <!-- 🕒 DSN Live System Clock Widget (NEW!) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
+            <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
+            <div id="liveDate" style="font-size: 13px; color: #94a3b8; margin-top: 5px;">DSN OS System Active • Pailin, Cambodia</div>
+        </div>
+
         <div class="card header-card">
             <div class="avatar-container"><div class="avatar">🛡️</div></div>
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
@@ -220,11 +226,11 @@
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
         </div>
 
-        <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note - NEW!) -->
+        <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
-            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
-            <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែច្នៃភ្លាមៗនៅទីនេះ៖</p>
-            <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីนี้..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
+            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាการងារ)</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែវៃភ្លាមៗនៅទីនេះ៖</p>
+            <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីនេះ..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
             <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
         </div>
 
@@ -399,6 +405,31 @@
     </div>
 
     <script>
+        // Live Digital Clock & Date Logic
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateString = now.toLocaleDateString('km-KH', options);
+
+            const clockEl = document.getElementById('liveClock');
+            const dateEl = document.getElementById('liveDate');
+            if (clockEl) clockEl.innerText = timeString;
+            if (dateEl) dateEl.innerText = `📅 ${dateString} • DSN OS Active`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
         // Quick Note Storage Logic
         function saveQuickNote() {
             const noteText = document.getElementById('quickNoteInput').value;
