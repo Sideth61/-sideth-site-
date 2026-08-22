@@ -64,7 +64,6 @@
         h1 { color: #e0aaff; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-shadow: 0 0 10px rgba(224, 170, 255, 0.5); }
         .title-sub { color: #d8b4fe; font-size: 14px; margin-bottom: 15px; }
         
-        /* ផ្នែកបង្ហាញអ្នកតាមដាន */
         #follower-count {
             background: rgba(199, 125, 255, 0.2);
             padding: 8px 15px;
@@ -135,7 +134,6 @@
             <div style="font-size: 45px; margin-bottom: 10px;">💜📘</div>
             <h1>DSN Facebook Purple Hub</h1>
             
-            <!-- កន្លែងបង្ហាញចំនួនអ្នកតាមដានដែលអូនបន្ថែមឱ្យ -->
             <div id="follower-count">កំពុងផ្ទុកចំនួនអ្នកតាមដាន...</div>
             
             <div class="title-sub">ប្រមូលផ្តុំរាល់តំណភ្ជាប់ និងសេវាកម្ម Facebook ស្វាយរលោង</div>
@@ -172,7 +170,6 @@
     </div>
 
     <script>
-        // ផ្នែកទាញយកចំនួន Follower
         const TOKEN = "1469596064992874|VFDdLemdDcJQWpHpBepYuvHMVQc";
         const PAGE_ID = "1469596064992874"; 
         fetch(`https://graph.facebook.com/v21.0/${PAGE_ID}?fields=followers_count&access_token=${TOKEN}`)
@@ -185,7 +182,6 @@
                 }
             });
 
-        // Background Effects
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
