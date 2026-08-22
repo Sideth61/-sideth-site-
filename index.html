@@ -75,6 +75,29 @@
         .btn:hover { filter: brightness(1.1); }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; }
 
+        /* Music Controller Buttons Style */
+        .music-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .music-ctrl-btn {
+            flex: 1;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Kantumruy Pro', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .music-ctrl-btn:hover {
+            background: #38bdf8;
+            color: #090d16;
+        }
+
         .app-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -205,6 +228,12 @@
                     <option value="https://drive.google.com/uc?export=download&id=1lVFI6bFLkBzUXTDdwRe0jvcA0j3aaCd-">5. Blaming All Men English</option>
                 </select>
 
+                <!-- ែនប៊ូតុង ទៅក្រោយ និង ទៅមុខ (Prev & Next Buttons) -->
+                <div class="music-controls">
+                    <button class="music-ctrl-btn" onclick="prevSong()">⏮️ ទៅក្រោយ</button>
+                    <button class="music-ctrl-btn" onclick="nextSong()">ទៅមុខ ⏭️</button>
+                </div>
+
                 <audio id="mainAudio" controls preload="auto" style="width: 100%; border-radius: 8px;">
                     <source id="audioSource" src="https://drive.google.com/uc?export=download&id=1R-9qNVrbuQjpo_1ls78y_YyiGNkpPYWh" type="audio/mp3">
                     Browser របស់បងមិនគាំទ្រសំឡេងនេះទេ។
@@ -248,7 +277,6 @@
                 <a href="tiktok_tool.html" class="app-icon-box"><span>🇺🇸</span> TikTok US Tool</a>
                 <a href="meta_verified_tool.html" class="app-icon-box"><span>☑️</span> Meta Verified</a>
                 
-                <!-- 🌟 ប៊ូតុងចូលទៅកាន់ Library ធំស្អាត -->
                 <a href="library.html" class="app-icon-box" style="border-color: #10b981; background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(6,182,212,0.3)); grid-column: span 3; padding: 18px; font-size: 16px; font-weight: 700; color: #34d399; box-shadow: 0 4px 15px rgba(16,185,129,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
                     <span style="font-size: 32px; margin-bottom: 2px;">💻</span> 📗ចូលទៅកាន់កម្មវិធីជាច្រើនទៀត📗
                 </a>
@@ -299,6 +327,28 @@
             });
         }
 
+        // មុខងារចុចទៅបទបន្ទាប់ (Next Song)
+        function nextSong() {
+            const selector = document.getElementById('songSelector');
+            if (selector.selectedIndex < selector.options.length - 1) {
+                selector.selectedIndex++;
+            } else {
+                selector.selectedIndex = 0; // បើដល់បទចុងក្រោយ ឱ្យលោតមកបទទី១វិញ
+            }
+            changeSong();
+        }
+
+        // មុខងារចុចថយក្រោយបទចាស់ (Previous Song)
+        function prevSong() {
+            const selector = document.getElementById('songSelector');
+            if (selector.selectedIndex > 0) {
+                selector.selectedIndex--;
+            } else {
+                selector.selectedIndex = selector.options.length - 1; // បើនៅបទទី១ ឱ្យលោតទៅបទចុងក្រោយ
+            }
+            changeSong();
+        }
+
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
@@ -325,7 +375,7 @@
 
         const secretNumber = Math.floor(Math.random() * 10) + 1;
         function checkGuess() {
-            const userGuess = parseInt(document.getElementById('guessInput5').value || document.getElementById('guessInput').value);
+            const userGuess = parseInt(document.getElementById('guessInput').value);
             const resultEl = document.getElementById('gameResult');
             
             if (!userGuess) {
@@ -353,7 +403,6 @@
 
         function setEffect(effectName) {
             localStorage.setItem('dsn_effect', effectName);
-            // Add effect logic if needed
         }
 
         function toggleSetting(show) {
