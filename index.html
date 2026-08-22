@@ -92,7 +92,7 @@
         .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
-        .btn:hover { filter: brightness(1.1); }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4); }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; }
 
         .app-grid {
@@ -113,12 +113,18 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 11px;
             font-weight: 600;
         }
-        .app-icon-box span { font-size: 24px; }
-        .app-icon-box:hover { border-color: #38bdf8; background: rgba(56, 189, 248, 0.2); transform: translateY(-4px); }
+        .app-icon-box span { font-size: 24px; transition: transform 0.3s; }
+        .app-icon-box:hover { 
+            border-color: #38bdf8; 
+            background: rgba(56, 189, 248, 0.25); 
+            transform: translateY(-6px); 
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+        }
+        .app-icon-box:hover span { transform: scale(1.15); }
 
         .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
         .input-field { width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; font-size: 16px; text-align: center; box-sizing: border-box; outline: none; margin-bottom: 15px; }
@@ -129,8 +135,9 @@
             background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
             color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: 0.3s;
         }
-        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1) rotate(90deg); }
 
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -146,8 +153,10 @@
         .setting-group { margin: 15px 0; }
         .setting-group label { display: block; color: #94a3b8; font-size: 13px; margin-bottom: 8px; }
         .options-row { display: flex; gap: 10px; }
-        .theme-box { flex: 1; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; }
-        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; }
+        .theme-box { flex: 1; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; transition: 0.2s; }
+        .theme-box:hover { border-color: #38bdf8; }
+        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.2s; }
+        .setting-action-btn:hover { filter: brightness(1.1); }
 
         .dsn-dock {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -156,18 +165,51 @@
             border-radius: 30px; display: flex; gap: 15px; z-index: 999; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
         .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-6px) scale(1.1); }
 
         .playlist-select {
             width: 100%; padding: 10px; background: #1e293b; border: 1px solid #334155;
             border-radius: 8px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px;
             margin-bottom: 10px; outline: none;
         }
+
+        /* 🌟 DSN Notification Toast Style */
+        #dsnToast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #38bdf8;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #dsnToast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        #dsnToast span {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body class="theme-dark">
 
     <canvas id="effectCanvas"></canvas>
+
+    <!-- 🌟 DSN Notification Toast Popup -->
+    <div id="dsnToast">
+        <span>✨</span>
+        <div>សូមស្វាគមន៍មកកាន់ DSN OS Hub របស់ B Sideth!</div>
+    </div>
 
     <!-- Logo ខាងលើជារូបសំបុត្រ និងភ្ជាប់ទៅកាន់ Gemini Hub -->
     <a href="https://gemini.google.com/gem/1PBTfIQtpgeFDLfcLfMg7VUwsWcj-oRt_?usp=sharing" target="_blank" class="logo-container" title="Gemini AI Hub">
@@ -186,14 +228,6 @@
                     <div class="theme-box" style="color: #38bdf8;" onclick="setTheme('theme-dark')">Dark</div>
                     <div class="theme-box" style="color: #ff77ff;" onclick="setTheme('theme-cyber')">Cyber</div>
                     <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
-                </div>
-            </div>
-            <div class="setting-group" style="margin-bottom: 15px;">
-                <label style="color: #94a3b8; font-size: 12px; display: block; margin-bottom: 5px;">✨ បែបផែនផ្ទៃខាងក្រោយ:</label>
-                <div class="options-row">
-                    <div class="option-btn" id="effNone" onclick="setEffect('none')">បិទ</div>
-                    <div class="option-btn" id="effRain" onclick="setEffect('rain')">ភ្លៀង</div>
-                    <div class="option-btn" id="effStars" onclick="setEffect('stars')">ផ្កាយ</div>
                 </div>
             </div>
             <div class="setting-group">
@@ -234,7 +268,6 @@
 
         <!-- Profile Header Card -->
         <div class="card header-card">
-            <!-- ត្រង់ចំណុចនេះបានប្តូរទៅជារូប app3.png រួចរាល់ -->
             <div class="avatar-container">
                 <img src="app3.png" alt="San Sideth Profile" class="avatar">
             </div>
@@ -311,6 +344,22 @@
     </div>
 
     <script>
+        // 🌟 Show DSN Toast on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
+            document.body.className = savedTheme;
+
+            setTimeout(() => {
+                const toast = document.getElementById('dsnToast');
+                if(toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 4000);
+                }
+            }, 1000);
+        });
+
         function changeSong() {
             const selector = document.getElementById('songSelector');
             const audio = document.getElementById('mainAudio');
@@ -393,11 +442,6 @@
                 bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
             }
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
-            document.body.className = savedTheme;
-        });
 
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
