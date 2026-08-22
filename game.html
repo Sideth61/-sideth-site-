@@ -3,115 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 ហ្គេមកម្សាន្ត - DSN Website</title>
+    <title>DSN Game Hub</title>
     <style>
-        body {
-            font-family: 'Siemreap', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        body { font-family: 'Kantumruy Pro', sans-serif; background: #090d16; color: #fff; padding: 20px; text-align: center; margin: 0; padding-bottom: 90px; }
+        .container { max-width: 500px; margin: auto; background: rgba(17, 24, 39, 0.9); padding: 25px; border-radius: 20px; border: 1px solid #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: left; }
+        h2 { color: #38bdf8; text-align: center; margin-top: 0; }
+        p { color: #94a3b8; font-size: 14px; text-align: center; }
+        .game-card { background: #1e293b; padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .game-title { font-weight: bold; color: #fff; font-size: 16px; }
+        .btn-play { background: #2563eb; color: #fff; padding: 8px 15px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        .btn-play:hover { background: #1d4ed8; }
+        .btn-download { background: #10b981; color: #fff; padding: 12px; display: block; text-align: center; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+        .btn-download:hover { background: #059669; }
+        .btn-back { display: block; text-align: center; background: #334155; color: #fff; padding: 10px; margin-top: 10px; text-decoration: none; border-radius: 10px; font-size: 14px; }
+        .btn-back:hover { background: #475569; }
+
+        /* Floating Dock */
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
         }
-        .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 16px;
-            padding: 25px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 20px;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #f43f5e;
-            box-shadow: 0 20px 40px rgba(244, 63, 94, 0.2);
-        }
-        .section-title {
-            color: #f43f5e;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 20px;
-            text-align: center;
-        }
-        .game-item {
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            border: 1px solid #334155;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .game-item:hover {
-            background: #f43f5e;
-            color: #fff;
-            transform: scale(1.02);
-        }
-        .game-container {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 12px;
-            background: #000;
-        }
-        .btn-back {
-            display: block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #94a3b8;
-            text-align: center;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .btn-back:hover { color: #f43f5e; }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; transition: 0.3s; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="section-title">🕹️ DSN Mini Games Hub</div>
-        <div id="gameScreenContainer">
-            <iframe id="gameFrame" class="game-container" src="" title="Game Frame"></iframe>
+    <div class="container">
+        <h2>🎮 DSN Game Hub</h2>
+        <p>ជ្រើសរើសហ្គេមដែលបងចង់លេង ឬទាញយកឯកសារហ្គេមពី Google Drive!</p>
+        
+        <div class="game-card">
+            <span class="game-title">🚗 Grand Theft Auto (GTA)</span>
+            <a href="gta.html" class="btn-play">ចូលមើល</a>
         </div>
-        <div style="margin-top: 15px; color: #94a3b8; text-align: center; font-size: 14px;">ជ្រើសរើសហ្គេមខាងក្រោមដើម្បីចាប់ផ្តើម៖</div>
+
+        <div class="game-card">
+            <span class="game-title">🔫 Call of Duty</span>
+            <a href="call_of_duty.html" class="btn-play">ចូលមើល</a>
+        </div>
+
+        <!-- ឯកសារហ្គេមពី Google Drive របស់បង -->
+        <a href="https://drive.google.com/file/d/0B5JtcY9bqji2Y2RsdlhQZXY2Q1k/view?usp=drivesdk&resourcekey=0-J5-WYZXLhfoqqM2hnLeL9Q" target="_blank" class="btn-download">📥 ទាញយកឯកសារហ្គេម (Google Drive)</a>
+
+        <a href="index.html" class="btn-back">🏠 ត្រឡប់ទៅ DSN OS វិញ</a>
     </div>
 
-    <div class="card">
-        <div class="section-title">🎯 បញ្ជីហ្គេមកម្សាន្ត</div>
-        <div id="gameList"></div>
+    <!-- Floating Dock -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="game.html" class="dock-item" title="Games" style="background: rgba(56, 189, 248, 0.2); border-radius: 50%;">🎮</a>
+        <a href="facebook.html" class="dock-item" title="ហ្វេសប៊ុក">📘</a>
+        <a href="money_tool.html" class="dock-item" title="Money Tool">💰</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
     </div>
-
-    <a href="library.html" class="btn-back">⬅️ ត្រឡប់ទៅ Library វិញ</a>
-
-    <script>
-        const games = [
-            { title: "🐍 ហ្គេមពស់ស៊ីចំណី (Classic Snake)", src: "https://pacman.com" }, // ឬអាចដាក់ link ហ្គេម HTML5 ផ្សេងទៀត
-            { title: "🧩 ហ្គេមផ្គុំរូបភាព (Memory Puzzle)", src: "https://www.google.com/logos/2010/pacman10-i.html" }
-        ];
-
-        const gameFrame = document.getElementById('gameFrame');
-        const gameListContainer = document.getElementById('gameList');
-
-        // កំណត់ហ្គេមដំបូងពេលចូលទំព័រ
-        if(games.length > 0) {
-            gameFrame.src = games[0].src;
-        }
-
-        games.forEach(game => {
-            const div = document.createElement('div');
-            div.className = 'game-item';
-            div.innerText = game.title;
-            div.onclick = () => {
-                gameFrame.src = game.src;
-            };
-            gameListContainer.appendChild(div);
-        });
-    </script>
 </body>
 </html>
