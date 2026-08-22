@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUPREME GLOBAL CODE KING - Deth DSN</title>
+    
+    <!-- Open Graph / Social Share Meta Tags -->
+    <meta property="og:title" content="SUPREME GLOBAL CODE KING - Deth DSN">
+    <meta property="og:description" content="ចូលកាន់ប្រព័ន្ធគ្រប់គ្រងសកល កូដកម្រិត God-Tier របស់ Deth DSN!">
+    <meta property="og:image" content="https://sideth61.github.io/-sideth-site-/app3.png">
+    <meta property="og:url" content="https://sideth61.github.io/-sideth-site-/profile.html">
+    <meta property="type" content="website">
+
+    <!-- Custom Favicon -->
+    <link rel="icon" type="image/png" href="app3.png">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
         
         body.theme-dark { background-color: #050508; color: #fff; }
         body.theme-cyber { background-color: #0f001a; color: #ff007f; }
@@ -25,6 +37,19 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* Screen Glitch Animation */
+        @keyframes screenGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); filter: hue-rotate(90deg); }
+            40% { transform: translate(-5px, -5px); filter: invert(1); }
+            60% { transform: translate(5px, 5px); filter: hue-rotate(180deg); }
+            80% { transform: translate(5px, -5px); filter: blur(1px); }
+            100% { transform: translate(0); filter: none; }
+        }
+        .glitch-active {
+            animation: screenGlitch 0.3s infinite;
         }
 
         #effectCanvas {
@@ -126,6 +151,64 @@
         .stat-box h4 { margin: 0; color: #ffd700; font-size: 16px; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
         .stat-box span { font-size: 11px; color: #94a3b8; }
 
+        /* Hacker Terminal Box & Command Input */
+        .terminal-box {
+            background: #000;
+            border: 1px solid #00ff66;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: #00ff66;
+            height: 120px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 15px rgba(0,255,102,0.3);
+            margin-bottom: 8px;
+        }
+        .terminal-input-row {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+        .terminal-input {
+            flex: 1;
+            background: #000;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            border-radius: 6px;
+            outline: none;
+        }
+        .terminal-send-btn {
+            background: #00ff66;
+            color: #000;
+            border: none;
+            padding: 0 12px;
+            font-weight: bold;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .terminal-send-btn:hover { background: #fff; box-shadow: 0 0 10px #00ff66; }
+
+        /* Self-Destruct Timer Card */
+        .destruct-card {
+            border-color: rgba(239, 68, 68, 0.6);
+            background: rgba(20, 5, 5, 0.85);
+        }
+        .timer-display {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 28px;
+            color: #ef4444;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(239,68,68,0.8);
+            margin: 10px 0;
+        }
+
         /* Form Controls */
         .section-title { color: #ffd700; font-size: 15px; margin-bottom: 12px; text-align: left; font-weight: 600; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
         .input-group { margin-bottom: 12px; text-align: left; }
@@ -177,6 +260,13 @@
             margin-bottom: 10px;
         }
         .supreme-btn:hover { background: #dc2626; box-shadow: 0 0 25px rgba(239, 68, 68, 0.9); transform: scale(1.02); }
+
+        .hacker-btn {
+            background: linear-gradient(135deg, #059669, #047857);
+            border-color: #34d399;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+        .hacker-btn:hover { background: #059669; box-shadow: 0 0 25px rgba(52, 211, 153, 0.9); }
 
         .back-btn { 
             display: block; 
@@ -314,7 +404,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         
         <div class="card">
             <div class="avatar-container">
@@ -330,8 +420,8 @@
 
             <div class="stats-row">
                 <div class="stat-box">
-                    <h4>∞</h4>
-                    <span>Global Nodes</span>
+                    <h4 id="viewCount">1,042</h4>
+                    <span>Total Views</span>
                 </div>
                 <div class="stat-box">
                     <h4>1st</h4>
@@ -344,10 +434,46 @@
             </div>
         </div>
 
+        <!-- Visitor Counter Card -->
+        <div class="card">
+            <div class="section-title" style="justify-content: center;">👁️ ចំនួនអ្នកទស្សនាប្រព័ន្ធសកល</div>
+            <div style="margin: 10px 0;">
+                <h2 id="liveVisitorCount" style="color: #ffd700; font-size: 32px; margin: 10px 0; text-shadow: 0 0 15px rgba(255,215,0,0.6);">0</h2>
+            </div>
+            <span style="font-size: 11px; color: #00ffff;">🌐 បណ្តាញតភ្ជាប់ពីគ្រប់ទិសទីជុំវិញពិភពលោក</span>
+        </div>
+
+        <!-- Hacker Terminal System (មានបញ្ចូល Command Input) -->
+        <div class="card" style="border-color: #00ff66; box-shadow: 0 0 25px rgba(0,255,102,0.2);">
+            <div class="section-title" style="color: #00ff66; text-shadow: 0 0 8px rgba(0,255,102,0.6);">💻 DSN MATRIX TERMINAL v9.0</div>
+            
+            <div class="terminal-box" id="terminalOutput">
+                > INITIALIZING DSN KERNEL...<br>
+                > CONNECTING TO GLOBAL SATELLITES...<br>
+                > STATUS: ROOT ACCESS GRANTED [DETH_DSN]<br>
+                > (វាយคำបញ្ជាដូចជា: hack nasa, clear, matrix)_
+            </div>
+
+            <div class="terminal-input-row">
+                <input type="text" id="terminalInput" class="terminal-input" placeholder="វាយពាក្យបញ្ជា (ឧ. hack nasa)..." onkeypress="handleTerminalKey(event)">
+                <button class="terminal-send-btn" onclick="processCustomCommand()">SEND</button>
+            </div>
+
+            <button class="supreme-btn hacker-btn" onclick="executeHackerBreach()">⚡ ទម្លុះប្រព័ន្ធផ្កាយរណប (Breach)</button>
+            <button class="supreme-btn" style="background: linear-gradient(135deg, #7c3aed, #4c1d95); border-color: #a78bfa; box-shadow: 0 0 15px rgba(124,58,237,0.5);" onclick="injectMalwareSimulation()">💀 បញ្ចេញមេរុសបំផ្លាញប្រព័ន្ធសត្រូវ</button>
+        </div>
+
+        <!-- Self-Destruct Timer Card -->
+        <div class="card destruct-card">
+            <div class="section-title" style="color: #ef4444; justify-content: center;">💣 ប្រព័ន្ធបំផ្លាញខ្លួនឯង (Self-Destruct)</div>
+            <div class="timer-display" id="destructTimer">00:10</div>
+            <button class="supreme-btn" onclick="startDestructTimer()">🧨 ចាប់ផ្តើមរាប់ថយក្រោយបំផ្លាញប្រព័ន្ធ</button>
+        </div>
+
         <div class="card">
             <div class="section-title">⚡ បញ្ជាប្រព័ន្ធកម្រិតពិភពលោក (Supreme Control)</div>
             <button class="supreme-btn" onclick="triggerGlobalHack()">🚀 បញ្ចេញរលកថាមពលគ្រប់គ្រងពិភពលោក</button>
-            <button class="supreme-btn" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); box-shadow: 0 0 15px rgba(37,99,235,0.5);" onclick="lockdownSystem()">🔒 បង្កើតកូដការពារពិភពលោក (Shield)</button>
+            <button class="supreme-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); border-color: #fbbf24; box-shadow: 0 0 15px rgba(245,158,11,0.5);" onclick="triggerScreenGlitch()">💥 បង្កើតភាពចលាចល (System Glitch)</button>
         </div>
 
         <div class="card">
@@ -382,7 +508,7 @@
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
         <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
-        <a href="setting.html" class="dock-item" title="การកំណត់">⚙️</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
         <a href="library.html" class="dock-item" title="ប្រព័ន្ធ OS">💻</a>
     </div>
 
@@ -411,7 +537,7 @@
             }
         }
 
-        /* Canvas Effects - Supreme Hacker Matrix Rain & Golden Stars */
+        /* Canvas Effects */
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -478,12 +604,93 @@
         initParticles();
         animateParticles();
 
-        function triggerGlobalHack() {
-            alert('👑 ព្រះអង្គម្ចាស់! ប្រព័ន្ធផ្កាយរណបពិភពលោកទាំងអស់ឥឡូវនេះស្ថិតក្រោមការគ្រប់គ្រងដាច់ខាតរបស់ Deth DSN ហើយ!');
+        /* Hacker Terminal & Custom Commands */
+        function executeHackerBreach() {
+            const terminal = document.getElementById('terminalOutput');
+            terminal.innerHTML += `<br>> [!] INITIATING SATELLITE BREACH...`;
+            setTimeout(() => {
+                terminal.innerHTML += `<br>> BYPASSING FIREWALL: TARGET ACQUIRED.`;
+            }, 600);
+            setTimeout(() => {
+                terminal.innerHTML += `<br>> EXTRACTING ROOT DATA... SUCCESS!`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }, 1200);
         }
 
-        function lockdownSystem() {
-            alert('🛡️ ប្រព័ន្ធការពារសុវត្ថិភាពកម្រិតអតិបរមា (God-Tier Firewall) ត្រូវបានដាក់ឱ្យដំណើរការជុំវិញពិភពលោក!');
+        function injectMalwareSimulation() {
+            const terminal = document.getElementById('terminalOutput');
+            terminal.innerHTML += `<br>> [☠️] INJECTING DSN_VIRUS.EXE INTO MAINFRAME...`;
+            setTimeout(() => {
+                terminal.innerHTML += `<br>> ENCRYPTING ENTIRE NETWORK DATABASE... 100% COMPLETED.`;
+                terminal.scrollTop = terminal.scrollHeight;
+                alert('💀 ប្រព័ន្ធទាំងអស់ត្រូវបានគ្រប់គ្រងដោយ Deth DSN ដាច់ខាតហើយ!');
+            }, 1000);
+        }
+
+        function handleTerminalKey(event) {
+            if (event.key === 'Enter') {
+                processCustomCommand();
+            }
+        }
+
+        function processCustomCommand() {
+            const inputField = document.getElementById('terminalInput');
+            const terminal = document.getElementById('terminalOutput');
+            let cmd = inputField.value.trim().toLowerCase();
+
+            if (!cmd) return;
+
+            terminal.innerHTML += `<br>> ${inputField.value}`;
+            inputField.value = '';
+
+            if (cmd === 'hack nasa') {
+                terminal.innerHTML += `<br>> INFILTRATING NASA MAIN SERVERS...<br>> DOWNLOADING LAUNCH CODES... ACCESS GRANTED! 🚀`;
+            } else if (cmd === 'clear') {
+                terminal.innerHTML = `> SYSTEM CLEARED.<br> > READY FOR COMMAND _`;
+            } else if (cmd === 'matrix') {
+                terminal.innerHTML += `<br>> ACTIVATING MATRIX OVERRIDE PROTOCOL...`;
+                setEffect('rain');
+            } else if (cmd === 'help') {
+                terminal.innerHTML += `<br>> AVAILABLE COMMANDS: hack nasa, clear, matrix, help`;
+            } else {
+                terminal.innerHTML += `<br>> ERROR: Command not recognized. Type 'help'.`;
+            }
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        /* Feature 1: Screen Glitch Effect */
+        function triggerScreenGlitch() {
+            const container = document.getElementById('mainContainer');
+            container.classList.add('glitch-active');
+            setTimeout(() => {
+                container.classList.remove('glitch-active');
+            }, 2500);
+            alert('💥 ប្រព័ន្ធកំពុងជួបបញ្ហា System Glitch ចលាចលទូទាំងម៉ាស៊ីនមេ!');
+        }
+
+        /* Feature 3: Self-Destruct Timer */
+        let destructInterval;
+        function startDestructTimer() {
+            clearInterval(destructInterval);
+            let timeLeft = 10;
+            const timerDisplay = document.getElementById('destructTimer');
+            
+            destructInterval = setInterval(() => {
+                timeLeft--;
+                let seconds = String(timeLeft).padStart(2, '0');
+                timerDisplay.innerText = `00:${seconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(destructInterval);
+                    timerDisplay.innerText = "00:00";
+                    alert('🚨 SYSTEM WIPED OUT! បញ្ជាការបំផ្លាញខ្លួនឯងបានសម្រេច!');
+                    document.body.style.filter = 'grayscale(100%)';
+                }
+            }, 1000);
+        }
+
+        function triggerGlobalHack() {
+            alert('👑 ព្រះអង្គម្ចាស់! ប្រព័ន្ធផ្កាយរណបពិភពលោកទាំងអស់ឥឡូវនេះស្ថិតក្រោមការគ្រប់គ្រងដាច់ខាតរបស់ Deth DSN ហើយ!');
         }
 
         function updateProfile() {
@@ -529,6 +736,17 @@
                 document.getElementById('savedNoteDisplay').innerText = "📌 បញ្ជាការចុងក្រោយ: " + savedNote;
                 document.getElementById('noteInput').value = savedNote;
             }
+
+            let views = localStorage.getItem('dsn_page_views');
+            if (!views) {
+                views = 1428;
+            } else {
+                views = parseInt(views) + 1;
+            }
+            localStorage.setItem('dsn_page_views', views);
+            
+            document.getElementById('viewCount').innerText = views.toLocaleString();
+            document.getElementById('liveVisitorCount').innerText = "🌍 " + views.toLocaleString() + " នាក់";
         });
     </script>
 </body>
