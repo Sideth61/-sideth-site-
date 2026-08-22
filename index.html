@@ -132,7 +132,7 @@
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
 
         .input-field {
             width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
@@ -174,6 +174,12 @@
         }
         .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
+
+        .playlist-select {
+            width: 100%; padding: 10px; background: #1e293b; border: 1px solid #334155;
+            border-radius: 8px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px;
+            margin-bottom: 10px; outline: none;
+        }
     </style>
 </head>
 <body class="theme-dark">
@@ -184,7 +190,7 @@
         <img src="IMG_3350.jpeg" alt="Logo">
     </div>
 
-    <!-- ⚙️ Quick Settings Modal Button (ចុចកងចក្រចេញផ្ទាំង Setting នេះ) -->
+    <!-- ⚙️ Quick Settings Modal Button -->
     <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
 
     <div class="modal-overlay" id="settingModal">
@@ -216,14 +222,22 @@
             </div>
         </div>
 
-        <!-- 🎧 DSN Music & Audio Hub (ជួសជុលតន្ត្រីឲ្យលឺស្រួលបួល) -->
+        <!-- 🎧 DSN Music & Audio Hub (ដាក់បញ្ចូលបទចម្រៀងទាំង 5 របស់បងត្រឹមត្រូវ) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(17, 24, 39, 0.9)); border-color: rgba(139, 92, 246, 0.4);">
             <div class="section-title" style="color: #c084fc; margin-bottom: 10px;">🎧 DSN Music & Audio Visualizer Hub</div>
-            <p style="text-align: center; border-left: none; margin-bottom: 12px; font-size: 13px; color: #94a3b8;">ស្ដាប់កម្សាន្តបទចម្រៀង ឬបទដែលបងកំពុងកែសម្រួលផ្ទាល់៖</p>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px; font-size: 13px; color: #94a3b8;">ជ្រើសរើសបទចម្រៀងផ្ទាល់ខ្លួនរបស់ B Sideth៖</p>
+            
             <div style="background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 12px; text-align: center;">
-                <div style="font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px;">🎶 បទ៖ ទាហានមុំបី ភ្នំ750 / Blaming All Men</div>
+                <select id="songSelector" class="playlist-select" onchange="changeSong()">
+                    <option value="https://drive.google.com/uc?export=download&id=1R-9qNVrbuQjpo_1ls78y_YyiGNkpPYWh">1. Blaming All Men (ចោទប្រុសទាំងអស់)</option>
+                    <option value="https://drive.google.com/uc?export=download&id=10-PzHDJcyerQsqaRrAGLcuerUPOPIcfl">2. Blame You Too (បងក៏មិនខុសពីគេ)</option>
+                    <option value="https://drive.google.com/uc?export=download&id=1OP42EERj_uyEUAlJ7t7MEVgoBAMLA3EY">3. ប៉ៃលិនខ្ញុំមិនដែលភ្លេចទេ</option>
+                    <option value="https://drive.google.com/uc?export=download&id=12xnfZk_Jaos1pr0U1U60zMXvHiafuMTm">4. និស្ស័យស្នេហ៍ត្បូងទទឹមអង្ករវត្ត</option>
+                    <option value="https://drive.google.com/uc?export=download&id=1lVFI6bFLkBzUXTDdwRe0jvcA0j3aaCd-">5. Blaming All Men English</option>
+                </select>
+
                 <audio id="mainAudio" controls preload="auto" style="width: 100%; border-radius: 8px;">
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+                    <source id="audioSource" src="https://drive.google.com/uc?export=download&id=1R-9qNVrbuQjpo_1ls78y_YyiGNkpPYWh" type="audio/mp3">
                     Browser របស់បងមិនគាំទ្រសំឡេងនេះទេ។
                 </audio>
             </div>
@@ -422,6 +436,19 @@
     </div>
 
     <script>
+        // Change Song from Playlist Selector (Fixed Direct Link Loading)
+        function changeSong() {
+            const selector = document.getElementById('songSelector');
+            const audio = document.getElementById('mainAudio');
+            const source = document.getElementById('audioSource');
+            
+            source.src = selector.value;
+            audio.load();
+            audio.play().catch(e => {
+                console.log("Auto-play blocked or waiting for user interaction.");
+            });
+        }
+
         // Live Digital Clock & Date Logic
         function updateClock() {
             const now = new Date();
@@ -587,7 +614,7 @@
         }
         initParticles();
 
-        function animateParticles() {
+        (function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (currentEffect !== 'none') {
                 ctx.lineWidth = 1.5;
@@ -611,8 +638,7 @@
                 });
             }
             requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+        })();
     </script>
 </body>
 </html>
