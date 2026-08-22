@@ -132,7 +132,7 @@
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
 
         .input-field {
             width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
@@ -206,11 +206,29 @@
     </div>
 
     <div class="container">
-        <!-- 🕒 DSN Live System Clock Widget (NEW!) -->
+        <!-- 🕒 DSN Live System Clock & Facebook Follower Widget (UPDATED!) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
             <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
             <div id="liveDate" style="font-size: 13px; color: #94a3b8; margin-top: 5px;">DSN OS System Active • Pailin, Cambodia</div>
+            <div id="follower-count" style="margin-top: 8px; font-size: 14px; font-weight: 600; color: #f43f5e; background: rgba(244, 63, 94, 0.1); padding: 5px 10px; border-radius: 10px; display: inline-block; border: 1px solid rgba(244, 63, 94, 0.3);">
+                👥 កំពុងផ្ទុកចំនួនអ្នកតាមដាន...
+            </div>
         </div>
+
+        <!-- 🎧 DSN Music & Audio Hub (NEW!) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
+            <div class="section-title" style="color: #ec4899;">🎧 DSN Music & Audio Visualizer Hub</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ស្ដាប់កម្សាន្តបទចម្រៀង ឬបទដែលបងកំពុងកែសម្រួលផ្ទាល់៖</p>
+            
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px;">🎶 បទ៖ ទាហានមុំបី ភ្នំ750 / Blaming All Men</div>
+                <audio controls style="width: 100%; border-radius: 8px;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+                    Browser របស់បងមិនគាំទ្រសំឡេងនេះទេ។
+                </audio>
+            </div>
+        </div>
+
 
         <div class="card header-card">
             <div class="avatar-container"><div class="avatar">🛡️</div></div>
@@ -228,7 +246,7 @@
 
         <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
-            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាการងារ)</div>
+            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែវៃភ្លាមៗនៅទីនេះ៖</p>
             <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីនេះ..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
             <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
@@ -405,7 +423,7 @@
     </div>
 
     <script>
-        // Live Digital Clock & Date Logic
+        // Live Digital Clock, Date & Facebook Follower Fetch Logic
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
@@ -414,7 +432,7 @@
             let ampm = hours >= 12 ? 'PM' : 'AM';
             
             hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
+            hours = hours ? hours : 12;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             
@@ -429,6 +447,23 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // Fetch Facebook Follower Count
+        const TOKEN = "1469596064992874|VFDdLemdDcJQWpHpBepYuvHMVQc";
+        const PAGE_ID = "1469596064992874"; 
+        fetch(`https://graph.facebook.com/v21.0/${PAGE_ID}?fields=followers_count&access_token=${TOKEN}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.followers_count) {
+                    document.getElementById('follower-count').innerText = "👥 " + data.followers_count.toLocaleString() + " អ្នកតាមដាន";
+                } else {
+                    document.getElementById('follower-count').innerText = "👥 មិនអាចទាញទិន្នន័យបានទេ";
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('follower-count').innerText = "👥 មិនអាចតភ្ជាប់បាន";
+            });
 
         // Quick Note Storage Logic
         function saveQuickNote() {
