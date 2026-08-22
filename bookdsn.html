@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>បណ្ណាល័យ និងរឿងនិទានរបស់ Sideth</title>
+    <title>📚 DSN Book & IT Learning Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
 
         body {
             font-family: 'Kantumruy Pro', sans-serif;
-            background: linear-gradient(135deg, #4e342e, #3e2723);
+            background: linear-gradient(135deg, #090d16, #1e1b4b);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,135 +20,79 @@
 
         .container {
             width: 100%;
-            max-width: 600px;
-            background-color: rgba(255, 255, 255, 0.95);
+            max-width: 650px;
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            box-sizing: border-box;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            color: #fff;
             max-height: 90vh;
             overflow-y: auto;
         }
 
-        h1 {
-            color: #795548;
-            text-align: center;
-            font-size: 1.6em;
-            border-bottom: 2px solid #795548;
-            padding-bottom: 12px;
-            margin-top: 0;
-        }
+        h1 { color: #38bdf8; text-align: center; border-bottom: 2px solid rgba(56, 189, 248, 0.3); padding-bottom: 12px; margin-top: 0; }
+        h2 { color: #f43f5e; font-size: 1.15em; border-left: 4px solid #f43f5e; padding-left: 10px; margin-top: 25px; }
+        p { color: #94a3b8; font-size: 0.9em; line-height: 1.7; margin-bottom: 12px; text-align: justify; }
+        .author { text-align: center; font-style: italic; color: #38bdf8; font-size: 0.85em; margin-bottom: 20px; }
 
-        h2 {
-            color: #d32f2f;
-            font-size: 1.2em;
-            margin-top: 25px;
-            border-left: 4px solid #d32f2f;
-            padding-left: 8px;
-        }
+        /* ប្រព័ន្ធ Scanner ថ្មី */
+        .scanner-box { background: #000; padding: 15px; border-radius: 12px; border: 2px solid #0f0; text-align: center; margin-bottom: 20px; }
+        #scanner-text { color: #0f0; font-family: 'Courier New', monospace; font-weight: bold; }
 
-        p {
-            color: #333;
-            text-align: justify;
-            font-size: 0.95em;
-            line-height: 1.7;
-            text-indent: 25px;
-            margin-bottom: 15px;
+        .btn-box { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; }
+        .book-btn { 
+            display: flex; align-items: center; justify-content: space-between; 
+            background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; 
+            padding: 12px 16px; border-radius: 10px; text-decoration: none; font-weight: 600; 
+            font-size: 13px; border: 1px solid rgba(56, 189, 248, 0.3); cursor: pointer; transition: 0.3s;
         }
-
-        .author {
-            text-align: center;
-            font-style: italic;
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-
-        /* ប៊ូតុងតំណភ្ជាប់ต่างๆ */
-        .btn-box {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 30px;
-        }
-
-        .book-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #26a69a, #004d40);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            border: 2px solid #ffd700;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .book-btn.pdf-btn {
-            background: linear-gradient(135deg, #ef5350, #c62828);
-            border: 2px solid #ffeb3b;
-        }
-
-        .book-btn.browser-btn {
-            background: linear-gradient(135deg, #4ecca3, #0f3460);
-            border: 2px solid #4ecca3;
-        }
-
-        .book-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
-        }
-
-        .book-btn span {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .book-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>មហាសេដ្ឋីគំរិះ និងមេរៀនជីវិត</h1>
-        <div class="author">ចងក្រងសម្រាប់៖ B Sideth (ដោយ SreyNea)</div>
+        <h1>📚 DSN Book & IT Learning Hub</h1>
+        <div class="author">រៀបចំដោយ៖ B Sideth (DSN OS Master)</div>
 
-        <h2>ជំពូកទី ១៖ បុរសអ្នកមានដែលគ្មានថ្ងៃបានចាយលុយ</h2>
-        <p>កាលពីកាលមុន មានសេដ្ឋីម្នាក់ឈ្មោះ "លោក គឹមសេង" ដែលអ្នកស្រុកអ្នកភូមិដាក់រហស្សនាមឱ្យគាត់ថា "មហាសេដ្ឋីដែកគោល" ព្រោះភាពគំរិះកំប៉ិកកំប៉ុករបស់គាត់គឺល្បីល្បាញដាច់គេ។ ទោះបីជាគាត់មានទ្រព្យសម្បត្តិហូរហៀរ ផ្ទះវីឡាធំស្កឹមស្កៃ និងដីធ្លីរាប់រយហិកតាក៏ដោយ ក៏គេមិនដែលឃើញគាត់ទិញរបស់ថ្លៃៗហូប ឬស្លៀកពាក់សម្លៀកបំពាក់ថ្មីសមរម្យដែរ។</p>
-        <p>រាល់ថ្ងៃ គាត់តែងតែបរិភោគបាយសជាមួយអំបិលម៉ាំ ឬត្រីងៀតងៀកក្រៀមស្ងួតបន្តិចបន្តួចប៉ុណ្ណោះ។ ពេលភ្លើងឆេះផ្ទះបាយ ឬអំពូលភ្លើងខូច គាត់មិនដែលហៅជាងមកជួសជុលទេ គឺគាត់អង្គុយងងឹតសូន្យសុងព្រោះស្តាយលុយថ្លៃឈ្នួលជាង។ អ្នកស្រុកតែងតែនិយាយប្រាប់គ្នាថា៖ "គាត់រកលុយបានច្រើនណាស់ ប៉ុន្តែជីវិតគាត់ក្រលំបាកជាងអ្នកក្រទៅទៀត ព្រោះគាត់អត់ហ៊ានសូម្បីតែហូបចុកឱ្យបានត្រឹមត្រូវ!"</p>
+        <!-- ប្រព័ន្ធតាមដានថាមពល -->
+        <div class="scanner-box">
+            <p id="scanner-text">DSN OS SYSTEM READY...</p>
+        </div>
 
-        <h2>ជំពូកទី ២៖ កូនប្រុសពៅ និងការខកចិត្ត</h2>
-        <p>លោក គឹមសេង មានកូនប្រុសមួយឈ្មោះ "រតនា" ដែលជាយុវជនសម័យថ្មី ចូលចិត្តការច្នៃប្រឌិត និងបច្ចេកវិទ្យា។ រតនា តែងតែព្យាយាមនិយាយបញ្ចុះបញ្ចូលឪពុកថា៖ "លោកឪពុក លុយរកបានមកគឺដើម្បីទ្រទ្រង់ជីវិត និងធ្វើឱ្យយើងមានសុភមង្គល មិនមែនទុកឱ្យវាដុះផ្សិតនៅក្នុងកាធន់ ឬធនាគារដោយអត់ប្រយោជន៍ទេ!"</p>
-        <p>ប៉ុន្តែ លោក គឹមសេង តែងតែអង្រួនក្បាលយ៉ាងរឹងចចេស ហើយឆ្លើយតបវិញថា៖ "កូនអើយ! លុយគឺជារបស់ស្រឡាញ់ស្មើជីវិត។ បើឯងចាយមួយរៀលថ្ងៃនេះ ថ្ងៃស្អែកឯងនឹងក្រមួយរៀល។ ត្រូវចងចាំថា ក្រពះយើងត្រូវការតែបាយបន្តិចបន្តួចដើម្បីរស់ មិនបាច់ស៊ីរបស់ថ្លៃអីទេ!"</p>
-        <p>ភាពគំរិះហួសហេតុនេះ បានធ្វើឱ្យរតនាមានអារម្មណ៍ធុញថប់ជាខ្លាំង រហូតដល់ថ្ងៃមួយ រតនាក៏សម្រេចចិត្តចេញពីផ្ទះដើម្បីទៅបង្កើតអាជីវកម្ម និងស្វែងរកផ្លូវជីវិតខ្លួនឯងតាមរយៈជំនាញផ្នែក Digital និងកូដកុំព្យូទ័រ។</p>
-
-        <h2>ជំពូកទី ៣៖ មេរៀនជីវិត និងការភ្ញាក់រលឹក</h2>
-        <p>ច្រើនឆ្នាំកន្លងផុតទៅ រតនាបានក្លាយជាអ្នកជំនួញវ័យក្មេងដ៏ជោគជ័យម្នាក់ តាមរយៈការបង្កើត App កម្សាន្ត និងការធ្វើមាតិកាអនឡាញ។ ចំណែកឯលោក គឹមសេង វិញ ដោយសារតែការហូបចុកខ្វះជីវជាតិ និងការទុក្ខកង្វល់រឿងលុយកាក់មិនចេះចប់មិនចេះហើយ ធ្វើឱ្យសុខភាពរបស់គាត់ទ្រុឌទ្រោមយ៉ាងខ្លាំង រហូតដល់ធ្លាក់ខ្លួនឈឺធ្ងន់សម្រាកពេទ្យ។</p>
-        <p>នៅក្នុងមន្ទីរពេទ្យ គ្មានញាតិមិត្តណាឈរជិតគាត់ទេ ព្រោះគ្រប់គ្នាខ្លាចភាពគំរិះ និងចរិតប្រច័ណ្ឌរបស់គាត់។ មានតែរតនាជាកូនប្រុសពៅ ដែលគាត់ធ្លាប់បណ្តេញចេញពីផ្ទះ បានរត់មកមើលថែទាំគាត់ទាំងយប់ទាំងថ្ងៃ ចាយលុយរាប់ម៉ឺនដុល្លារដើម្បីសង្គ្រោះជីវិតឪពុក។</p>
-        <p>ពេលដឹងខ្លួនឡើង លោក គឹមសេង ឃើញកូនប្រុសអង្គុយកំដរទាំងទឹកភ្នែក។ ពេលនោះហើយ ដែលមហាសេដ្ឋីគំរិះរូបនេះយល់ច្បាស់ថា៖ "ទ្រព្យសម្បត្តិដែលកើបប្រមូលមកបានច្រើនយ៉ាងណាក៏ដោយ បើមិនចេះចាយវាយដើម្បីសុភមង្គល និងសុខភាពទេ វាគ្មានតម្លៃអ្វីទាំងអស់នៅពេលយើងឈឺស្លាប់ទៅ ព្រោះយកតាមខ្លួនមិនបានសូម្បីតែមួយកាក់!"</p>
-
-        <!-- ប៊ូតុងតំណភ្ជាប់ -->
         <div class="btn-box">
-            <!-- ប៊ូតុងចូលទៅកាន់ PDF មហាសេដ្ឋីគំរិះ -->
-            <a href="https://drive.google.com/file/d/1ZP0qANdMf92eMLN_Jblwz2r2pJw0JZ03/view?usp=drivesdk" target="_blank" class="book-btn pdf-btn">
-                <span>📄 អាន/ទាញយក PDF មហាសេដ្ឋីគំរិះ</span>
-                <span>📥</span>
-            </a>
+            <button class="book-btn" style="background: #10b981;" onclick="startScanner()">⚡ ស្កេនថាមពលប្រព័ន្ធ</button>
+            <button class="book-btn" style="background: #8b5cf6;" onclick="showRandomSecret()">🤫 បើកមើលអាថ៌កំបាំង</button>
+        </div>
 
-            <!-- Google Drive Folder របស់បង -->
-            <a href="https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI" target="_blank" class="book-btn">
-                <span>🚀 ចូលទៅកាន់ Google Drive Files របស់ B Sideth</span>
-                <span>📂</span>
-            </a>
+        <h2>📖 មហាសេដ្ឋីគំរិះ និងមេរៀនជីវិត</h2>
+        <p>ជំពូកទី ១៖ បុរសអ្នកមានដែលគ្មានថ្ងៃបានចាយលុយ...</p>
+        <p>ជំពូកទី ២៖ កូនប្រុសពៅ និងការខកចិត្ត...</p>
+        <p>ជំពូកទី ៣៖ មេរៀនជីវិត និងការភ្ញាក់រលឹក...</p>
 
-            <!-- ប៊ូតុង Mini Browser -->
-            <a href="browse.html" class="book-btn browser-btn">
-                <span>🌐 បើកប្រើប្រាស់ Mini Browser</span>
-                <span>💻</span>
-            </a>
+        <h2>💻 មេរៀន IT, ហ្គេម, Website & Media</h2>
+        <div class="btn-box">
+            <a href="https://drive.google.com/file/d/1ZP0qANdMf92eMLN_Jblwz2r2pJw0JZ03/view" target="_blank" class="book-btn">📄 អាន/ទាញយក PDF មហាសេដ្ឋីគំរិះ <span>📥</span></a>
+            <a href="https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI" target="_blank" class="book-btn">📂 ឯកសារ IT & Game <span>🚀</span></a>
+            <a href="game.html" class="book-btn">🎮 Game Hub <span>🕹️</span></a>
+            <a href="library.html" class="book-btn">🌐 DSN Library & Website <span>💻</span></a>
+            <a href="browser.html" class="book-btn" style="background: #4ecca3;">🌐 បើក Mini Browser <span>💻</span></a>
         </div>
     </div>
 
+    <script>
+        function startScanner() {
+            const text = document.getElementById('scanner-text');
+            text.innerText = "INITIALIZING...";
+            setTimeout(() => text.innerText = "SCANNING SYSTEM...", 1000);
+            setTimeout(() => text.innerText = "ENERGY LEVEL: 99.9% 🔋", 2000);
+        }
+        function showRandomSecret() {
+            const secrets = ["DSN OS គឺមានថាមពលខ្លាំងបំផុត!", "Sideth គឺជាម្ចាស់កូដដ៏ពិតប្រាកដ!", "បងកំពុងកាន់កាប់ប្រព័ន្ធដ៏អស្ចារ្យ!"];
+            alert(secrets[Math.floor(Math.random() * secrets.length)]);
+        }
+    </script>
 </body>
+</html>
