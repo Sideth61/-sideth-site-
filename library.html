@@ -17,7 +17,7 @@
             background-attachment: fixed;
             background-size: cover;
             color: #fff; 
-            padding: 20px 10px 90px 10px; 
+            padding: 20px 10px 100px 10px; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,7 +25,22 @@
             min-height: 100vh;
         }
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
-        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 20px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        .card { 
+            background: rgba(17, 24, 39, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            padding: 20px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
+            text-align: left; 
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 15px rgba(56,189,248,0.2);
+        }
+
         .title, .section-title { color: #38bdf8; font-size: 18px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
         .video-container { 
@@ -33,9 +48,9 @@
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s ease; }
-        .btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
-        .btn-youtube { background: #ff0000; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s ease; box-shadow: 0 4px 15px rgba(37,99,235,0.4); }
+        .btn:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56,189,248,0.5); }
+        .btn-youtube { background: #ff0000; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
         .btn-book { background: linear-gradient(135deg, #10b981, #059669); }
         .btn-gtav { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-ps2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: 1px solid #60a5fa; }
@@ -44,12 +59,43 @@
         .btn-social { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; border: 1px solid #38bdf8; }
         .btn-money { background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: 1px solid #34d399; font-weight: bold; }
         .btn-gemini { background: linear-gradient(135deg, #2563eb, #9333ea); color: #fff; border: 1px solid #c084fc; font-weight: bold; }
+        .btn-tool { background: linear-gradient(135deg, #38bdf8, #2563eb); color: #fff; border: 1px solid #60a5fa; font-weight: bold; }
         .btn-back { background: #4b5563; }
         
-        .project-item { background: #0f172a; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #334155; }
-        .project-item h5 { margin: 0 0 5px 0; color: #f43f5e; font-size: 15px; }
-        .project-item span { color: #94a3b8; font-size: 13px; }
         p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0 0 10px 0; }
+
+        /* Floating Dock ផ្នែកខាងក្រោម */
+        .dsn-dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 10px 22px;
+            border-radius: 35px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56,189,248,0.2);
+            z-index: 999;
+        }
+        .dock-item {
+            font-size: 22px;
+            text-decoration: none;
+            transition: 0.3s;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dock-item:hover {
+            background: rgba(56, 189, 248, 0.3);
+            transform: translateY(-8px) scale(1.15);
+            text-shadow: 0 0 10px #38bdf8;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +113,15 @@
             <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
         </div>
 
+        <!-- 🛠️ DSN Utilities & Tools Hub (បន្ថែមថ្មីតាមសំណូមពរ) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
+            <div class="section-title" style="color: #38bdf8;">🛠️ DSN Utilities & Tools Hub</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រមូលផ្តុំឧបករណ៍ជំនួយការ និងកិច្ចការពិសេសៗរបស់បងនៅទីនេះ៖</p>
+            
+            <a href="password_tool.html" class="btn btn-tool">🛡️ Password Security Analyzer (ឆែក Password)</a>
+            <a href="domain_gen.html" class="btn btn-tool" style="background: linear-gradient(135deg, #06b6d4, #0284c7);">🌐 Domain Idea Generator (បង្កើតឈ្មោះเว็บ)</a>
+        </div>
+
         <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
             <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
@@ -79,7 +134,7 @@
         <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(16, 185, 129, 0.4);">
             <div class="section-title" style="color: #10b981;">💰 DSN VIP Money-Making & Digital Shop</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រព័ន្ធស្វ័យប្រវត្តិសម្រាប់រកចំណូលពីការលក់គណនី និងសេវាកម្មអនឡាញរបស់ B Sideth៖</p>
-            <a href="https://m.me/deth61" target="_blank" class="btn btn-money">🛒 កុម្ម៉ង់ទិញ ឬលក់សេវាកម្ម (Auto Connect)</a>
+            <a href="money_tool.html" class="btn btn-money">🛒 ចូលទៅកាន់ Money Tool & Shop</a>
         </div>
 
         <!-- 🎯 DSN Facebook Growth Tracker (100-200 Goal) -->
@@ -87,7 +142,7 @@
             <div class="section-title" style="color: #ec4899;">🎯 Facebook 100-200 Goal Tracker</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px; color: #f9a8d4;">ជំហានដំបូងដើម្បីភាពជោគជ័យ៖ សំខាន់ជាងចំនួន គឺការគាំទ្រពិតប្រាកដ!</p>
             <div style="display: flex; gap: 10px;">
-                <a href="https://www.facebook.com/deth61" target="_blank" class="btn" style="flex:1; background: #ec4899;">🚀 បង្កើន Follower</a>
+                <a href="facebook.html" target="_blank" class="btn" style="flex:1; background: #ec4899;">🚀 ឆែក Facebook Hub</a>
                 <a href="social_tools.html" class="btn" style="flex:1; background: #4b5563;">⚙️ គ្រប់គ្រងផុស</a>
             </div>
         </div>
@@ -117,7 +172,7 @@
         <div class="card" style="border-color: #3b82f6;">
             <div class="title" style="color: #60a5fa;">🕹️ PlayStation 2 (PS2) & Game Hub</div>
             <p>រំលឹកអនុស្សាវរីយ៍ជាមួយហ្គេមទសវត្សរ៍ទី 2000 ដ៏ល្បីល្បាញ (GTA San Andreas, Call of Duty, God of War និង PS2 Classic)!</p>
-            <a href="ps2.html" class="btn btn-ps2">🎮 ចូលទៅកាន់ទំព័រ PS2 Hub របស់ខ្ញុំ</a>
+            <a href="game.html" class="btn btn-ps2">🎮 ចូលទៅកាន់ Game Hub & Google Drive Files</a>
             <a href="Grand Theft Auto.html" class="btn btn-gtav">🚀 Grand Theft Auto (GTA) Center</a>
             <a href="Call of Duty.html" class="btn" style="background: linear-gradient(135deg, #10b981, #059669);">🎯 Call of Duty (COD) Center</a>
         </div>
@@ -133,15 +188,14 @@
         </div>
     </div>
 
- <!-- Floating Dock ផ្នែកខាងក្រោម -->​
+    <!-- Floating Dock ផ្នែកខាងក្រោម -->
     <div class="dsn-dock">
-            <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
-           <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
-          <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
-          <a href="library.html" class="dock-item" title="Library DSN" style="color: #10b981;">📚</a>
-         <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
-​​        <a href="library.html" class="dock-item" title="កម្មវិធី​">💻</a>
-​    </div>
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="game.html" class="dock-item" title="Games">🎮</a>
+        <a href="money_tool.html" class="dock-item" title="Money Tool">💰</a>
+        <a href="library.html" class="dock-item" title="Library DSN" style="color: #10b981; background: rgba(16, 185, 129, 0.2); border-radius: 50%;">📚</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+    </div>
 
     <script>
         function saveQuickNote() {
