@@ -21,7 +21,7 @@
             background-size: cover;
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 100px; /* ເວ້ນໄລຍະໃຫ້ Dock ພາກສ່ວນខាងລຸ່ມ */
+            padding-bottom: 100px;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -71,7 +71,6 @@
             box-shadow: 0 0 10px rgba(37,99,235,0.5); 
         }
 
-        /* Canvas សម្រាប់បែបផែន Background Effects */
         #effectCanvas {
             position: fixed;
             top: 0;
@@ -96,7 +95,6 @@
         }
         .back-btn:hover { background: #334155; transform: translateY(-2px); }
 
-        /* ប៊ូតុង Setting ផ្នែកខាងលើ */
         .setting-btn {
             position: fixed;
             top: 15px;
@@ -118,7 +116,6 @@
         }
         .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
 
-        /* ផ្ទាំង Modal Setting (ផ្ទាំងការកំណត់លោត) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -146,7 +143,6 @@
         .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
         .setting-action-btn:hover { filter: brightness(1.1); }
 
-        /* Floating Navigation Dock ផ្នែកខាងក្រោម */
         .dsn-dock {
             position: fixed;
             bottom: 20px;
@@ -267,43 +263,58 @@
             document.body.className = themeName;
             localStorage.setItem('dsn_theme', themeName);
 
-            // Update active state on buttons
-            document.querySelectorAll('#themeDark, #mThemeDark').forEach(el => el.classList.toggle('active', themeName === 'theme-dark'));
-            document.querySelectorAll('#themeCyber, #mThemeCyber').forEach(el => el.classList.toggle('active', themeName === 'theme-cyber'));
-            document.querySelectorAll('#themeOcean, #mThemeOcean').forEach(el => el.classList.toggle('active', themeName === 'theme-ocean'));
+            const tDark = document.getElementById('themeDark');
+            const mTDark = document.getElementById('mThemeDark');
+            const tCyber = document.getElementById('themeCyber');
+            const mTCyber = document.getElementById('mThemeCyber');
+            const tOcean = document.getElementById('themeOcean');
+            const mTOcean = document.getElementById('mThemeOcean');
+
+            if(tDark) tDark.classList.toggle('active', themeName === 'theme-dark');
+            if(mTDark) mTDark.classList.toggle('active', themeName === 'theme-dark');
+            if(tCyber) tCyber.classList.toggle('active', themeName === 'theme-cyber');
+            if(mTCyber) mTCyber.classList.toggle('active', themeName === 'theme-cyber');
+            if(tOcean) tOcean.classList.toggle('active', themeName === 'theme-ocean');
+            if(mTOcean) mTOcean.classList.toggle('active', themeName === 'theme-ocean');
         }
 
         function switchLanguage(lang) {
             localStorage.setItem('dsn_lang', lang);
-            document.getElementById('langKm').classList.toggle('active', lang === 'km');
-            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            const km = document.getElementById('langKm');
+            const en = document.getElementById('langEn');
+            if(km) km.classList.toggle('active', lang === 'km');
+            if(en) en.classList.toggle('active', lang === 'en');
         }
 
         function toggleSetting(show) {
-            document.getElementById('settingModal').style.display = show ? 'flex' : 'none';
+            const modal = document.getElementById('settingModal');
+            if(modal) modal.style.display = show ? 'flex' : 'none';
         }
 
         const bgm = document.getElementById('bgm');
         const bgmBtn = document.getElementById('bgmBtn');
         function toggleBgm() {
-            if (bgm.paused) {
-                bgm.play();
-                bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
-            } else {
-                bgm.pause();
-                bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
+            if (bgm && bgmBtn) {
+                if (bgm.paused) {
+                    bgm.play().catch(e => console.log(e));
+                    bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+                } else {
+                    bgm.pause();
+                    bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
+                }
             }
         }
 
-        /* --- ប្រព័ន្ធបង្កើតបែបផែន Canvas (Rain & Stars) --- */
         const canvas = document.getElementById('effectCanvas');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas ? canvas.getContext('2d') : null;
         let particles = [];
         let currentEffect = 'none';
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if(canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
@@ -312,16 +323,20 @@
             currentEffect = type;
             localStorage.setItem('dsn_effect', type);
             
-            document.getElementById('effNone').classList.toggle('active', type === 'none');
-            document.getElementById('effRain').classList.toggle('active', type === 'rain');
-            document.getElementById('effStars').classList.toggle('active', type === 'stars');
+            const eNone = document.getElementById('effNone');
+            const eRain = document.getElementById('effRain');
+            const eStars = document.getElementById('effStars');
+
+            if(eNone) eNone.classList.toggle('active', type === 'none');
+            if(eRain) eRain.classList.toggle('active', type === 'rain');
+            if(eStars) eStars.classList.toggle('active', type === 'stars');
 
             initParticles();
         }
 
         function initParticles() {
             particles = [];
-            if (currentEffect === 'none') return;
+            if (currentEffect === 'none' || !canvas) return;
 
             let count = currentEffect === 'rain' ? 80 : 50;
             for (let i = 0; i < count; i++) {
@@ -337,28 +352,30 @@
         }
 
         function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            if (currentEffect !== 'none') {
-                ctx.lineWidth = 1.5;
-                particles.forEach(p => {
-                    ctx.beginPath();
-                    if (currentEffect === 'rain') {
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity})`;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p.x - 1, p.y + p.length);
-                        ctx.stroke();
-                        p.y += p.speed;
-                        p.x -= 0.5;
-                        if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
-                    } else if (currentEffect === 'stars') {
-                        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                        ctx.fill();
-                        p.y += p.speed;
-                        if (p.y > canvas.height) { p.y = 0; p.x = Math.random() * canvas.width; }
-                    }
-                });
+                if (currentEffect !== 'none') {
+                    ctx.lineWidth = 1.5;
+                    particles.forEach(p => {
+                        ctx.beginPath();
+                        if (currentEffect === 'rain') {
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity})`;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p.x - 1, p.y + p.length);
+                            ctx.stroke();
+                            p.y += p.speed;
+                            p.x -= 0.5;
+                            if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+                        } else if (currentEffect === 'stars') {
+                            ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                            ctx.fill();
+                            p.y += p.speed;
+                            if (p.y > canvas.height) { p.y = 0; p.x = Math.random() * canvas.width; }
+                        }
+                    });
+                }
             }
             requestAnimationFrame(animateParticles);
         }
@@ -377,4 +394,3 @@
     </script>
 </body>
 </html>
-
