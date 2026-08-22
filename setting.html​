@@ -21,7 +21,7 @@
             background-size: cover;
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 100px; 
+            padding-bottom: 100px; /* ເວ້ນໄລຍະໃຫ້ Dock ພາກສ່ວນខាងລຸ່ມ */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -35,12 +35,15 @@
         .card { 
             background: rgba(17, 24, 39, 0.85); 
             backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             padding: 20px; 
             border-radius: 20px; 
             border: 1px solid rgba(56, 189, 248, 0.2); 
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
             text-align: left; 
+            transition: border-color 0.3s ease;
         }
+        .card:hover { border-color: rgba(56, 189, 248, 0.5); }
 
         .header-title { color: #38bdf8; font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
@@ -61,8 +64,14 @@
             color: #fff;
             transition: 0.3s;
         }
-        .option-btn.active, .theme-box:hover { border-color: #38bdf8; background: #2563eb; color: #fff; }
+        .option-btn.active, .theme-box.active, .theme-box:hover, .option-btn:hover { 
+            border-color: #38bdf8; 
+            background: #2563eb; 
+            color: #fff; 
+            box-shadow: 0 0 10px rgba(37,99,235,0.5); 
+        }
 
+        /* Canvas សម្រាប់បែបផែន Background Effects */
         #effectCanvas {
             position: fixed;
             top: 0;
@@ -83,8 +92,59 @@
             text-decoration: none; 
             font-weight: bold; 
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .back-btn:hover { background: #334155; }
+        .back-btn:hover { background: #334155; transform: translateY(-2px); }
+
+        /* ប៊ូតុង Setting ផ្នែកខាងលើ */
+        .setting-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
+
+        /* ផ្ទាំង Modal Setting (ផ្ទាំងការកំណត់លោត) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-card {
+            background: #111827;
+            border: 2px solid #38bdf8;
+            padding: 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: left;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            color: #fff;
+        }
+        .modal-card h3 { color: #38bdf8; margin-top: 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+        .close-modal { background: none; border: none; color: #f43f5e; font-size: 20px; cursor: pointer; }
+        .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
+        .setting-action-btn:hover { filter: brightness(1.1); }
 
         /* Floating Navigation Dock ផ្នែកខាងក្រោម */
         .dsn-dock {
@@ -94,12 +154,13 @@
             transform: translateX(-50%);
             background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(56, 189, 248, 0.3);
             padding: 10px 20px;
             border-radius: 30px;
             display: flex;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56,189,248,0.2);
             z-index: 999;
         }
         .dock-item {
@@ -114,13 +175,36 @@
         }
         .dock-item:hover {
             background: rgba(56, 189, 248, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
     </style>
 </head>
 <body class="theme-dark">
 
     <canvas id="effectCanvas"></canvas>
+
+    <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
+
+    <div class="modal-overlay" id="settingModal">
+        <div class="modal-card">
+            <h3><span>⚙️ Quick Settings</span> <button class="close-modal" onclick="toggleSetting(false)">✕</button></h3>
+            
+            <div class="setting-group">
+                <label>🎨 រចនាបទពណ៌ (Theme):</label>
+                <div class="options-row">
+                    <div class="theme-box" id="mThemeDark" onclick="setTheme('theme-dark')">Dark</div>
+                    <div class="theme-box" id="mThemeCyber" onclick="setTheme('theme-cyber')">Cyber</div>
+                    <div class="theme-box" id="mThemeOcean" onclick="setTheme('theme-ocean')">Ocean</div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label>🎵 សំឡេងផ្ទៃខាងក្រោយ (BGM):</label>
+                <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                <button class="setting-action-btn" onclick="toggleBgm()" id="bgmBtn">▶️ ចុចបើកតន្ត្រី</button>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         
@@ -138,9 +222,9 @@
             <div class="setting-group">
                 <label>🎨 រចនាបទពណ៌ (Theme):</label>
                 <div class="options-row">
-                    <div class="theme-box" style="color: #38bdf8;" onclick="setTheme('theme-dark')">Dark</div>
-                    <div class="theme-box" style="color: #ff77ff;" onclick="setTheme('theme-cyber')">Cyber</div>
-                    <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
+                    <div class="option-btn" id="themeDark" onclick="setTheme('theme-dark')">Dark</div>
+                    <div class="option-btn" id="themeCyber" onclick="setTheme('theme-cyber')">Cyber</div>
+                    <div class="option-btn" id="themeOcean" onclick="setTheme('theme-ocean')">Ocean</div>
                 </div>
             </div>
         </div>
@@ -169,20 +253,24 @@
         <a href="index.html" class="back-btn">⬅️ ត្រឡប់ទៅទំព័រដើម (Back to Home)</a>
     </div>
 
-    <!-- Floating Dock ផ្នែកខាងក្រោម -->
     <div class="dsn-dock">
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
-        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
-        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
-        <a href="dsn-os.html" class="dock-item" title="ប្រព័ន្ធ OS">💻</a>
+        <a href="library.html" class="dock-item" title="Library DSN">📚</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់" style="color: #38bdf8;">⚙️</a>
+        <a href="library.html" class="dock-item" title="ប្រព័ន្ធ OS">💻</a>
     </div>
 
     <script>
         function setTheme(themeName) {
             document.body.className = themeName;
             localStorage.setItem('dsn_theme', themeName);
+
+            // Update active state on buttons
+            document.querySelectorAll('#themeDark, #mThemeDark').forEach(el => el.classList.toggle('active', themeName === 'theme-dark'));
+            document.querySelectorAll('#themeCyber, #mThemeCyber').forEach(el => el.classList.toggle('active', themeName === 'theme-cyber'));
+            document.querySelectorAll('#themeOcean, #mThemeOcean').forEach(el => el.classList.toggle('active', themeName === 'theme-ocean'));
         }
 
         function switchLanguage(lang) {
@@ -191,6 +279,23 @@
             document.getElementById('langEn').classList.toggle('active', lang === 'en');
         }
 
+        function toggleSetting(show) {
+            document.getElementById('settingModal').style.display = show ? 'flex' : 'none';
+        }
+
+        const bgm = document.getElementById('bgm');
+        const bgmBtn = document.getElementById('bgmBtn');
+        function toggleBgm() {
+            if (bgm.paused) {
+                bgm.play();
+                bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+            } else {
+                bgm.pause();
+                bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
+            }
+        }
+
+        /* --- ប្រព័ន្ធបង្កើតបែបផែន Canvas (Rain & Stars) --- */
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -261,7 +366,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
-            document.body.className = savedTheme;
+            setTheme(savedTheme);
 
             const savedLang = localStorage.getItem('dsn_lang') || 'km';
             switchLanguage(savedLang);
@@ -272,3 +377,4 @@
     </script>
 </body>
 </html>
+
