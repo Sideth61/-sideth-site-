@@ -4,13 +4,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Sideth - DSN Website Online & OS Hub</title>
+    <title>San Sideth - DSN Global Supreme Command OS Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
         body.theme-dark { background-color: #090d16; color: #fff; }
         body.theme-cyber { background-color: #12001c; color: #ff77ff; }
         body.theme-ocean { background-color: #001e2b; color: #76ff03; }
+        body.theme-matrix { background-color: #000; color: #00ff66; }
 
         .logo-container {
             position: fixed;
@@ -20,18 +21,16 @@
             background: linear-gradient(135deg, #38bdf8, #f43f5e);
             padding: 3px;
             border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
             width: 50px;
             height: 50px;
             text-decoration: none;
+            animation: pulseGlow 2s infinite;
         }
-        .logo-container span {
-            font-size: 26px;
-            display: block;
-        }
+        .logo-container span { font-size: 26px; display: block; }
 
         body { 
             font-family: 'Kantumruy Pro', sans-serif; 
@@ -44,7 +43,7 @@
             background-size: cover;
             color: #fff; 
             text-align: center; 
-            padding: 80px 10px 100px 10px; 
+            padding: 80px 10px 110px 10px; 
             margin: 0; 
             display: flex; 
             flex-direction: column; 
@@ -55,78 +54,80 @@
 
         #effectCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 1;
         }
 
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
-        .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        
+        .card { 
+            background: rgba(17, 24, 39, 0.75); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px 20px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(56, 189, 248, 0.25); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(56, 189, 248, 0.05); 
+            text-align: left; 
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
         .header-card { text-align: center; }
         
         .avatar-container { 
-            width: 95px; 
-            height: 95px; 
-            margin: 0 auto 15px auto; 
-            border-radius: 50%; 
-            background: linear-gradient(135deg, #38bdf8, #f43f5e); 
-            padding: 3px; 
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+            width: 105px; height: 105px; margin: 0 auto 15px auto; 
+            border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #f43f5e); 
+            padding: 3px; box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            animation: floatAvatar 4s ease-in-out infinite;
         }
-        .avatar { 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            display: block;
-            background: #1e293b;
-        }
+        .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: #1e293b; }
 
-        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; }
+        h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; text-shadow: 0 0 10px rgba(56,189,248,0.4); }
         .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; }
         p { color: #94a3b8; font-size: 14px; line-height: 1.7; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; margin: 0 0 10px 0; }
-        .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; }
+        .badge { display: inline-block; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; box-shadow: 0 0 15px rgba(2,132,199,0.4); }
         .section-title { color: #38bdf8; font-size: 16px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #2563eb; color: #fff; padding: 14px; margin: 10px 0; text-decoration: none; border-radius: 14px; font-weight: 600; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
-        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4); }
+        .btn:hover { filter: brightness(1.15); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5); }
         .btn-gmail { background: #ea4335; } .btn-apple { background: #4b5563; } .btn-shop { background: #10b981; } .btn-telegram { background: #0088cc; } .btn-youtube { background: #ff0000; }
 
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            text-align: center;
-            margin-top: 15px;
+        /* Global Syndicate Control Card Styles */
+        .syndicate-card {
+            background: linear-gradient(135deg, rgba(0, 20, 10, 0.9), rgba(5, 10, 25, 0.95)) !important;
+            border: 2px solid #00ff66 !important;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.3) !important;
         }
+        .global-box { background: #000; padding: 12px; border-radius: 10px; border: 1px dashed #00ff66; text-align: center; margin-bottom: 12px; }
+        #global-status { color: #00ff66; font-family: 'Courier New', monospace; font-size: 0.9em; font-weight: bold; }
+
+        .search-box {
+            width: 100%; padding: 10px 15px; background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; color: #fff;
+            font-family: 'Kantumruy Pro', sans-serif; font-size: 13px; outline: none; margin-bottom: 15px; transition: 0.3s;
+        }
+        .search-box:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+
+        .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; }
         .app-icon-box {
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid #334155;
-            padding: 12px 8px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 11px;
-            font-weight: 600;
+            background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(51, 65, 85, 0.8);
+            padding: 12px 8px; border-radius: 14px; text-decoration: none; color: #fff;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 11px; font-weight: 600;
         }
         .app-icon-box span { font-size: 24px; transition: transform 0.3s; }
         .app-icon-box:hover { 
-            border-color: #38bdf8; 
-            background: rgba(56, 189, 248, 0.25); 
-            transform: translateY(-6px); 
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+            border-color: #38bdf8; background: rgba(56, 189, 248, 0.25); 
+            transform: translateY(-6px); box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
         }
-        .app-icon-box:hover span { transform: scale(1.15); }
+        .app-icon-box:hover span { transform: scale(1.2) rotate(5deg); }
 
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; box-shadow: 0 0 20px rgba(244,63,94,0.1); }
         .input-field { width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; font-size: 16px; text-align: center; box-sizing: border-box; outline: none; margin-bottom: 15px; }
         .result { margin-top: 15px; font-size: 14px; font-weight: 600; color: #38bdf8; text-align: center; }
 
@@ -134,38 +135,39 @@
             position: fixed; top: 15px; right: 20px; z-index: 1000;
             background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
             color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 20px rgba(56,189,248,0.3);
             transition: 0.3s;
         }
-        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1) rotate(90deg); }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1) rotate(90deg); box-shadow: 0 0 25px rgba(56,189,248,0.8); }
 
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 9999;
+            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); z-index: 9999;
             justify-content: center; align-items: center;
         }
         .modal-card {
             background: #111827; border: 2px solid #38bdf8; padding: 25px;
             border-radius: 20px; width: 90%; max-width: 350px; text-align: left; color: #fff;
+            box-shadow: 0 0 40px rgba(56,189,248,0.3);
         }
         .modal-card h3 { color: #38bdf8; margin-top: 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
         .close-modal { background: none; border: none; color: #f43f5e; font-size: 20px; cursor: pointer; }
         .setting-group { margin: 15px 0; }
         .setting-group label { display: block; color: #94a3b8; font-size: 13px; margin-bottom: 8px; }
-        .options-row { display: flex; gap: 10px; }
-        .theme-box { flex: 1; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; transition: 0.2s; }
-        .theme-box:hover { border-color: #38bdf8; }
+        .options-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .theme-box { flex: 1; padding: 8px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 11px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; transition: 0.2s; }
+        .theme-box:hover { border-color: #38bdf8; background: rgba(56,189,248,0.2); }
         .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.2s; }
-        .setting-action-btn:hover { filter: brightness(1.1); }
+        .setting-action-btn:hover { filter: brightness(1.15); box-shadow: 0 0 15px rgba(16,185,129,0.5); }
 
         .dsn-dock {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px;
-            border-radius: 30px; display: flex; gap: 15px; z-index: 999; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(25px);
+            border: 1px solid rgba(56, 189, 248, 0.4); padding: 10px 22px;
+            border-radius: 35px; display: flex; gap: 15px; z-index: 999; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56,189,248,0.2);
         }
-        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-6px) scale(1.1); }
+        .dock-item { font-size: 22px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.3); transform: translateY(-8px) scale(1.15); text-shadow: 0 0 10px #38bdf8; }
 
         .playlist-select {
             width: 100%; padding: 10px; background: #1e293b; border: 1px solid #334155;
@@ -173,31 +175,23 @@
             margin-bottom: 10px; outline: none;
         }
 
-        /* 🌟 DSN Notification Toast Style */
         #dsnToast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid #38bdf8;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 13px;
-            font-weight: 600;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: rgba(15, 23, 42, 0.95); border: 1px solid #38bdf8; color: #fff;
+            padding: 12px 22px; border-radius: 30px; box-shadow: 0 10px 35px rgba(56, 189, 248, 0.5);
+            z-index: 99999; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600;
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        #dsnToast.show {
-            transform: translateX(-50%) translateY(0);
+        #dsnToast.show { transform: translateX(-50%) translateY(0); }
+        #dsnToast span { font-size: 18px; }
+
+        @keyframes floatAvatar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
-        #dsnToast span {
-            font-size: 18px;
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(56,189,248,0.4); }
+            50% { box-shadow: 0 0 30px rgba(56,189,248,0.8); }
         }
     </style>
 </head>
@@ -205,18 +199,15 @@
 
     <canvas id="effectCanvas"></canvas>
 
-    <!-- 🌟 DSN Notification Toast Popup -->
     <div id="dsnToast">
-        <span>✨</span>
-        <div>សូមស្វាគមន៍មកកាន់ DSN OS Hub របស់ B Sideth!</div>
+        <span>👑</span>
+        <div>សូមស្វាគមន៍ Supreme Commander B Sideth ចូលកាន់ប្រព័ន្ធសកល!</div>
     </div>
 
-    <!-- Logo ខាងលើជារូបសំបុត្រ និងភ្ជាប់ទៅកាន់ Gemini Hub -->
     <a href="https://gemini.google.com/gem/1PBTfIQtpgeFDLfcLfMg7VUwsWcj-oRt_?usp=sharing" target="_blank" class="logo-container" title="Gemini AI Hub">
         <span>✉️</span>
     </a>
 
-    <!-- ⚙️ Quick Settings Modal Button -->
     <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
 
     <div class="modal-overlay" id="settingModal">
@@ -228,6 +219,7 @@
                     <div class="theme-box" style="color: #38bdf8;" onclick="setTheme('theme-dark')">Dark</div>
                     <div class="theme-box" style="color: #ff77ff;" onclick="setTheme('theme-cyber')">Cyber</div>
                     <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
+                    <div class="theme-box" style="color: #00ff66;" onclick="setTheme('theme-matrix')">Matrix</div>
                 </div>
             </div>
             <div class="setting-group">
@@ -239,6 +231,18 @@
     </div>
 
     <div class="container">
+        <!-- 🌐 DSN Global Syndicate Supreme Control Panel (Fake Advanced Look) -->
+        <div class="card syndicate-card">
+            <div class="section-title" style="color: #00ff66; border-color: rgba(0,255,102,0.3);">🌍 DSN GLOBAL SYNDICATE - SUPREME COMMAND</div>
+            <div class="global-box">
+                <p id="global-status">SECURE SATELLITE LINK: ACTIVE [SUPREME MASTER ONLINE]</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn" style="flex:1; background: #065f46; font-size: 12px; margin:0; border:1px solid #34d399;" onclick="launchGlobalTakeover()">🛰️ ផ្ទៀងផ្ទាត់បណ្តាញសកល</button>
+                <button class="btn" style="flex:1; background: #991b1b; font-size: 12px; margin:0; border:1px solid #f87171;" onclick="launchNukeAlert()">⚠️ ប្រព័ន្ធការពារស្វ័យប្រវត្ត</button>
+            </div>
+        </div>
+
         <!-- 🕒 DSN Live System Clock Widget -->
         <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
             <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
@@ -274,14 +278,14 @@
             
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
-            <div class="title-sub">👮មន្ត្រីយោធាជា Content Creators & Developer and Designer 👮</div>
+            <div class="title-sub">👮មន្ត្រីយោធាជា Content Creators & Global Syndicate Master 👮</div>
             
             <div class="wife-box">
                 <h4 style="margin: 0 0 8px 0; color: #f43f5e;">💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
                 <p style="margin: 0; border: none; background: none; padding: 0;">ខំប្រឹងរកលុយដើម្បីកូន <strong>វឌ្ឍនា</strong> និងមាន <strong>លាន ឧស្សាហ៍ (OunSa)</strong> ជាមនុស្ស​ស្រី​ដែលល្អជាងគេលេីពិភពលោក!</p>
             </div>
             
-            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
+            <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងជាមេក្លោងគ្រប់គ្រងប្រព័ន្ធបណ្តាញសម្ងាត់ដ៏ធំបំផុត!</p>
         </div>
 
         <!-- 🚀 DSN OS Quick App Launcher Center -->
@@ -289,24 +293,26 @@
             <div class="section-title">📂 DSN OS App Launcher Center</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កម្មវិធី និងឯកសារទាំងអស់ត្រូវបានតភ្ជាប់រួចរាល់៖</p>
             
-            <div class="app-grid">
-                <a href="explorer.html" class="app-icon-box"><span>📁</span> File Explorer</a>
-                <a href="appstore.html" class="app-icon-box"><span>🛒</span> App Store</a>
-                <a href="musicdsn.html" class="app-icon-box"><span>🎧</span> DSN Music</a>
-                <a href="browser.html" class="app-icon-box"><span>🌐</span> Mini Browser</a>
-                <a href="email_tool.html" class="app-icon-box"><span>📧</span> Bulk Email</a>
-                <a href="raccoon_game.html" class="app-icon-box"><span>🦝</span> Raccoon Game</a>
-                <a href="social_tools.html" class="app-icon-box"><span>🚀</span> Social Tools</a>
-                <a href="sms_tool.html" class="app-icon-box"><span>📱</span> SMS Verify</a>
-                <a href="bookdsn.html" class="app-icon-box"><span>📚</span> Digital Library</a>
-                <a href="profile.html" class="app-icon-box"><span>👤</span> Profile VIP</a>
-                <a href="setting.html" class="app-icon-box"><span>⚙️</span> Settings</a>
-                <a href="gemini_tool.html" class="app-icon-box" style="border-color: #38bdf8; background: rgba(56,189,248,0.15);"><span>✨</span> AI Tool</a>
-                <a href="password_tool.html" class="app-icon-box"><span>🔐</span> Pass Analyzer</a>
-                <a href="tiktok_tool.html" class="app-icon-box"><span>🇺🇸</span> TikTok US Tool</a>
-                <a href="meta_verified_tool.html" class="app-icon-box"><span>☑️</span> Meta Verified</a>
+            <input type="text" id="appSearch" class="search-box" placeholder="🔍 ស្វែងរកកម្មវិធីក្នុងប្រព័ន្ធ..." onkeyup="filterApps()">
+
+            <div class="app-grid" id="appGridContainer">
+                <a href="explorer.html" class="app-icon-box" data-name="file explorer ឯកសារ"><span>📁</span> File Explorer</a>
+                <a href="appstore.html" class="app-icon-box" data-name="app store ហាងកម្មវិធី"><span>🛒</span> App Store</a>
+                <a href="musicdsn.html" class="app-icon-box" data-name="dsn music តន្ត្រី"><span>🎧</span> DSN Music</a>
+                <a href="browser.html" class="app-icon-box" data-name="mini browserអ៊ីនធឺណិត"><span>🌐</span> Mini Browser</a>
+                <a href="email_tool.html" class="app-icon-box" data-name="bulk email អ៊ីមែល"><span>📧</span> Bulk Email</a>
+                <a href="raccoon_game.html" class="app-icon-box" data-name="raccoon game ហ្គេម"><span>🦝</span> Raccoon Game</a>
+                <a href="social_tools.html" class="app-icon-box" data-name="social tools បណ្តាញសង្គម"><span>🚀</span> Social Tools</a>
+                <a href="sms_tool.html" class="app-icon-box" data-name="sms verify សារ"><span>📱</span> SMS Verify</a>
+                <a href="bookdsn.html" class="app-icon-box" data-name="digital library បណ្ណាល័យ"><span>📚</span> Digital Library</a>
+                <a href="profile.html" class="app-icon-box" data-name="profile vip ប្រវត្តិរូប"><span>👤</span> Profile VIP</a>
+                <a href="setting.html" class="app-icon-box" data-name="settings ការកំណត់"><span>⚙️</span> Settings</a>
+                <a href="gemini_tool.html" class="app-icon-box" data-name="ai tool ហ្គេមីនី" style="border-color: #38bdf8; background: rgba(56,189,248,0.15);"><span>✨</span> AI Tool</a>
+                <a href="password_tool.html" class="app-icon-box" data-name="pass analyzer លេខសម្ងាត់"><span>🔐</span> Pass Analyzer</a>
+                <a href="tiktok_tool.html" class="app-icon-box" data-name="tiktok us tool ទីកតុក"><span>🇺🇸</span> TikTok US Tool</a>
+                <a href="meta_verified_tool.html" class="app-icon-box" data-name="meta verified ហ្វេសប៊ុក"><span>☑️</span> Meta Verified</a>
                 
-                <a href="library.html" class="app-icon-box" style="border-color: #10b981; background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(6,182,212,0.3)); grid-column: span 3; padding: 18px; font-size: 16px; font-weight: 700; color: #34d399; box-shadow: 0 4px 15px rgba(16,185,129,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
+                <a href="library.html" class="app-icon-box" data-name="library កម្មវិធីជាច្រើនទៀត" style="border-color: #10b981; background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(6,182,212,0.3)); grid-column: span 3; padding: 18px; font-size: 16px; font-weight: 700; color: #34d399; box-shadow: 0 4px 15px rgba(16,185,129,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
                     <span style="font-size: 32px; margin-bottom: 2px;">💻</span> 📗ចូលទៅកាន់កម្មវិធីជាច្រើនទៀត📗
                 </a>
             </div>
@@ -344,7 +350,6 @@
     </div>
 
     <script>
-        // 🌟 Show DSN Toast on Load
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('dsn_theme') || 'theme-dark';
             document.body.className = savedTheme;
@@ -353,12 +358,21 @@
                 const toast = document.getElementById('dsnToast');
                 if(toast) {
                     toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 4000);
+                    setTimeout(() => { toast.classList.remove('show'); }, 4000);
                 }
             }, 1000);
         });
+
+        function launchGlobalTakeover() {
+            const status = document.getElementById('global-status');
+            status.innerText = "CONNECTING TO 195 SATELLITES...";
+            setTimeout(() => status.innerText = "BYPASSING GLOBAL FIREWALLS...", 1200);
+            setTimeout(() => status.innerText = "ACCESS GRANTED: WELCOME SUPREME MASTER B SIDETH! 👑🌍", 2500);
+        }
+
+        function launchNukeAlert() {
+            alert("⚠️ WARNING: Global Syndicate Defense Grid is Fully Operational under B Sideth's Command! No unauthorized access allowed! 🚨💻");
+        }
 
         function changeSong() {
             const selector = document.getElementById('songSelector');
@@ -367,9 +381,7 @@
             
             source.src = selector.value;
             audio.load();
-            audio.play().catch(e => {
-                console.log("Auto-play blocked or waiting for user interaction.");
-            });
+            audio.play().catch(e => { console.log("Auto-play blocked."); });
         }
 
         function updateClock() {
@@ -443,6 +455,21 @@
             }
         }
 
+        function filterApps() {
+            let input = document.getElementById('appSearch').value.toLowerCase();
+            let container = document.getElementById('appGridContainer');
+            let items = container.getElementsByClassName('app-icon-box');
+
+            for (let i = 0; i < items.length; i++) {
+                let name = items[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -453,13 +480,13 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 50; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                speed: Math.random() * 0.5 + 0.2,
+                speed: Math.random() * 0.6 + 0.2,
                 radius: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.2
+                opacity: Math.random() * 0.6 + 0.2
             });
         }
 
@@ -467,7 +494,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 ctx.beginPath();
-                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.fill();
                 p.y += p.speed;
