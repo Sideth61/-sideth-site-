@@ -100,20 +100,6 @@
         .app-icon-box span { font-size: 24px; }
         .app-icon-box:hover { border-color: #38bdf8; background: rgba(56, 189, 248, 0.2); transform: translateY(-4px); }
 
-        .app-card-item {
-            display: flex;
-            flex-direction: column;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 15px;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            gap: 12px;
-        }
-        .app-icon { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .app-title { color: #fff; font-size: 15px; font-weight: 600; }
-        .app-desc { color: #94a3b8; font-size: 12px; }
-
         .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
         .input-field { width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; font-size: 16px; text-align: center; box-sizing: border-box; outline: none; margin-bottom: 15px; }
         .result { margin-top: 15px; font-size: 14px; font-weight: 600; color: #38bdf8; text-align: center; }
@@ -181,15 +167,6 @@
                     <div class="theme-box" style="color: #76ff03;" onclick="setTheme('theme-ocean')">Ocean</div>
                 </div>
             </div>
-​                   <div class="setting-group" style="margin-bottom: 15px;">
-                <label style="color: #94a3b8; font-size: 12px; display: block; margin-bottom: 5px;">✨ បែបផែនផ្ទៃខាងក្រោយ:</label>
-                <div class="options-row">
-                    <div class="option-btn" id="effNone" onclick="setEffect('none')">បិទ</div>
-                    <div class="option-btn" id="effRain" onclick="setEffect('rain')">ភ្លៀង</div>
-                    <div class="option-btn" id="effStars" onclick="setEffect('stars')">ផ្កាយ</div>
-                </div>
-            </div>
-
             <div class="setting-group">
                 <label>🎵 សំឡេងផ្ទៃខាងក្រោយ (BGM):</label>
                 <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
@@ -205,7 +182,7 @@
             <div id="liveDate" style="font-size: 13px; color: #94a3b8; margin-top: 5px;">DSN OS System Active • Pailin, Cambodia</div>
         </div>
 
-        <!-- 🎧 DSN Music & Audio Hub (ដាក់បញ្ចូលបទចម្រៀងទាំង 5) -->
+        <!-- 🎧 DSN Music & Audio Hub -->
         <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(17, 24, 39, 0.9)); border-color: rgba(139, 92, 246, 0.4);">
             <div class="section-title" style="color: #c084fc; margin-bottom: 10px;">🎧 DSN Music & Audio Visualizer Hub</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px; font-size: 13px; color: #94a3b8;">ជ្រើសរើសបទចម្រៀងផ្ទាល់ខ្លួនរបស់ B Sideth៖</p>
@@ -230,7 +207,8 @@
             <div class="avatar-container"><div class="avatar">🛡️</div></div>
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
-            <div class="title-sub">👮មន្ត្រីយោធាជួរមុខ & Content Creator👮</div>
+            <div class="title-sub">👮មន្ត្រីយោធាជា Content Creators & Developer and Designer
+👮</div>
             
             <div class="wife-box">
                 <h4 style="margin: 0 0 8px 0; color: #f43f5e;">💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
@@ -261,7 +239,11 @@
                 <a href="password_tool.html" class="app-icon-box"><span>🔐</span> Pass Analyzer</a>
                 <a href="tiktok_tool.html" class="app-icon-box"><span>🇺🇸</span> TikTok US Tool</a>
                 <a href="meta_verified_tool.html" class="app-icon-box"><span>☑️</span> Meta Verified</a>
-                <a href="library.html" class="app-icon-box" style="border-color: #10b981; background: rgba(16,185,129,0.15); grid-column: span 3;"><span>📚</span> ចូលទៅកាន់ Library DSN ពេញលេញ</a>
+                
+                <!-- 🌟 កែប្រែប៊ូតុងនេះឱ្យធំ ស្អាត និងទាក់ទាញខ្លាំង -->
+                <a href="library.html" class="app-icon-box" style="border-color: #10b981; background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(6,182,212,0.3)); grid-column: span 3; padding: 18px; font-size: 16px; font-weight: 700; color: #34d399; box-shadow: 0 4px 15px rgba(16,185,129,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
+                    <span style="font-size: 32px; margin-bottom: 2px;">💻</span> 📗ចូលទៅកាន់កម្មវិធីជាច្រើនទៀត 📗
+                </a>
             </div>
         </div>
 
@@ -292,9 +274,9 @@
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
         <a href="library.html" class="dock-item" title="Library DSN" style="color: #10b981;">📚</a>
-        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
-​        <a href="library.html" class="dock-item" title="កម្មវិធី​">💻</a>
-​    </div>
+        <a href="setting.html" class="dock-item" title="ການកំណត់">⚙️</a>
+        <a href="library.html" class="dock-item" title="កម្មវិធី">💻</a>
+    </div>
 
     <script>
         function changeSong() {
