@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 បណ្ណាល័យចម្រៀង សៀវភៅ និងហ្គេម PS2 💻</title>
+    <title>📚 បណ្ណាល័យ និងកន្លែងឧបករណ៍ទាំងស្រុង (DSN Library Hub)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
@@ -17,63 +17,21 @@
             background-attachment: fixed;
             background-size: cover;
             color: #fff; 
-            padding: 20px; 
+            padding: 20px 10px 90px 10px; 
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
             min-height: 100vh;
-            padding-bottom: 90px;
         }
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; }
         .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 20px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
         .title, .section-title { color: #38bdf8; font-size: 18px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
         
-        /* ផ្នែក YouTube Video Embed */
         .video-container { 
-            position: relative; 
-            width: 100%; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            margin-bottom: 15px; 
-            background: #000;
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; margin-bottom: 15px; background: #000;
         }
-        .video-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: 0; 
-            border-radius: 12px; 
-        }
-
-        /* ផ្នែក MP3 Playlist Items */
-        .song-item { 
-            background: rgba(30, 41, 59, 0.7); 
-            padding: 12px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            margin-bottom: 8px; 
-            transition: 0.3s; 
-            color: #cbd5e1; 
-            font-size: 14px;
-            border: 1px solid transparent;
-        }
-        .song-item:hover { background: rgba(56, 189, 248, 0.1); color: #fff; border-color: rgba(56, 189, 248, 0.4); }
-        .song-item.active { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); font-weight: 600; }
-
-        .project-item {
-            background: #0f172a;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #334155;
-        }
-        .project-item h5 { margin: 0 0 5px 0; color: #f43f5e; font-size: 15px; }
-        .project-item span { color: #94a3b8; font-size: 13px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #2563eb; text-align: center; color: #fff; border-radius: 14px; text-decoration: none; font-weight: 600; box-sizing: border-box; margin-top: 10px; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s ease; }
         .btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
@@ -82,50 +40,86 @@
         .btn-gtav { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-ps2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: 1px solid #60a5fa; }
         .btn-browser { background: linear-gradient(135deg, #4ecca3, #0f3460); border: 1px solid #4ecca3; }
+        .btn-raccoon { background: linear-gradient(135deg, #8b5cf6, #ec4899); border: 1px solid #f43f5e; color: #fff; }
+        .btn-social { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; border: 1px solid #38bdf8; }
+        .btn-money { background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: 1px solid #34d399; font-weight: bold; }
+        .btn-gemini { background: linear-gradient(135deg, #2563eb, #9333ea); color: #fff; border: 1px solid #c084fc; font-weight: bold; }
         .btn-back { background: #4b5563; }
+        
+        .project-item { background: #0f172a; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #334155; }
+        .project-item h5 { margin: 0 0 5px 0; color: #f43f5e; font-size: 15px; }
+        .project-item span { color: #94a3b8; font-size: 13px; }
         p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0 0 10px 0; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- 🎵 YouTube & MP3 Hub -->
         <div class="card">
             <div class="title">🎵 Deth DSN - Music & YouTube Channel</div>
             <p>ទស្សនាស្នាដៃវីដេអូ និងស្តាប់បទចម្រៀង AI របស់ B Sideth❤️️ ផ្ទាល់ក្នុងវេបសាយ!</p>
             
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU?modestbranding=1&rel=0&playsinline=1" 
-                        title="YouTube video player" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/Ra8mVoAwNfU?modestbranding=1&rel=0&playsinline=1" allowfullscreen></iframe>
             </div>
 
             <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube ផ្លូវការ (@sideth99)</a>
-
-            <div style="color: #38bdf8; font-weight: bold; margin: 20px 0 10px 0; font-size: 15px;">🎧 DSN MP3 Player</div>
-            <audio id="audioPlayer" controls style="width: 100%; accent-color: #38bdf8; margin-bottom: 10px;"></audio>
-            <div id="playlist" class="playlist"></div>
         </div>
 
-        <!-- 🎮 បន្ថែមផ្នែក PS2 Game Hub ថ្មីនៅទីនេះ -->
+        <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
+            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែវៃភ្លាមៗនៅទីនេះ៖</p>
+            <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីនេះ..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
+            <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
+        </div>
+
+        <!-- 💰 DSN VIP Money-Making & Digital Shop Tool -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(16, 185, 129, 0.4);">
+            <div class="section-title" style="color: #10b981;">💰 DSN VIP Money-Making & Digital Shop</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រព័ន្ធស្វ័យប្រវត្តិសម្រាប់រកចំណូលពីការលក់គណនី និងសេវាកម្មអនឡាញរបស់ B Sideth៖</p>
+            <a href="https://m.me/deth61" target="_blank" class="btn btn-money">🛒 កុម្ម៉ង់ទិញ ឬលក់សេវាកម្ម (Auto Connect)</a>
+        </div>
+
+        <!-- 🎯 DSN Facebook Growth Tracker (100-200 Goal) -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
+            <div class="section-title" style="color: #ec4899;">🎯 Facebook 100-200 Goal Tracker</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px; color: #f9a8d4;">ជំហានដំបូងដើម្បីភាពជោគជ័យ៖ សំខាន់ជាងចំនួន គឺការគាំទ្រពិតប្រាកដ!</p>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://www.facebook.com/deth61" target="_blank" class="btn" style="flex:1; background: #ec4899;">🚀 បង្កើន Follower</a>
+                <a href="social_tools.html" class="btn" style="flex:1; background: #4b5563;">⚙️ គ្រប់គ្រងផុស</a>
+            </div>
+        </div>
+
+        <!-- ✨ Gemini AI Tool Integration Card -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
+            <div class="section-title" style="color: #38bdf8;">✨ DSN Gemini AI Assistant Hub</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px;">ចូលទៅកាន់ជំនួយការ AI ផ្ទាល់ខ្លួនរបស់ B Sideth សម្រាប់ជំនួយការសរសេរកូដ៖</p>
+            <a href="gemini_tool.html" class="btn btn-gemini">🚀 បើកប្រើប្រាស់ Gemini AI Tool</a>
+        </div>
+
+        <!-- 🚀 DSN Social Tools & Growth Hub Section -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
+            <div class="section-title" style="color: #38bdf8;">🚀 DSN Social Growth & Booster Tools</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 15px;">ចូលទៅកាន់ផ្ទាំងគ្រប់គ្រង និងពិសោធន៍កូដ Social Media Tools របស់ B Sideth៖</p>
+            <a href="social_tools.html" class="btn btn-social">🚀 ចូលទៅកាន់ Social Tools Center</a>
+        </div>
+
+        <!-- 🦝 Raccoon Cloud Gaming Hub Section -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
+            <div class="section-title" style="color: #ec4899;">🦝 Raccoon Cloud Gaming Portal</div>
+            <p style="text-align: center; border-left: none; margin-bottom: 15px;">ចូលទៅកាន់ប្រព័ន្ធស្ទ្រីមហ្គេម Cloud ផ្ទាល់ជាមួយ Raccoon Game Platform៖</p>
+            <a href="raccoon_game.html" class="btn btn-raccoon">🚀 លេងហ្គេមຜ່ານ Raccoon Cloud Gaming (DSN OS)</a>
+        </div>
+
+        <!-- 🎮 PlayStation 2 Classic Hub & GTA/COD -->
         <div class="card" style="border-color: #3b82f6;">
-            <div class="title" style="color: #60a5fa;">🕹️ PlayStation 2 (PS2) Classic Hub</div>
-            <p>រំលឹកអនុស្សាវរីយ៍ជាមួយហ្គេមទសវត្សរ៍ទី 2000 ដ៏ល្បីល្បាញលើប្រព័ន្ធ PS2 (GTA San Andreas, God of War, PES និងជាច្រើនទៀត)!</p>
-            <div class="project-item">
-                <h5>💿 PS2 Retro Gaming Vault</h5>
-                <span>បណ្តុំរឿងរ៉ាវ វីដេអูกេម និងតំណភ្ជាប់សម្រាប់កម្សាន្ត។</span>
-            </div>
+            <div class="title" style="color: #60a5fa;">🕹️ PlayStation 2 (PS2) & Game Hub</div>
+            <p>រំលឹកអនុស្សាវរីយ៍ជាមួយហ្គេមទសវត្សរ៍ទី 2000 ដ៏ល្បីល្បាញ (GTA San Andreas, Call of Duty, God of War និង PS2 Classic)!</p>
             <a href="ps2.html" class="btn btn-ps2">🎮 ចូលទៅកាន់ទំព័រ PS2 Hub របស់ខ្ញុំ</a>
-        </div>
-
-        <div class="card">
-            <div class="section-title">🎮 បន្ទប់ហ្គេមកម្សាន្តកម្រិត AI 🎯</div>
-            <div class="project-item">
-                <h5>🕹️ ហ្គេមសប្បាយៗ បន្ធូរអារម្មណ៍✨</h5>
-                <span>រីករាយជាមួយហ្គេមកម្សាន្តខ្នាតតូច លេងសប្បាយៗពេលទំនេរ។</span>
-            </div>
-            <a href="games.html" class="btn" style="background: linear-gradient(135deg, #f43f5e, #fb7185);">🎮 ចុចចូលលេងហ្គេមសប្បាយៗ</a>
+            <a href="Grand Theft Auto.html" class="btn btn-gtav">🚀 Grand Theft Auto (GTA) Center</a>
+            <a href="Call of Duty.html" class="btn" style="background: linear-gradient(135deg, #10b981, #059669);">🎯 Call of Duty (COD) Center</a>
         </div>
 
         <div class="card">
@@ -134,43 +128,24 @@
             <a href="bookdsn.html" class="btn btn-book">📖 ចូលអានសៀវភៅទីនេះ</a>
         </div>
 
-        <div class="card">
-            <div class="title">🎮 GTA5 Mobile & Browser</div>
-            <p>លេងកម្សាន្តសប្បាយៗជាមួយហ្គេម GTA5 ដ៏ល្បីល្បាញ និងប្រើប្រាស់ Mini Browser។</p>
-            <a href="https://apkhosto.com/Mw8YhP6utLlO0Gp/file" target="_blank" class="btn btn-gtav">🚀 Play Now ( GTA5 )</a>
-            <a href="browse.html" class="btn btn-browser">🌐 បើកប្រើប្រាស់ Mini Browser</a>
-        </div>
-
         <div class="card" style="padding: 15px; text-align: center;">
             <a href="index.html" class="btn btn-back">⬅️ ត្រឡប់ទៅទំព័រដើមវិញ (Home)</a>
         </div>
     </div>
 
     <script>
-        const songs = [
-            { title: "🎖️ ទាហ៊ានមុំបី ភ្នំ750", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { title: "💔 Blaming All Men", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
-        ];
-        
-        const audio = document.getElementById('audioPlayer');
-        const playlist = document.getElementById('playlist');
-
-        songs.forEach((song, index) => {
-            const div = document.createElement('div');
-            div.className = 'song-item';
-            div.innerText = song.title;
-            div.onclick = () => { 
-                audio.src = song.src; 
-                audio.play(); 
-                document.querySelectorAll('.song-item').forEach(el => el.classList.remove('active'));
-                div.classList.add('active');
-            };
-            playlist.appendChild(div);
-        });
-
-        if(songs.length > 0) {
-            audio.src = songs[0].src;
+        function saveQuickNote() {
+            const noteText = document.getElementById('quickNoteInput').value;
+            localStorage.setItem('dsn_quick_note', noteText);
+            alert('💾 បានរក្សាទុកកត់ត្រារបស់បងរួចរាល់!');
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedNote = localStorage.getItem('dsn_quick_note');
+            if (savedNote) {
+                document.getElementById('quickNoteInput').value = savedNote;
+            }
+        });
     </script>
 </body>
 </html>
