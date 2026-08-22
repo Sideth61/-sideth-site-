@@ -184,6 +184,7 @@
         <img src="IMG_3350.jpeg" alt="Logo">
     </div>
 
+    <!-- ⚙️ Quick Settings Modal Button (ចុចកងចក្រចេញផ្ទាំង Setting នេះ) -->
     <button class="setting-btn" onclick="toggleSetting(true)" title="Quick Settings">⚙️</button>
 
     <div class="modal-overlay" id="settingModal">
@@ -206,27 +207,6 @@
     </div>
 
     <div class="container">
-        <!-- ⚙️ Quick Settings Card (ដាក់មកវិញទីតាំងដើម) -->
-        <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(17, 24, 39, 0.9)); border-color: rgba(56, 189, 248, 0.4);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">⚙️</span>
-                    <span style="font-weight: 700; color: #f43f5e; font-size: 16px;">Quick Settings</span>
-                </div>
-                <button onclick="this.closest('.card').style.display='none'" style="background: rgba(255,255,255,0.1); border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer;">✕</button>
-            </div>
-            <div style="margin-bottom: 10px; font-size: 14px; color: #38bdf8;">🎨 រចនាបទពណ៌ (Theme):</div>
-            <div style="display: flex; gap: 15px; margin-bottom: 15px; font-size: 14px; font-weight: 600;">
-                <span style="color: #38bdf8; cursor: pointer;" onclick="setTheme('theme-dark')">Dark</span>
-                <span style="color: #ff77ff; cursor: pointer;" onclick="setTheme('theme-cyber')">Cyber</span>
-                <span style="color: #76ff03; cursor: pointer;" onclick="setTheme('theme-ocean')">Ocean</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(15, 23, 42, 0.6); padding: 10px 14px; border-radius: 12px;">
-                <span style="font-size: 13px; color: #94a3b8;">🎵 សំឡេងផ្ទៃខាងក្រោយ (BGM):</span>
-                <button onclick="toggleBgm()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 12px; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif;">▶️ ចុចបើកតន្ត្រី</button>
-            </div>
-        </div>
-
         <!-- 🕒 DSN Live System Clock Widget & Live Follower -->
         <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
             <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
@@ -236,13 +216,13 @@
             </div>
         </div>
 
-        <!-- 🎧 DSN Music & Audio Hub (ដាក់មកវិញទីតាំងដើម) -->
+        <!-- 🎧 DSN Music & Audio Hub (ជួសជុលតន្ត្រីឲ្យលឺស្រួលបួល) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(17, 24, 39, 0.9)); border-color: rgba(139, 92, 246, 0.4);">
             <div class="section-title" style="color: #c084fc; margin-bottom: 10px;">🎧 DSN Music & Audio Visualizer Hub</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px; font-size: 13px; color: #94a3b8;">ស្ដាប់កម្សាន្តបទចម្រៀង ឬបទដែលបងកំពុងកែសម្រួលផ្ទាល់៖</p>
             <div style="background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 12px; text-align: center;">
                 <div style="font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px;">🎶 បទ៖ ទាហានមុំបី ភ្នំ750 / Blaming All Men</div>
-                <audio controls style="width: 100%; border-radius: 8px;">
+                <audio id="mainAudio" controls preload="auto" style="width: 100%; border-radius: 8px;">
                     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
                     Browser របស់បងមិនគាំទ្រសំឡេងនេះទេ។
                 </audio>
@@ -265,7 +245,7 @@
 
         <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
-            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាการងារ)</div>
+            <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែវៃភ្លាមៗនៅទីនេះ៖</p>
             <textarea id="quickNoteInput" placeholder="សរសេរការងារ ឬគំនិតនៅទីនេះ..." style="width: 100%; height: 80px; padding: 12px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #fff; box-sizing: border-box; resize: vertical; font-family: 'Kantumruy Pro', sans-serif; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea>
             <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
@@ -451,7 +431,7 @@
             let ampm = hours >= 12 ? 'PM' : 'AM';
             
             hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
+            hours = hours ? hours : 12;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             
@@ -566,8 +546,11 @@
         const bgmBtn = document.getElementById('bgmBtn');
         function toggleBgm() {
             if (bgm.paused) {
-                bgm.play();
-                bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+                bgm.play().then(() => {
+                    bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+                }).catch(e => {
+                    alert("សូមចុចលើអេក្រង់ម្ដងទៀតដើម្បីអនុញ្ញាតឱ្យចាក់សំឡេង!");
+                });
             } else {
                 bgm.pause();
                 bgmBtn.innerText = "▶️ ចុចបើកតន្ត្រី";
