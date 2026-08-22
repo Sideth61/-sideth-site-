@@ -66,8 +66,25 @@
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
         .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
         .header-card { text-align: center; }
-        .avatar-container { width: 90px; height: 90px; margin: 0 auto 15px auto; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #f43f5e); padding: 3px; }
-        .avatar { width: 100%; height: 100%; border-radius: 50%; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+        
+        .avatar-container { 
+            width: 95px; 
+            height: 95px; 
+            margin: 0 auto 15px auto; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, #38bdf8, #f43f5e); 
+            padding: 3px; 
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+        }
+        .avatar { 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            display: block;
+            background: #1e293b;
+        }
+
         h1 { color: #38bdf8; font-size: 24px; margin: 10px 0 5px 0; font-weight: 700; }
         .title-sub { color: #f43f5e; font-size: 14px; font-weight: 600; margin-bottom: 15px; }
         p { color: #94a3b8; font-size: 14px; line-height: 1.7; background: rgba(15, 23, 42, 0.5); padding: 12px 16px; border-radius: 12px; border-left: 3px solid #38bdf8; margin: 0 0 10px 0; }
@@ -152,7 +169,7 @@
 
     <canvas id="effectCanvas"></canvas>
 
-    <!-- Logo ខាងលើប្តូរទៅជារូបសំបុត្រ និងភ្ជាប់ទៅកាន់ Gemini របស់បង -->
+    <!-- Logo ខាងលើជារូបសំបុត្រ និងភ្ជាប់ទៅកាន់ Gemini Hub -->
     <a href="https://gemini.google.com/gem/1PBTfIQtpgeFDLfcLfMg7VUwsWcj-oRt_?usp=sharing" target="_blank" class="logo-container" title="Gemini AI Hub">
         <span>✉️</span>
     </a>
@@ -188,13 +205,13 @@
     </div>
 
     <div class="container">
-        <!-- 🕒 DSN Live System Clock Widget & Live Follower -->
+        <!-- 🕒 DSN Live System Clock Widget -->
         <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
             <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
             <div id="liveDate" style="font-size: 13px; color: #94a3b8; margin-top: 5px;">DSN OS System Active • Pailin, Cambodia</div>
         </div>
 
-        <!-- 🎧 DSN Music & Audio Hub -->
+        <!-- 🎧 DSN Music Hub -->
         <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(17, 24, 39, 0.9)); border-color: rgba(139, 92, 246, 0.4);">
             <div class="section-title" style="color: #c084fc; margin-bottom: 10px;">🎧 DSN Music & Audio Visualizer Hub</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px; font-size: 13px; color: #94a3b8;">ជ្រើសរើសបទចម្រៀងផ្ទាល់ខ្លួនរបស់ B Sideth៖</p>
@@ -215,12 +232,16 @@
             </div>
         </div>
 
+        <!-- Profile Header Card -->
         <div class="card header-card">
-            <div class="avatar-container"><div class="avatar">🛡️</div></div>
+            <!-- ត្រង់ចំណុចនេះបានប្តូរទៅជារូប app3.png រួចរាល់ -->
+            <div class="avatar-container">
+                <img src="app3.png" alt="San Sideth Profile" class="avatar">
+            </div>
+            
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
             <h1>សួស្តី! ខ្ញុំបាទឈ្មោះ សាន ស៊ីដេត</h1>
-            <div class="title-sub">👮មន្ត្រីយោធាជា Content Creators & Developer and Designer
-👮</div>
+            <div class="title-sub">👮មន្ត្រីយោធាជា Content Creators & Developer and Designer 👮</div>
             
             <div class="wife-box">
                 <h4 style="margin: 0 0 8px 0; color: #f43f5e;">💖 ម្លប់សុភមង្គលពិតប្រាកដ 💜</h4>
@@ -285,7 +306,7 @@
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
         <a href="library.html" class="dock-item" title="Library DSN" style="color: #10b981;">📚</a>
-        <a href="setting.html" class="dock-item" title="ການកំណត់">⚙️</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
         <a href="library.html" class="dock-item" title="កម្មវិធី">💻</a>
     </div>
 
