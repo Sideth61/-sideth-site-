@@ -6,7 +6,7 @@
     <title>DSN Meta Verified & PR Blueprint Tool</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
-        body { font-family: 'Kantumruy Pro', sans-serif; background: #090d16; color: #fff; padding: 20px; text-align: center; margin: 0; }
+        body { font-family: 'Kantumruy Pro', sans-serif; background: #090d16; color: #fff; padding: 20px; text-align: center; margin: 0; padding-bottom: 90px; }
         .box { background: rgba(17, 24, 39, 0.9); padding: 25px; border-radius: 20px; max-width: 550px; margin: auto; border: 1px solid #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: left; }
         h2 { color: #38bdf8; text-align: center; margin-top: 0; }
         p, li { color: #94a3b8; font-size: 14px; line-height: 1.6; }
@@ -16,6 +16,17 @@
         .badge-pro { background: linear-gradient(135deg, #2563eb, #38bdf8); color: white; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
         .btn-back { display: block; text-align: center; background: #2563eb; color: #fff; padding: 12px; margin-top: 20px; text-decoration: none; border-radius: 10px; font-weight: bold; }
         .btn-back:hover { background: #1d4ed8; }
+
+        /* Floating Dock */
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; transition: 0.3s; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body>
@@ -48,10 +59,17 @@
         </div>
 
         <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); padding: 12px; border-radius: 10px; margin-top: 15px;">
-            <p style="color: #38bdf8; margin: 0; font-size: 13px;">💡 <b>ចំណាំពី B Sideth:</b> គ្មាន Tool ណាមួយสามารถ Hack យកគ្រីសខៀវដោយឥតគិតថ្លៃបានឡើយ។ ការប្រើប្រាស់ Meta Verified ផ្លូវការ គឺជាមทางเลือกដែលសុវត្ថិភាព និងស្របច្បាប់បំផុតសម្រាប់ Creator អាជីព!</p>
+            <p style="color: #38bdf8; margin: 0; font-size: 13px;">💡 <b>ចំណាំពី B Sideth:</b> គ្មាន Tool ណាមួយអាច Hack យកគ្រីសខៀវដោយឥតគិតថ្លៃได้ឡើយ។ ការប្រើប្រាស់ Meta Verified ផ្លូវការ គឺជាមធ្យោបាយដែលសុវត្ថិភាព និងស្របច្បាប់បំផុតសម្រាប់ Creator អាជីព!</p>
         </div>
 
         <a href="index.html" class="btn-back">🏠 ត្រឡប់ទៅ DSN OS វិញ</a>
     </div>
+
+    <!-- Floating Dock -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="facebook.html" class="dock-item" title="ហ្វេសប៊ុក">📘</a>
+        <a href="money_tool.html" class="dock-item" title="Money Tool">💰</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+    </div>
 </body>
-</html>
