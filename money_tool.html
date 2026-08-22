@@ -6,7 +6,7 @@
     <title>DSN Money-Making & Digital Shop Hub</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
-        body { font-family: 'Kantumruy Pro', sans-serif; background: #090d16; color: #fff; padding: 20px; text-align: center; margin: 0; }
+        body { font-family: 'Kantumruy Pro', sans-serif; background: #090d16; color: #fff; padding: 20px; text-align: center; margin: 0; padding-bottom: 90px; }
         .box { background: rgba(17, 24, 39, 0.9); padding: 25px; border-radius: 20px; max-width: 550px; margin: auto; border: 1px solid #10b981; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: left; }
         h2 { color: #10b981; text-align: center; margin-top: 0; }
         p, li { color: #94a3b8; font-size: 14px; line-height: 1.6; }
@@ -20,6 +20,17 @@
         .input-field { width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: 'Kantumruy Pro', sans-serif; margin: 8px 0; box-sizing: border-box; }
         .btn-back { display: block; text-align: center; background: #2563eb; color: #fff; padding: 12px; margin-top: 20px; text-decoration: none; border-radius: 10px; font-weight: bold; }
         .btn-back:hover { background: #1d4ed8; }
+
+        /* Floating Dock */
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; transition: 0.3s; }
+        .dock-item:hover { background: rgba(16, 185, 129, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body>
@@ -68,13 +79,21 @@
         <a href="index.html" class="btn-back">🏠 ត្រឡប់ទៅ DSN OS វិញ</a>
     </div>
 
+    <!-- Floating Dock -->
+    <div class="dsn-dock">
+        <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+        <a href="money_tool.html" class="dock-item" title="Money Tool" style="background: rgba(16, 185, 129, 0.2); border-radius: 50%;">💰</a>
+        <a href="facebook.html" class="dock-item" title="ហ្វេសប៊ុក">📘</a>
+        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
+    </div>
+
     <script>
         function calculateIncome() {
             let qty = parseFloat(document.getElementById('qty').value) || 0;
             let price = parseFloat(document.getElementById('price').value) || 0;
             let monthlyIncome = qty * price * 30;
-            document.getElementById('resultText.innerText').innerText = `💵 ចំណូលប៉ាន់ស្មានប្រចាំខែ: $${monthlyIncome.toFixed(2)}`;
+            document.getElementById('resultText').innerText = `💵 ចំណូលប៉ាន់ស្មានប្រចាំខែ: $${monthlyIncome.toFixed(2)}`;
         }
     </script>
 </body>
-</html>
