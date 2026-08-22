@@ -3,42 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSN Email Generator & Login</title>
+    <title>DSN Email Generator & Login - DSN OS</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
-        body { font-family: 'Kantumruy Pro', sans-serif; background-color: #090d16; color: #fff; padding: 20px; }
-        .card { background: rgba(17, 24, 39, 0.85); padding: 20px; border-radius: 20px; border: 1px solid #334155; }
-        .input-field { width: 100%; padding: 12px; margin-top: 10px; background: #1e293b; border: 1px solid #334155; color: #fff; border-radius: 10px; box-sizing: border-box; }
-        .btn-gen { width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 10px; margin-top: 15px; cursor: pointer; font-weight: bold; }
-        .btn-login { width: 100%; padding: 12px; background: #ea4335; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; font-weight: bold; }
-        .output-box { margin-top: 20px; padding: 15px; background: #0f172a; border-radius: 10px; border: 1px solid #334155; white-space: pre-wrap; font-family: monospace; color: #10b981; display: none; }
-        .btn-copy { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; }
-        .btn-clear { width: 100%; padding: 10px; background: #ef4444; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; }
+        
+        body { 
+            font-family: 'Kantumruy Pro', sans-serif; 
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            background-attachment: fixed;
+            color: #fff; 
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card { 
+            background: rgba(17, 24, 39, 0.85); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 20px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-title { 
+            color: #38bdf8; 
+            font-size: 18px; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2); 
+            padding-bottom: 8px; 
+        }
+
+        label { font-size: 13px; color: #94a3b8; font-weight: 600; }
+
+        .input-field { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 6px; 
+            margin-bottom: 12px;
+            background: rgba(30, 41, 59, 0.8); 
+            border: 1px solid #334155; 
+            color: #fff; 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            font-family: 'Kantumruy Pro', sans-serif;
+            transition: 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #38bdf8;
+            outline: none;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-gen { 
+            width: 100%; 
+            padding: 14px; 
+            background: linear-gradient(135deg, #2563eb, #38bdf8); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: bold;
+            font-family: 'Kantumruy Pro', sans-serif;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+        }
+        .btn-gen:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        .btn-login { 
+            width: 100%; 
+            padding: 12px; 
+            background: #ea4335; 
+            color: white; 
+            border: none; 
+            border-radius: 10px; 
+            margin-top: 10px; 
+            cursor: pointer; 
+            font-weight: bold;
+            font-family: 'Kantumruy Pro', sans-serif;
+            transition: 0.3s;
+        }
+        .btn-login:hover { filter: brightness(1.1); }
+
+        .output-box { 
+            margin-top: 15px; 
+            padding: 15px; 
+            background: #090d16; 
+            border-radius: 10px; 
+            border: 1px solid #334155; 
+            white-space: pre-wrap; 
+            font-family: monospace; 
+            color: #10b981; 
+            font-size: 13px;
+            display: none; 
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .btn-copy { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; font-weight: bold; font-family: 'Kantumruy Pro', sans-serif; }
+        .btn-copy:hover { filter: brightness(1.1); }
+
+        .btn-clear { width: 100%; padding: 10px; background: #ef4444; color: white; border: none; border-radius: 10px; margin-top: 10px; cursor: pointer; font-weight: bold; font-family: 'Kantumruy Pro', sans-serif; }
+        .btn-clear:hover { filter: brightness(1.1); }
+
+        /* Floating Dock */
+        .dsn-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 20px; border-radius: 30px;
+            display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 999;
+        }
+        .dock-item { font-size: 20px; text-decoration: none; padding: 8px; border-radius: 50%; display: flex; transition: 0.3s; }
+        .dock-item:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-5px); }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h3>⚙️ កំណត់រចនាសម្ព័ន្ធ (Configuration)</h3>
-    <label>ពាក្យគន្លឹះដំបូង (Prefix):</label>
-    <input type="text" id="prefix" class="input-field" placeholder="ឧ. sanad.et">
-    
-    <label style="display:block; margin-top:10px;">ចំនួនដែលចង់បង្កើត (Quantity):</label>
-    <input type="number" id="qty" class="input-field" value="10">
+<div class="container">
+    <div class="card">
+        <div class="header-title">⚙️ កំណត់រចនាសម្ព័ន្ធ (Configuration)</div>
+        <label>ពាក្យគន្លឹះដំបូង (Prefix):</label>
+        <input type="text" id="prefix" class="input-field" placeholder="ឧ. sanad.et">
+        
+        <label>ចំនួនដែលចង់បង្កើត (Quantity):</label>
+        <input type="number" id="qty" class="input-field" value="10">
 
-    <button class="btn-gen" onclick="generateEmailsSecure()">⚡ ចុចបង្កើត និងដាក់សោ (Generate)</button>
+        <button class="btn-gen" onclick="generateEmailsSecure()">⚡ ចុចបង្កើត និងដាក់សោ (Generate)</button>
+    </div>
+
+    <div class="card">
+        <div class="header-title">📩 លទ្ធផល (Email & Password)</div>
+        <div id="output" class="output-box">រង់ចាំលទ្ធផល...</div>
+        
+        <div id="actionButtons" style="display:none;">
+            <button class="btn-copy" onclick="copyOutput()">📋 Copy ទាំងអស់</button>
+            <button class="btn-login" onclick="window.open('https://accounts.google.com/signin', '_blank')">🌐 ចូលទៅកាន់ Gmail Login</button>
+            <button class="btn-clear" onclick="clearOutput()">🗑️ លុបទិន្នន័យចេញពីអេក្រង់</button>
+        </div>
+    </div>
 </div>
 
-<div class="card" style="margin-top:20px;">
-    <h3>📩 លទ្ធផល (Email & Password)</h3>
-    <div id="output" class="output-box">រង់ចាំលទ្ធផល...</div>
-    
-    <!-- ប៊ូតុងដែលបន្ថែមថ្មី -->
-    <div id="actionButtons" style="display:none;">
-        <button class="btn-copy" onclick="copyOutput()">📋 Copy ទាំងអស់</button>
-        <button class="btn-login" onclick="window.open('https://accounts.google.com/signin', '_blank')">🌐 ចូលទៅកាន់ Gmail Login</button>
-        <button class="btn-clear" onclick="clearOutput()">🗑️ លុបទិន្នន័យចេញពីអេក្រង់</button>
-    </div>
+<!-- Floating Dock -->
+<div class="dsn-dock">
+    <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
+    <a href="library.html" class="dock-item" title="Library">📚</a>
+    <a href="explorer.html" class="dock-item" title="File Explorer">📁</a>
+    <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+    <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
 </div>
 
 <script>
@@ -54,7 +183,7 @@
         }
 
         const prefix = document.getElementById('prefix').value || "user";
-        const qty = parseInt(document.getElementById('qty').value);
+        const qty = parseInt(document.getElementById('qty').value) || 10;
         generatedData = "";
 
         for (let i = 0; i < qty; i++) {
@@ -71,7 +200,7 @@
 
     function copyOutput() {
         navigator.clipboard.writeText(generatedData);
-        alert('បាន Copy រួចរាល់!');
+        alert('✅ បាន Copy ទាំងអស់ចូល Clipboard រួចរាល់!');
     }
 
     function clearOutput() {
@@ -83,4 +212,3 @@
 </script>
 
 </body>
-</html>
