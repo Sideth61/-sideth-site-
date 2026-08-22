@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Sideth - DSN Website Online & OS Hub</title>
+    <!-- OTPAuth Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.1.4/otpauth.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap');
         
         body.theme-dark { background-color: #090d16; color: #fff; }
         body.theme-cyber { background-color: #12001c; color: #ff77ff; }
         body.theme-ocean { background-color: #001e2b; color: #76ff03; }
-
-        .logo-container {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1000;
-            background: linear-gradient(135deg, #38bdf8, #f43f5e);
-            padding: 3px;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-        }
-        .logo-container img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: block;
-            border: 2px solid #090d16;
-        }
 
         body { 
             font-family: 'Kantumruy Pro', sans-serif; 
@@ -60,8 +43,35 @@
             z-index: 1;
         }
 
+        .logo-container {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #38bdf8, #f43f5e);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            border: 2px solid #090d16;
+        }
+
+        .setting-btn {
+            position: fixed; top: 15px; right: 20px; z-index: 1000;
+            background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
+
         .container { width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
         .card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); padding: 25px 20px; border-radius: 24px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); text-align: left; }
+        
         .header-card { text-align: center; }
         .avatar-container { width: 90px; height: 90px; margin: 0 auto 15px auto; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #f43f5e); padding: 3px; }
         .avatar { width: 100%; height: 100%; border-radius: 50%; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 36px; }
@@ -132,7 +142,7 @@
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 
-        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
+        .wife-box { background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 16px; text-align: center; margin-bottom: 10px; }
 
         .input-field {
             width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155;
@@ -140,14 +150,6 @@
             font-size: 16px; text-align: center; box-sizing: border-box; outline: none; margin-bottom: 15px;
         }
         .result { margin-top: 15px; font-size: 14px; font-weight: 600; color: #38bdf8; text-align: center; }
-
-        .setting-btn {
-            position: fixed; top: 15px; right: 20px; z-index: 1000;
-            background: rgba(17, 24, 39, 0.85); border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8; width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
 
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -206,7 +208,7 @@
     </div>
 
     <div class="container">
-        <!-- 🕒 DSN Live System Clock & Facebook Follower Widget (UPDATED!) -->
+        <!-- 🕒 Live Digital Clock & Facebook Follower Widget (Fixed at Top) -->
         <div class="card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4); text-align: center; padding: 15px;">
             <div id="liveClock" style="font-size: 20px; font-weight: bold; color: #38bdf8; font-family: monospace;">00:00:00 AM</div>
             <div id="liveDate" style="font-size: 13px; color: #94a3b8; margin-top: 5px;">DSN OS System Active • Pailin, Cambodia</div>
@@ -215,11 +217,10 @@
             </div>
         </div>
 
-        <!-- 🎧 DSN Music & Audio Hub (NEW!) -->
+        <!-- 🎧 DSN Music Hub -->
         <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
             <div class="section-title" style="color: #ec4899;">🎧 DSN Music & Audio Visualizer Hub</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px;">ស្ដាប់កម្សាន្តបទចម្រៀង ឬបទដែលបងកំពុងកែសម្រួលផ្ទាល់៖</p>
-            
             <div style="background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 12px; text-align: center;">
                 <div style="font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px;">🎶 បទ៖ ទាហានមុំបី ភ្នំ750 / Blaming All Men</div>
                 <audio controls style="width: 100%; border-radius: 8px;">
@@ -229,7 +230,7 @@
             </div>
         </div>
 
-
+        <!-- Header Card -->
         <div class="card header-card">
             <div class="avatar-container"><div class="avatar">🛡️</div></div>
             <div class="badge">⚔️ Deth DSN (SAN SIDETH) 💻</div>
@@ -244,7 +245,7 @@
             <p>ស្វាគមន៍មកកាន់វេបសាយផ្ទាល់ខ្លួនរបស់ខ្ញុំ! ខ្ញុំជាយុវជនមកពីខេត្តប៉ៃលិន បម្រើជាតិជាទាហាន និងសិក្សាផ្នែក IT កម្រិតពិភពលោក。</p>
         </div>
 
-        <!-- 📝 ផ្នែកកត់ត្រារហ័ស (DSN Quick Note) -->
+        <!-- Quick Note Card -->
         <div class="card" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(245, 158, 11, 0.4);">
             <div class="section-title" style="color: #f59e0b;">📝 DSN Quick Note (កត់ត្រាការងារ)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កត់ចំណាំគំនិត កិច្ចការ ឬ Link វីដេអូកែវៃភ្លាមៗនៅទីនេះ៖</p>
@@ -252,35 +253,34 @@
             <button onclick="saveQuickNote()" class="btn" style="background: #f59e0b; width: 100%; border: none; cursor: pointer; color: #000; font-weight: bold;">💾 រក្សាទុកកត់ត្រា (Save Note)</button>
         </div>
 
-        <!-- 💰 DSN VIP Money-Making & Digital Shop Tool -->
+        <!-- VIP Money Making -->
         <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(16, 185, 129, 0.4);">
             <div class="section-title" style="color: #10b981;">💰 DSN VIP Money-Making & Digital Shop</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px;">ប្រព័ន្ធស្វ័យប្រវត្តិសម្រាប់រកចំណូលពីការលក់គណនី និងសេវាកម្មអនឡាញរបស់ B Sideth៖</p>
             <a href="https://m.me/deth61" target="_blank" class="btn btn-money">🛒 កុម្ម៉ង់ទិញ ឬលក់សេវាកម្ម (Auto Connect)</a>
         </div>
 
-        <!-- 🎯 DSN Facebook Growth Tracker (100-200 Goal) -->
+        <!-- Facebook Goal Tracker -->
         <div class="card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
             <div class="section-title" style="color: #ec4899;">🎯 Facebook 100-200 Goal Tracker</div>
-            <p style="text-align: center; border-left: none; margin-bottom: 12px; color: #f9a8d4;">ជំហានដំបូងដើម្បីភាពជោគជ័យ៖ សំខាន់ជាងចំនួន គឺការគាំទ្រពិតប្រាកដ!</p>
+            <p style="text-align: center; border-left: none; margin-bottom: 12px; color: #f9a8d4;">ជំហានដំបូងដើម្បីភាពជោគជ័យ៖ សំខាន់ជាងចំនួន គឺการគាំទ្រពិតប្រាកដ!</p>
             <div style="display: flex; gap: 10px;">
                 <a href="https://www.facebook.com/deth61" target="_blank" class="btn" style="flex:1; background: #ec4899;">🚀 បង្កើន Follower</a>
                 <a href="social_tools.html" class="btn" style="flex:1; background: #4b5563;">⚙️ គ្រប់គ្រងផុស</a>
             </div>
         </div>
 
-        <!-- ✨ Gemini AI Tool Integration Card -->
+        <!-- Gemini AI Tool Integration -->
         <div class="card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
             <div class="section-title" style="color: #38bdf8;">✨ DSN Gemini AI Assistant Hub</div>
             <p style="text-align: center; border-left: none; margin-bottom: 12px;">ចូលទៅកាន់ជំនួយការ AI ផ្ទាល់ខ្លួនរបស់ B Sideth សម្រាប់ជំនួយការសរសេរកូដ៖</p>
             <a href="gemini_tool.html" class="btn btn-gemini">🚀 បើកប្រើប្រាស់ Gemini AI Tool</a>
         </div>
 
-        <!-- 🚀 DSN OS Quick App Launcher Center -->
+        <!-- App Launcher Center -->
         <div class="card">
             <div class="section-title">📂 DSN OS App Launcher Center</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px; font-size: 13px;">កម្មវិធី និងឯកសារទាំងអស់ត្រូវបានតភ្ជាប់រួចរាល់៖</p>
-            
             <div class="app-grid">
                 <a href="explorer.html" class="app-icon-box"><span>📁</span> File Explorer</a>
                 <a href="appstore.html" class="app-icon-box"><span>🛒</span> App Store</a>
@@ -300,20 +300,21 @@
             </div>
         </div>
 
-        <!-- 🚀 DSN Social Tools & Growth Hub Section -->
+        <!-- Social Growth & Booster Tools -->
         <div class="card" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(56, 189, 248, 0.4);">
             <div class="section-title" style="color: #38bdf8;">🚀 DSN Social Growth & Booster Tools</div>
             <p style="text-align: center; border-left: none; margin-bottom: 15px;">ចូលទៅកាន់ផ្ទាំងគ្រប់គ្រង និងពិសោធន៍កូដ Social Media Tools របស់ B Sideth៖</p>
             <a href="social_tools.html" class="btn btn-social">🚀 ចូលទៅកាន់ Social Tools Center</a>
         </div>
 
-        <!-- 🦝 Raccoon Cloud Gaming Hub Section -->
+        <!-- Raccoon Cloud Gaming -->
         <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(15, 23, 42, 0.85)); border-color: rgba(236, 72, 153, 0.4);">
             <div class="section-title" style="color: #ec4899;">🦝 Raccoon Cloud Gaming Portal</div>
             <p style="text-align: center; border-left: none; margin-bottom: 15px;">ចូលទៅកាន់ប្រព័ន្ធស្ទ្រីមហ្គេម Cloud ផ្ទាល់ជាមួយ Raccoon Game Platform៖</p>
             <a href="raccoon_game.html" class="btn btn-raccoon">🚀 លេងហ្គេមຜ່ານ Raccoon Cloud Gaming (DSN OS)</a>
         </div>
 
+        <!-- Number Guessing Game -->
         <div class="card">
             <div class="section-title">🎮 ហ្គេមទាយលេខសំណាង (1 - 10)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 15px;">សូមព្យាយាមទាយលេខរវាង ១ ដល់ ១០ ដើម្បីឈ្នះរង្វាន់ពិសេសពី B Sideth!</p>
@@ -322,7 +323,7 @@
             <div class="result" id="gameResult"></div>
         </div>
 
-        <!-- 📌 ផ្នែកហ្គេម Grand Theft Auto, Call of Duty & PS2 Hub -->
+        <!-- Gaming Hub -->
         <div class="card">
             <div class="section-title">🕹️ បន្ទប់ហ្គេមកម្សាន្តធំៗ (GTA, COD & PS2)</div>
             <p style="text-align: center; border-left: none; margin-bottom: 10px;">សូមជ្រើសរើសហ្គេមដែលបងចង់លេង ឬចូលទៅកាន់ទំព័រប្រមូលផ្ដុំ៖</p>
@@ -331,12 +332,14 @@
             <a href="ps2.html" class="btn btn-ps2">💿 PlayStation 2 (PS2) Classic Hub</a>
         </div>
 
+        <!-- Mini Browser Center -->
         <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(78, 204, 163, 0.1), rgba(15, 52, 96, 0.3)); border-color: #4ecca3;">
             <div class="section-title" style="color: #4ecca3;">🌐 B Sideth Mini Browser Center</div>
             <p style="text-align: center; border-left: none;">បើកប្រើប្រាស់ប្រព័ន្ធរុករកវិបសាយផ្ទាល់ខ្លួនរបស់ B Sideth យ៉ាងសម្បូរបែប!</p>
             <a href="browse.html" class="btn btn-browser">🌐 ចូលប្រើប្រាស់ Mini Browser របស់ខ្ញុំ</a>
         </div>
 
+        <!-- App & 2FA Tools -->
         <div class="card">
             <div class="section-title">💻🧰 កម្មវិធី និងហ្គេម (App & Tools)</div>
             
@@ -386,17 +389,20 @@
             </div>
         </div>
 
+        <!-- Services -->
         <div class="card">
             <div class="section-title">🛒 សេវាកម្ម</div>
             <a href="https://m.me/deth61" target="_blank" class="btn btn-gmail">🛒 ទិញគណនី Gmail</a>
             <a href="https://m.me/deth61" target="_blank" class="btn btn-apple">🍏 ទិញគណនី Apple ID</a>
         </div>
 
+        <!-- Library -->
         <div class="card">
             <div class="section-title">📚 បណ្ណាល័យមេរៀន និងចម្រៀង</div>
             <a href="library.html" class="btn btn-shop">📁 ចូលទៅកាន់ Library DSN ពេញលេញ</a>
         </div>
 
+        <!-- YouTube Video -->
         <div class="card">
             <div class="section-title">🎬 ស្នាដៃ YouTube (@sideth99)</div>
             <div class="video-container">
@@ -405,6 +411,7 @@
             <a href="https://www.youtube.com/@sideth99" target="_blank" class="btn btn-youtube">▶️ មើលឆាណែល YouTube (@sideth99)</a>
         </div>
 
+        <!-- Contact -->
         <div class="card">
             <div class="section-title">📞 ទំនាក់ទំនង</div>
             <a href="https://t.me/sidet99" target="_blank" class="btn btn-telegram">✈️ Telegram (@sidet99)</a>
@@ -412,7 +419,7 @@
         </div>
     </div>
 
-    <!-- Floating Dock ផ្នែកខាងក្រោម -->
+    <!-- Floating Dock -->
     <div class="dsn-dock">
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
@@ -423,7 +430,7 @@
     </div>
 
     <script>
-        // Live Digital Clock, Date & Facebook Follower Fetch Logic
+        // Live Digital Clock & Date Logic
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
@@ -509,7 +516,7 @@
             }
         });
 
-        // Game Logic
+        // Guess Game Logic
         const secretNumber = Math.floor(Math.random() * 10) + 1;
         function checkGuess() {
             const userGuess = parseInt(document.getElementById('guessInput').value);
@@ -555,7 +562,7 @@
             }
         }
 
-        // Background Canvas Effects
+        // Background Effects
         const canvas = document.getElementById('effectCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
