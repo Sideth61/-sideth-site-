@@ -17,7 +17,7 @@
             background-attachment: fixed;
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 90px; 
+            padding-bottom: 100px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -48,18 +48,24 @@
         .card { 
             background: rgba(17, 24, 39, 0.85); 
             backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             padding: 25px; 
             border-radius: 20px; 
             border: 1px solid rgba(56, 189, 248, 0.3); 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
             text-align: center;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 15px rgba(56,189,248,0.2);
         }
 
         /* Profile Header */
         .avatar-container {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 105px;
+            height: 105px;
             margin: 0 auto 15px auto;
         }
         .avatar {
@@ -68,22 +74,24 @@
             border-radius: 50%;
             border: 3px solid #38bdf8;
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            background: #1e293b;
         }
         .badge {
             position: absolute;
             bottom: 0;
             right: 0;
-            background: #2563eb;
+            background: linear-gradient(135deg, #2563eb, #38bdf8);
             color: white;
             font-size: 10px;
             padding: 4px 8px;
             border-radius: 20px;
             border: 2px solid #090d16;
             font-weight: bold;
+            box-shadow: 0 0 10px rgba(56,189,248,0.5);
         }
 
-        .profile-name { font-size: 20px; font-weight: 700; color: #38bdf8; margin-bottom: 5px; }
+        .profile-name { font-size: 20px; font-weight: 700; color: #38bdf8; margin-bottom: 5px; text-shadow: 0 0 10px rgba(56,189,248,0.3); }
         .profile-role { font-size: 13px; color: #94a3b8; margin-bottom: 15px; }
 
         /* Stats Row */
@@ -117,7 +125,7 @@
             outline: none;
             transition: 0.3s;
         }
-        .input-field:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        .input-field:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
 
         .btn {
             width: 100%;
@@ -131,8 +139,9 @@
             cursor: pointer;
             transition: 0.3s;
             margin-top: 5px;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
         }
-        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56,189,248,0.5); }
 
         .back-btn { 
             display: block; 
@@ -145,7 +154,7 @@
             font-weight: bold; 
             transition: 0.3s;
         }
-        .back-btn:hover { background: #334155; }
+        .back-btn:hover { background: #334155; transform: translateY(-2px); }
 
         /* Setting Button & Modal */
         .setting-btn {
@@ -164,17 +173,17 @@
             justify-content: center;
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(56,189,248,0.3);
             transition: 0.3s;
         }
-        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1); }
+        .setting-btn:hover { background: #38bdf8; color: #090d16; transform: scale(1.1) rotate(90deg); box-shadow: 0 0 25px rgba(56,189,248,0.8); }
 
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -187,18 +196,18 @@
             width: 90%;
             max-width: 350px;
             text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px rgba(56,189,248,0.4);
             color: #fff;
         }
         .modal-card h3 { color: #38bdf8; margin-top: 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
         .close-modal { background: none; border: none; color: #f43f5e; font-size: 20px; cursor: pointer; }
         .setting-action-btn { width: 100%; padding: 10px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Kantumruy Pro', sans-serif; transition: 0.3s; }
-        .setting-action-btn:hover { filter: brightness(1.1); }
+        .setting-action-btn:hover { filter: brightness(1.15); box-shadow: 0 0 15px rgba(16,185,129,0.5); }
         .options-row { display: flex; gap: 10px; margin-top: 8px; }
         .theme-box, .option-btn { 
             flex: 1; padding: 8px; border-radius: 8px; text-align: center; cursor: pointer; font-size: 11px; font-weight: bold; border: 1px solid #334155; background: #1e293b; color: #fff; transition: 0.3s; 
         }
-        .option-btn.active, .theme-box:hover { border-color: #38bdf8; background: #2563eb; color: #fff; }
+        .option-btn.active, .theme-box:hover { border-color: #38bdf8; background: #2563eb; color: #fff; box-shadow: 0 0 10px rgba(56,189,248,0.4); }
 
         /* Floating Dock ផ្នែកខាងក្រោម */
         .dsn-dock {
@@ -207,17 +216,17 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 10px 20px;
-            border-radius: 30px;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 10px 22px;
+            border-radius: 35px;
             display: flex;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56,189,248,0.2);
             z-index: 999;
         }
         .dock-item {
-            font-size: 20px;
+            font-size: 22px;
             text-decoration: none;
             transition: 0.3s;
             padding: 8px;
@@ -227,8 +236,9 @@
             justify-content: center;
         }
         .dock-item:hover {
-            background: rgba(56, 189, 248, 0.2);
-            transform: translateY(-5px);
+            background: rgba(56, 189, 248, 0.3);
+            transform: translateY(-8px) scale(1.15);
+            text-shadow: 0 0 10px #38bdf8;
         }
     </style>
 </head>
@@ -272,8 +282,7 @@
         
         <div class="card">
             <div class="avatar-container">
-                <!-- រូបភាព Avatar ថ្មី និងលុបចោលនិមិត្តសញ្ញាចាស់រួចរាល់ -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Avatar" class="avatar" id="userAvatar">
+                <img src="app3.png" alt="Avatar" class="avatar" id="userAvatar">
                 <span class="badge">PRO VIP</span>
             </div>
             <div class="profile-name" id="displayName">Sideth (Deth DSN)</div>
@@ -303,7 +312,7 @@
             </div>
             <div class="input-group">
                 <label>តំណររូបភាព Avatar (Image URL):</label>
-                <input type="text" id="avatarInput" class="input-field" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+                <input type="text" id="avatarInput" class="input-field" value="app3.png">
             </div>
             <button class="btn" onclick="updateProfile()">💾 រក្សាទុកការផ្លាស់ប្តូរ (Save)</button>
         </div>
@@ -345,8 +354,11 @@
         const bgmBtn = document.getElementById('bgmBtn');
         function toggleBgm() {
             if (bgm.paused) {
-                bgm.play();
-                bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+                bgm.play().then(() => {
+                    bgmBtn.innerText = "⏸️ បិទតន្ត្រី";
+                }).catch(e => {
+                    alert("សូមចុចលើអេក្រង់ម្ដងទៀតដើម្បីអនុញ្ញាតឱ្យចាក់សំឡេង!");
+                });
             } else {
                 bgm.pause();
                 bgmBtn.innerText = "▶️ បើកតន្ត្រី";
