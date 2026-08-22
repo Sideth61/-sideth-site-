@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="km">
 <head>
@@ -11,10 +10,11 @@
         body { 
             font-family: 'Kantumruy Pro', sans-serif; 
             background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            background-attachment: fixed;
             color: #fff; 
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 90px; 
+            padding-bottom: 100px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -23,7 +23,7 @@
 
         .container { 
             width: 100%; 
-            max-width: 400px; 
+            max-width: 420px; 
             display: flex; 
             flex-direction: column; 
             gap: 15px; 
@@ -32,6 +32,7 @@
         .card { 
             background: rgba(17, 24, 39, 0.85); 
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 20px; 
             border-radius: 20px; 
             border: 1px solid rgba(236, 72, 153, 0.4); 
@@ -55,7 +56,7 @@
             border-radius: 12px; 
             cursor: pointer; 
             border: 1px solid #334155;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             transition: 0.3s;
             display: flex;
@@ -64,7 +65,8 @@
         }
         .song-item:hover { 
             border-color: #ec4899; 
-            background: rgba(236, 72, 153, 0.1); 
+            background: rgba(236, 72, 153, 0.15); 
+            transform: translateY(-2px);
         }
 
         .browser-link { 
@@ -80,8 +82,9 @@
             font-weight: 600; 
             border: 1px solid #4ecca3; 
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(78,204,163,0.3);
         }
-        .browser-link:hover { filter: brightness(1.1); }
+        .browser-link:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
         .btn-back { 
             display: block; 
@@ -95,6 +98,7 @@
         }
         .btn-back:hover { color: #fff; }
 
+        /* Floating Dock */
         .dsn-dock {
             position: fixed;
             bottom: 20px;
@@ -102,12 +106,13 @@
             transform: translateX(-50%);
             background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(56, 189, 248, 0.3);
             padding: 10px 20px;
             border-radius: 30px;
             display: flex;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56,189,248,0.2);
             z-index: 999;
         }
         .dock-item {
@@ -122,7 +127,7 @@
         }
         .dock-item:hover {
             background: rgba(56, 189, 248, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
     </style>
 </head>
@@ -135,33 +140,30 @@
             
             <audio id="audioPlayer" controls style="width: 100%; border-radius: 8px; margin-bottom: 15px;"></audio>
             
-            <!-- Playlist នឹងត្រូវបង្កើតស្វ័យប្រវត្តិតាម JavaScript ខាងក្រោម -->
+            <!-- Playlist នឹងត្រូវបង្កើតស្វ័យប្រវត្តិតាម JavaScript -->
             <div id="playlist"></div>
         </div>
 
-        <a href="browse.html" class="browser-link">🌐 បើកប្រើប្រាស់ Mini Browser</a>
+        <a href="browser.html" class="browser-link">🌐 បើកប្រើប្រាស់ Mini Browser</a>
         <a href="index.html" class="btn-back">⬅️ ត្រឡប់ទៅផ្ទះ</a>
     </div>
 
-    <!-- Floating Dock ផ្នែកខាងក្រោម -->
+    <!-- Floating Dock -->
     <div class="dsn-dock">
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
-        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="library.html" class="dock-item" title="Library DSN" style="color: #ec4899;">📚</a>
         <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
     </div>
 
     <script>
-        // 🎶 បងអាចបន្ថែមបទចម្រៀងជាច្រើនបទនៅទីនេះបានស្រួលៗ!
+        // 🎶 បញ្ជីបទចម្រៀងរបស់ B Sideth
         const songs = [
-            { title: "បទ៖ ទាហានមុំបី ភ្នំ750", src: "https://drive.google.com/file/d/1K41ZSpc26GlRm3Vm-m3UPceRomH1KcGS/view?usp=drivesdk" },
-            { title: "បទ៖ Blame You Too", src: "https://drive.google.com/file/d/10-PzHDJcyerQsqaRrAGLcuerUPOPIcfl/view?usp=drivesdk" } 
-​             { title: "Blaming All Men English", src: "https://drive.google.com/file/d/1lVFI6bFLkBzUXTDdwRe0jvcA0j3aaCd-/view?usp=drivesdk" }
-             { title: "បទ៖​ ប៉ៃលិន​ ខ្ញុំមិនដែល​ភ្លេចអ្នកទេ", src: "https://drive.google.com/file/d/1OP42EERj_uyEUAlJ7t7MEVgoBAMLA3EY/view?usp=drivesdk" }
-
-            // ប្រសិនបើចង់ថែមបទទី ៣ គ្រាន់តែកុម្មង់សរសេរបន្ថែម៖
-            // { title: "បទ៖ ឈ្មោះបទទី៣", src: "Link_បទទី៣.mp3" }
+            { title: "បទ៖ ទាហានមុំបី ភ្នំ750", id: "1K41ZSpc26GlRm3Vm-m3UPceRomH1KcGS" },
+            { title: "បទ៖ Blame You Too", id: "10-PzHDJcyerQsqaRrAGLcuerUPOPIcfl" },
+            { title: "Blaming All Men English", id: "1lVFI6bFLkBzUXTDdwRe0jvcA0j3aaCd-" },
+            { title: "បទ៖ ប៉ៃលិន ខ្ញុំមិនដែលភ្លេចអ្នកទេ", id: "1OP42EERj_uyEUAlJ7t7MEVgoBAMLA3EY" }
         ];
 
         const audio = document.getElementById('audioPlayer');
@@ -171,17 +173,21 @@
             const div = document.createElement('div');
             div.className = 'song-item';
             div.innerHTML = `🎵 <span>${index + 1}. ${song.title}</span>`;
+            
             div.onclick = () => { 
-                // ដូរពណ៌ active
+                // ដូរពណ៌ active song item
                 document.querySelectorAll('.song-item').forEach(item => {
                     item.style.borderColor = '#334155';
                     item.style.background = 'rgba(30, 41, 59, 0.6)';
                 });
                 div.style.borderColor = '#ec4899';
-                div.style.background = 'rgba(236, 72, 153, 0.15)';
+                div.style.background = 'rgba(236, 72, 153, 0.2)';
 
-                audio.src = song.src; 
-                audio.play(); 
+                // แปลง Google Drive Link ឲ្យទៅជា Direct Stream URL ត្រឹមត្រូវ
+                audio.src = `https://docs.google.com/uc?export=download&id=${song.id}`;
+                audio.play().catch(err => {
+                    alert('⚠️ មិនអាចចាក់បទចម្រៀងនេះបានទេ។ សូមពិនិត្យមើលសិទ្ធិ 공유 (Sharing) របស់ Google Drive ជា Public ជាមុនសិន!');
+                });
             };
             playlist.appendChild(div);
         });
