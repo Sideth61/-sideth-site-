@@ -114,6 +114,7 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
+            z-index: 10;
         }
 
         .welcome-page h1 {
@@ -159,12 +160,12 @@
 
     <!-- របារគ្រប់គ្រង Browser -->
     <div class="browser-toolbar">
-        <button class="nav-btn" onclick="goBack()" title="ថយក្រោយ">◀</button>
-        <button class="nav-btn" onclick="goForward()" title="ទៅមុខ">▶</button>
+        <button class="nav-btn" onclick="goBack()" title="ថយក្រោយទៅកាន់ទំព័រដើម">◀</button>
         <button class="nav-btn" onclick="reloadPage()" title="ផ្ទុកទិន្នន័យឡើងវិញ">🔄</button>
+        <button class="nav-btn" onclick="openInNewTab()" title="បើកក្នុង Tab ថ្មី (External)">↗️</button>
         
         <div class="url-bar-container">
-            <input type="text" id="urlInput" class="url-input" placeholder="បញ្ចូល Link ទីតាំង ਵੈបសាយ (https://...) រួចចុច Go..." onkeypress="checkEnter(event)">
+            <input type="text" id="urlInput" class="url-input" placeholder="បញ្ចូល Link ទីតាំងវេបសាយ (https://...) រួចចុច Go..." onkeypress="checkEnter(event)">
             <button class="go-btn" onclick="loadUrl()">Go</button>
         </div>
     </div>
@@ -176,28 +177,29 @@
             <h1>🌐 B Sideth Mini Browser</h1>
             <p>សូមស្វាគមន៍មកកាន់កម្មវិធីរុករកវិបសាយផ្ទាល់ខ្លួនរបស់បង!</p>
             <div class="quick-links">
-                <a class="quick-btn" onclick="openPreset('https://sideth61.github.io/bookdsn.html')">📚 បណ្ណាល័យ bookdsn.html</a>
-                <a class="quick-btn" onclick="openPreset('https://drive.google.com/drive/folders/10rsr8yMmHySYfzTwnePyHTQwFcOUcvsI')">📂 Google Drive Folder</a>
-                <a class="quick-btn" onclick="openPreset('https://www.google.com')">🔍 Google Search</a>
+                <button class="quick-btn" onclick="openPreset('bookdsn.html')">📚 បណ្ណាល័យ bookdsn.html</button>
+                <button class="quick-btn" onclick="openPreset('https://www.google.com')">🔍 Google Search</button>
+                <button class="quick-btn" onclick="openPreset('library.html')">🏛️ DSN Library Hub</button>
             </div>
         </div>
-        <iframe id="browserFrame" src="" style="display:none;"></iframe>
+        <iframe id="browserFrame" src=""></iframe>
     </div>
 
     <script>
         const urlInput = document.getElementById('urlInput');
         const browserFrame = document.getElementById('browserFrame');
         const homePage = document.getElementById('homePage');
+        let currentUrl = '';
 
         function loadUrl() {
             let url = urlInput.value.trim();
             if (url) {
-                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                if (!url.startsWith('http://') && !url.startsWith('https://') && !url.endsWith('.html')) {
                     url = 'https://' + url;
-                    urlInput.value = url;
                 }
+                urlInput.value = url;
+                currentUrl = url;
                 homePage.style.display = 'none';
-                browserFrame.style.display = 'block';
                 browserFrame.src = url;
             }
         }
@@ -214,24 +216,28 @@
         }
 
         function reloadPage() {
-            if (browserFrame.style.display === 'block') {
-                browserFrame.src = browserFrame.src;
+            if (homePage.style.display === 'none' && currentUrl) {
+                browserFrame.src = currentUrl;
             } else {
+                urlInput.value = '';
                 homePage.style.display = 'flex';
-                browserFrame.style.display = 'none';
             }
         }
 
         function goBack() {
             homePage.style.display = 'flex';
-            browserFrame.style.display = 'none';
+            browserFrame.src = '';
             urlInput.value = '';
+            currentUrl = '';
         }
 
-        function goForward() {
-            // Placeholder for forward action
+        function openInNewTab() {
+            if (currentUrl) {
+                window.open(currentUrl, '_blank');
+            } else {
+                alert('⚠️ សូមជ្រើសរើសវេបសាយណាមួយជាមុនសិន!');
+            }
         }
     </script>
 
 </body>
-</html>
