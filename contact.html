@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="km">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +16,7 @@
             background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
             background-attachment: fixed;
             color: #fff; margin: 0; padding: 20px; 
-            padding-bottom: 90px;
+            padding-bottom: 100px;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
             position: relative;
         }
@@ -30,9 +31,13 @@
         .container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
         .card { 
             background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             padding: 25px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); text-align: left;
+            transition: 0.3s;
         }
+        .card:hover { border-color: rgba(56, 189, 248, 0.6); }
+
         .title { color: #38bdf8; font-size: 18px; font-weight: 700; margin-bottom: 15px; text-align: center; }
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; color: #94a3b8; font-size: 12px; margin-bottom: 5px; }
@@ -42,17 +47,21 @@
             font-size: 13px; box-sizing: border-box; outline: none; transition: 0.3s;
         }
         .input-field:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        
         .btn {
             width: 100%; padding: 12px; background: linear-gradient(135deg, #2563eb, #38bdf8);
             color: #fff; border: none; border-radius: 12px; font-weight: bold;
             font-family: 'Kantumruy Pro', sans-serif; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
         }
         .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
         .back-btn { 
             display: block; text-align: center; background: #1e293b; border: 1px solid #334155;
             color: #fff; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .back-btn:hover { background: #334155; }
+        .back-btn:hover { background: #334155; transform: translateY(-2px); }
 
         /* Floating Dock ផ្នែកខាងក្រោម */
         .dsn-dock {
@@ -62,12 +71,13 @@
             transform: translateX(-50%);
             background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(56, 189, 248, 0.3);
             padding: 10px 20px;
             border-radius: 30px;
             display: flex;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56,189,248,0.2);
             z-index: 999;
         }
         .dock-item {
@@ -82,7 +92,7 @@
         }
         .dock-item:hover {
             background: rgba(56, 189, 248, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
     </style>
 </head>
@@ -92,7 +102,7 @@
 
     <div class="container">
         <div class="card">
-            <div class="title">📬 ទំនាក់ទំនង និងផ្ើសារមកកាន់ B Sideth</div>
+            <div class="title">📬 ទំនាក់ទំនង និងផ្ញើសារមកកាន់ B Sideth</div>
             <div class="input-group">
                 <label>ឈ្មោះរបស់អ្នក (Your Name):</label>
                 <input type="text" id="senderName" class="input-field" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក...">
@@ -106,18 +116,19 @@
         <a href="index.html" class="back-btn">⬅️ ត្រឡប់ទៅទំព័រដើម (Home)</a>
     </div>
 
+    <!-- Floating Dock -->
     <div class="dsn-dock">
         <a href="index.html" class="dock-item" title="ទំព័រដើម">🏠</a>
         <a href="profile.html" class="dock-item" title="ប្រវត្តិរូប">👤</a>
         <a href="appstore.html" class="dock-item" title="App Store">🛒</a>
-        <a href="game.html" class="dock-item" title="ហ្គេម">🎮</a>
+        <a href="library.html" class="dock-item" title="Library DSN">📚</a>
         <a href="setting.html" class="dock-item" title="ការកំណត់">⚙️</a>
     </div>
 
     <script>
         function sendMessage() {
-            const name = document.getElementById('senderName').value;
-            const msg = document.getElementById('senderMsg').value;
+            const name = document.getElementById('senderName').value.trim();
+            const msg = document.getElementById('senderMsg').value.trim();
 
             if(!name || !msg) {
                 alert('⚠️ សូមបំពេញព័ត៌មានឱ្យបានគ្រប់គ្រាន់ជាមុនសិន!');
@@ -196,4 +207,3 @@
         });
     </script>
 </body>
-</html>
